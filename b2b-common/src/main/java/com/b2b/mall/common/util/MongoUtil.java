@@ -1,5 +1,6 @@
 package com.b2b.mall.common.util;
 
+import com.mongodb.*;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSFile;

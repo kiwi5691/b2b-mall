@@ -25,6 +25,7 @@
         <module>b2b-db</module>
         <module>b2b-admin</module>
         <module>b2b-common</module>
+        <module>b2b-frontend</module>
     </modules>
 
 
@@ -62,7 +63,7 @@
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.46</version>
+                <version>8.0.11</version>
             </dependency>
 
             <dependency>

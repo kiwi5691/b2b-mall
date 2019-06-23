@@ -39,7 +39,7 @@ public class UserController {
      * @param model
      * @return
      */
-    @GetMapping("/user/login")
+    @GetMapping({"/user/login","/user/login.html"})
     public String loginGet(Model model) {
         return "login";
     }
