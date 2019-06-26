@@ -20,7 +20,7 @@ import java.util.Date;
  */
 @Controller
 public class UserController {
-q
+
     @Autowired
     private UserMapper userMapper;
 

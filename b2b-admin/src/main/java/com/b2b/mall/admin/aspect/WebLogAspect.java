@@ -17,7 +17,9 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by jiangyunxiong on 2018/7/27.
+ *
+ * @author kiwi
+ * @date 2018/7/27
  */
 @Component
 @Aspect
@@ -25,7 +27,7 @@ public class WebLogAspect {
 
     private Map<Long, Map<String, List<Long>>> threadMap = new ConcurrentHashMap<>(200);
 
-    //匹配com.b2b.controller包及其子包下的所有类的所有方法
+    /**匹配com.b2b.controller包及其子包下的所有类的所有方法*/
     @Pointcut("execution(* com.b2b.mall.admin.controller..*.*(..))")
     public void executeService(){
 
@@ -49,7 +51,9 @@ public class WebLogAspect {
             threadMap.put(Thread.currentThread().getId(), methodTimeMap);
         } else {
             list = methodTimeMap.get(joinPoint.toShortString());
-            if (list == null) list = new LinkedList<>();
+            if (list == null) {
+                list = new LinkedList<>();
+            }
             list.add(System.currentTimeMillis());
             methodTimeMap.put(joinPoint.toShortString(), list);
         }
@@ -76,7 +80,6 @@ public class WebLogAspect {
         //从获取RequestAttributes中获取HttpServletRequest的信息
         HttpServletRequest request = (HttpServletRequest) requestAttributes.resolveReference(RequestAttributes.REFERENCE_REQUEST);
         //如果要获取Session信息的话，可以这样写：
-        //HttpSession session = (HttpSession) requestAttributes.resolveReference(RequestAttributes.REFERENCE_SESSION);
         Enumeration<String> enumeration = request.getParameterNames();
         Map<String,String> parameterMap = new HashMap<>();
         while (enumeration.hasMoreElements()){
