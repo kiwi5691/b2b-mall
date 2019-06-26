@@ -3,5 +3,5 @@
 
 
 # 技术栈
-> 1. Spring Boot：   Shiro, Druid, Redis,Jedis,Jackson,JavaMail
-> 2. 前端 ：          HTML,JavaScript，Css,Thymeleaf
+> 1. Spring Boot：   Shiro,Druid,Redis,Jedis,Jackson,JavaMail
+> 2. 前端 ：          HTML,JavaScript,Css,Thymeleaf

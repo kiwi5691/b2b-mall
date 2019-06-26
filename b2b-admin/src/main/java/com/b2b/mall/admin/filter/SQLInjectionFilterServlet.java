@@ -11,9 +11,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * Created by jiangyunxiong on 2018/7/28.
- */
+
 @Configuration
 @WebFilter(urlPatterns = "/*", filterName = "SQLInjection")
 public class SQLInjectionFilterServlet implements Filter {
