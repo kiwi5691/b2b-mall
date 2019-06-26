@@ -1,5 +1,9 @@
 package com.b2b.mall.common.enums;
 
+/**
+ * @author kiwi
+ */
+
 public enum CommonParamsEnum {
     /**
      * 数字10

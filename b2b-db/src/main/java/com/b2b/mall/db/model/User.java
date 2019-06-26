@@ -1,6 +1,7 @@
 package com.b2b.mall.db.model;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
 
@@ -16,4 +17,5 @@ public class User extends BaseObject {
 	private Date addDate;
 	private Date updateDate;
 	private int state;
+	private Date userLudt;
 }

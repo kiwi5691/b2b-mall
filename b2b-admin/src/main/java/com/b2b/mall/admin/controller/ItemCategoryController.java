@@ -1,6 +1,7 @@
 package com.b2b.mall.admin.controller;
 
 import com.b2b.mall.admin.service.Impl.ItemCategoryServiceImpl;
+import com.b2b.mall.admin.service.ItemCategoryService;
 import com.b2b.mall.common.util.Constant;
 import com.b2b.mall.common.util.DateUtil;
 import com.b2b.mall.common.util.PageUtil;
@@ -24,10 +25,10 @@ import java.util.Random;
 @Controller
 public class ItemCategoryController {
 
-    private final ItemCategoryServiceImpl itemCategoryService;
+    private final ItemCategoryService itemCategoryService;
 
     @Autowired
-    public ItemCategoryController(ItemCategoryServiceImpl itemCategoryService) {
+    public ItemCategoryController(ItemCategoryService itemCategoryService) {
         this.itemCategoryService = itemCategoryService;
     }
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -56,7 +57,12 @@ public class UserController {
     public String loginPost(User user, Model model) {
         User user1 = userMapper.selectByNameAndPwd(user);
         if (user1 != null) {
+            //时间测试
+            user1.setUserLudt(new Date());
             httpSession.setAttribute("user", user1);
+            String timeQuannum="";
+            timeQuannum =DateUtil.checkTimeQuantum();
+            httpSession.setAttribute("time",timeQuannum);
             User name = (User) httpSession.getAttribute("user");
             return "redirect:dashboard";
         } else {

@@ -1,6 +1,7 @@
 package com.b2b.mall.admin.controller;
 
 
+import com.b2b.mall.admin.service.DashboardService;
 import com.b2b.mall.admin.service.Impl.DashboardServiceImpl;
 import com.b2b.mall.common.redis.RedisService;
 import com.b2b.mall.common.util.RunnableThreadWebCount;
@@ -21,10 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class DashboardController {
 
-    private final DashboardServiceImpl dashboardService;
+    private final DashboardService dashboardService;
 
     @Autowired
-    public DashboardController(DashboardServiceImpl dashboardService) {
+    public DashboardController(DashboardService dashboardService) {
         this.dashboardService = dashboardService;
     }
 

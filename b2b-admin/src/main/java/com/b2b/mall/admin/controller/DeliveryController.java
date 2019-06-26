@@ -1,6 +1,7 @@
 package com.b2b.mall.admin.controller;
 
 import com.alibaba.fastjson.JSONArray;
+import com.b2b.mall.admin.service.DeliveryService;
 import com.b2b.mall.admin.service.Impl.DeliveryServiceImpl;
 import com.b2b.mall.db.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DeliveryController {
 
-    private final DeliveryServiceImpl deliveryService;
+    private final DeliveryService deliveryService;
 
     @Autowired
-    public DeliveryController(DeliveryServiceImpl deliveryService) {
+    public DeliveryController(DeliveryService deliveryService) {
         this.deliveryService = deliveryService;
     }
 
