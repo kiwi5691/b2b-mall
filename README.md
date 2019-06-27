@@ -36,10 +36,10 @@ b2b_db ->  b2b_common -> b2b_admin -> b2b_frontend
 
 - ### 后台
 
-  ![image text](https://github.com/kiwi5691/b2b-mall/tree/master/screenShot/login.png)
-  ![image text](https://github.com/kiwi5691/b2b-mall/tree/master/screenShot/bashboard.png)
-  ![image text](https://github.com/kiwi5691/b2b-mall/tree/master/screenShot/shop.png)
-  ![image text](https://github.com/kiwi5691/b2b-mall/tree/master/screenShot/order.png)
-  ![image text](https://github.com/kiwi5691/b2b-mall/tree/master/screenShot/kuaidi.png)
-  ![image text](https://github.com/kiwi5691/b2b-mall/tree/master/screenShot/person.png)
+  ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/login.png)
+  ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/bashboard.png)
+  ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/shop.png)
+  ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/order.png)
+  ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/kuaidi.png)
+  ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/person.png)
 
