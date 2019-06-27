@@ -4,8 +4,11 @@ public class BaseObject {
 
 	private int start;
 	private int end;
+	/**目前页数*/
 	private int pageCurrent;
+	/**一页多少行*/
 	private int pageSize;
+	/**页数*/
 	private int pageCount;
 	private String orderBy;
 	
