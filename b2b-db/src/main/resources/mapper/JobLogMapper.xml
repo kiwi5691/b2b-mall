@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.b2b.mall.db.mapper.JobLogMapper">
+  <resultMap id="BaseResultMap" type="com.b2b.mall.db.model.JobLog">
+    <id column="LOG_ID" jdbcType="BIGINT" property="logId" />
+    <result column="JOB_ID" jdbcType="BIGINT" property="jobId" />
+    <result column="BEAN_NAME" jdbcType="VARCHAR" property="beanName" />
+    <result column="METHOD_NAME" jdbcType="VARCHAR" property="methodName" />
+    <result column="PARAMS" jdbcType="VARCHAR" property="params" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="TIMES" jdbcType="DECIMAL" property="times" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.b2b.mall.db.model.JobLog">
+    <result column="ERROR" jdbcType="LONGVARCHAR" property="error" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LOG_ID, JOB_ID, BEAN_NAME, METHOD_NAME, PARAMS, STATUS, TIMES, CREATE_TIME
+  </sql>
+  <sql id="Blob_Column_List">
+    ERROR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_job_log
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_job_log
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.b2b.mall.db.model.JobLog">
+    insert into tb_job_log (LOG_ID, JOB_ID, BEAN_NAME, 
+      METHOD_NAME, PARAMS, STATUS, 
+      TIMES, CREATE_TIME, ERROR
+      )
+    values (#{logId,jdbcType=BIGINT}, #{jobId,jdbcType=BIGINT}, #{beanName,jdbcType=VARCHAR}, 
+      #{methodName,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{times,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{error,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.b2b.mall.db.model.JobLog">
+    insert into tb_job_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        LOG_ID,
+      </if>
+      <if test="jobId != null">
+        JOB_ID,
+      </if>
+      <if test="beanName != null">
+        BEAN_NAME,
+      </if>
+      <if test="methodName != null">
+        METHOD_NAME,
+      </if>
+      <if test="params != null">
+        PARAMS,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="times != null">
+        TIMES,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="error != null">
+        ERROR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=BIGINT},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=BIGINT},
+      </if>
+      <if test="beanName != null">
+        #{beanName,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="times != null">
+        #{times,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="error != null">
+        #{error,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.b2b.mall.db.model.JobLog">
+    update tb_job_log
+    <set>
+      <if test="jobId != null">
+        JOB_ID = #{jobId,jdbcType=BIGINT},
+      </if>
+      <if test="beanName != null">
+        BEAN_NAME = #{beanName,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        METHOD_NAME = #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        PARAMS = #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="times != null">
+        TIMES = #{times,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="error != null">
+        ERROR = #{error,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.b2b.mall.db.model.JobLog">
+    update tb_job_log
+    set JOB_ID = #{jobId,jdbcType=BIGINT},
+      BEAN_NAME = #{beanName,jdbcType=VARCHAR},
+      METHOD_NAME = #{methodName,jdbcType=VARCHAR},
+      PARAMS = #{params,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      TIMES = #{times,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      ERROR = #{error,jdbcType=LONGVARCHAR}
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.b2b.mall.db.model.JobLog">
+    update tb_job_log
+    set JOB_ID = #{jobId,jdbcType=BIGINT},
+      BEAN_NAME = #{beanName,jdbcType=VARCHAR},
+      METHOD_NAME = #{methodName,jdbcType=VARCHAR},
+      PARAMS = #{params,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      TIMES = #{times,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </update>
+</mapper>

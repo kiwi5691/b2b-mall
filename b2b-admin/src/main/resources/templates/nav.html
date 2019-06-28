@@ -42,7 +42,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">订单管理</span><span class="label label-warning pull-right">16</span></a>
+                    <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">订单管理</span><span class="label label-warning pull-right" th:text="${session.order}"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li id="orderManage"><a th:href="@{orderManage_0_0_0}">订单管理</a></li>
                         <li id="orderRefund"><a th:href="@{orderRefund_0_0_0}">订单退款</a></li>

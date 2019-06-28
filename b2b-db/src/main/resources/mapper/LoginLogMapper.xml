@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.b2b.mall.db.mapper.LoginLogMapper">
+  <resultMap id="BaseResultMap" type="com.b2b.mall.db.model.LoginLog">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="LOGIN_TIME" jdbcType="TIMESTAMP" property="loginTime" />
+    <result column="LOCATION" jdbcType="VARCHAR" property="location" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="SYSTEM" jdbcType="VARCHAR" property="system" />
+    <result column="BROWSER" jdbcType="VARCHAR" property="browser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USERNAME, LOGIN_TIME, LOCATION, IP, SYSTEM, BROWSER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_login_log
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_login_log
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.b2b.mall.db.model.LoginLog">
+    insert into tb_login_log (ID, USERNAME, LOGIN_TIME, 
+      LOCATION, IP, SYSTEM, 
+      BROWSER)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP}, 
+      #{location,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{system,jdbcType=VARCHAR}, 
+      #{browser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.b2b.mall.db.model.LoginLog">
+    insert into tb_login_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="loginTime != null">
+        LOGIN_TIME,
+      </if>
+      <if test="location != null">
+        LOCATION,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="system != null">
+        SYSTEM,
+      </if>
+      <if test="browser != null">
+        BROWSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="system != null">
+        #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="browser != null">
+        #{browser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.b2b.mall.db.model.LoginLog">
+    update tb_login_log
+    <set>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="location != null">
+        LOCATION = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="system != null">
+        SYSTEM = #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="browser != null">
+        BROWSER = #{browser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.b2b.mall.db.model.LoginLog">
+    update tb_login_log
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      LOCATION = #{location,jdbcType=VARCHAR},
+      IP = #{ip,jdbcType=VARCHAR},
+      SYSTEM = #{system,jdbcType=VARCHAR},
+      BROWSER = #{browser,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,6 +29,11 @@ public class DashboardServiceImpl implements DashboardService {
 
     @Resource
     private RedisService redisService;
+
+    @Autowired
+    private HttpSession httpSession;
+
+
 
     @Override
     public void dashboardInit(Model model, Stats stats) {
@@ -129,6 +135,7 @@ public class DashboardServiceImpl implements DashboardService {
             data3.add(orderSum);
         }
 
+        httpSession.setAttribute("order", orderMapper.selectByUnprocessedOrder());
         model.addAttribute("data2", data2);
         model.addAttribute("data3", data3);
 

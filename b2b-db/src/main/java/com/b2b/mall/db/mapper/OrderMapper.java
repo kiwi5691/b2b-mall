@@ -33,4 +33,6 @@ public interface OrderMapper {
     Integer selectDayOrderNum(Order order);
 
     Integer updateByPrimaryKey(Order record);
+
+    Integer selectByUnprocessedOrder();
 }
