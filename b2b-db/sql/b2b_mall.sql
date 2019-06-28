@@ -1023,6 +1023,8 @@ INSERT INTO `tb_menu` VALUES (172, 136, '导出Excel', NULL, 'loginlog:export', 
 INSERT INTO `tb_menu` VALUES (173, 102, '导出Excel', NULL, 'job:export', NULL, '1', NULL, '2019-06-13 14:37:25', NULL);
 INSERT INTO `tb_menu` VALUES (174, 109, '导出Excel', NULL, 'job:log:export', NULL, '1', NULL, '2019-06-13 14:37:46', '2019-06-13 14:38:02');
 
+
+
 -- ----------------------------
 -- Table structure for tb_role
 -- ----------------------------
@@ -1045,6 +1047,36 @@ INSERT INTO `tb_role` VALUES (77, 'Redis监控员', '负责Redis模块', '2019-0
 INSERT INTO `tb_role` VALUES (78, '系统监控员', '负责整个系统监控模块', '2019-06-14 20:50:07', NULL);
 INSERT INTO `tb_role` VALUES (79, '跑批人员', '负责任务调度跑批模块', '2019-06-14 20:51:02', NULL);
 INSERT INTO `tb_role` VALUES (80, '开发人员', '拥有代码生成模块的权限', '2019-06-14 20:51:26', NULL);
+
+
+
+-- ----------------------------
+-- Table structure for t_dept
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_dept`;
+CREATE TABLE `tb_dept`  (
+                         `DEPT_ID` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '部门ID',
+                         `PARENT_ID` bigint(20) NOT NULL COMMENT '上级部门ID',
+                         `DEPT_NAME` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '部门名称',
+                         `ORDER_NUM` bigint(20) NULL DEFAULT NULL COMMENT '排序',
+                         `CREATE_TIME` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+                         `MODIFY_TIME` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
+                         PRIMARY KEY (`DEPT_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '部门表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_dept
+-- ----------------------------
+INSERT INTO `tb_dept` VALUES (1, 0, '开发部', 1, '2019-06-14 20:56:41', NULL);
+INSERT INTO `tb_dept` VALUES (2, 1, '开发一部', 1, '2019-06-14 20:58:46', NULL);
+INSERT INTO `tb_dept` VALUES (3, 1, '开发二部', 2, '2019-06-14 20:58:56', NULL);
+INSERT INTO `tb_dept` VALUES (4, 0, '采购部', 2, '2019-06-14 20:59:56', NULL);
+INSERT INTO `tb_dept` VALUES (5, 0, '财务部', 3, '2019-06-14 21:00:08', NULL);
+INSERT INTO `tb_dept` VALUES (6, 0, '销售部', 4, '2019-06-14 21:00:15', NULL);
+INSERT INTO `tb_dept` VALUES (7, 0, '工程部', 5, '2019-06-14 21:00:42', NULL);
+INSERT INTO `tb_dept` VALUES (8, 0, '行政部', 6, '2019-06-14 21:00:49', NULL);
+INSERT INTO `tb_dept` VALUES (9, 0, '人力资源部', 8, '2019-06-14 21:01:14', '2019-06-14 21:01:34');
+INSERT INTO `tb_dept` VALUES (10, 0, '系统部', 7, '2019-06-14 21:01:31', NULL);
 
 -- ----------------------------
 -- Table structure for tb_role_menu
