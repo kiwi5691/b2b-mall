@@ -2,8 +2,6 @@ package com.b2b.mall.admin.controller;
 
 
 import com.b2b.mall.admin.service.DashboardService;
-import com.b2b.mall.admin.service.Impl.DashboardServiceImpl;
-import com.b2b.mall.common.redis.RedisService;
 import com.b2b.mall.common.util.RunnableThreadWebCount;
 import com.b2b.mall.db.model.*;
 import org.springframework.beans.factory.annotation.Autowired;

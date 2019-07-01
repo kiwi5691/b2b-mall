@@ -1,4 +1,4 @@
-package com.b2b.mall.common.redis;
+package com.b2b.mall.common.redis.KeyPrefix;
 
 /**
  *

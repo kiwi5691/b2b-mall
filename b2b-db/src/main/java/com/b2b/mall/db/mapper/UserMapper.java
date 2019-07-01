@@ -17,4 +17,6 @@ public interface UserMapper {
     int selectIsName(User user);
 
     String selectPasswordByName(User user);
+
+    User selectAllByName(String userName);
 }

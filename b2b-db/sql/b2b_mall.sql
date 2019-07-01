@@ -1262,7 +1262,7 @@ CREATE TABLE `tb_user` (
   `userName` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `realName` varchar(45) DEFAULT NULL,
-  `business` varchar(45) DEFAULT NULL,
+  `business` varchar(45) DEFAULT NULL COMMENT '部门ID/未修改列名',
   `email` varchar(45) DEFAULT NULL,
   `headPicture` varchar(45) DEFAULT NULL,
   `addDate` date DEFAULT NULL,
@@ -1276,7 +1276,8 @@ CREATE TABLE `tb_user` (
 -- Records of tb_user
 -- ----------------------------
 INSERT INTO `tb_user` VALUES ('6', 'admin', 'admin', '小花', '运营岗', '1818181818', null, '2018-03-19', '2018-03-19', '1');
-INSERT INTO `tb_user` VALUES ('7', 'jesper', 'jesper', '111111aaa', '111', '1773232392@qq.com', null, '2018-03-30', '2018-04-04', '1');
+INSERT INTO `tb_user` VALUES ('7', 'big', 'big', '111111aaa', '111', '1773232392@qq.com', null, '2018-03-30', '2018-04-04', '1');
+INSERT INTO `tb_user` VALUES ('1', 'kiwi', 'kiwi', 'kiwi','超级无敌管理员', '805344479@qq.com', null, '2019-06-14', '2019-06-14', '1');
 
 
 -- ----------------------------

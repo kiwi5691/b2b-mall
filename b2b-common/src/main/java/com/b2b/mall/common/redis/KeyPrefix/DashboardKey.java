@@ -1,9 +1,10 @@
-package com.b2b.mall.common.redis;
+package com.b2b.mall.common.redis.KeyPrefix;
 
 
 public class DashboardKey extends BasePrefix {
 
-    public static final int BOARD_EXPIRE = 3600*24 *2;//默认两天
+    //默认两天
+    public static final int BOARD_EXPIRE = 3600*24 *2;
 
     /**
      * 防止被外面实例化

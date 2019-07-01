@@ -1,8 +1,9 @@
 package com.b2b.mall.admin.service.Impl;
 
 import com.b2b.mall.admin.service.DashboardService;
-import com.b2b.mall.common.redis.DashboardKey;
-import com.b2b.mall.common.redis.RedisService;
+import com.b2b.mall.common.enums.TimeQuantumEnum;
+import com.b2b.mall.common.redis.KeyPrefix.DashboardKey;
+import com.b2b.mall.common.redis.RedisManager;
 import com.b2b.mall.common.util.RunnableThreadWebCount;
 import com.b2b.mall.db.mapper.OrderMapper;
 import com.b2b.mall.db.model.Order;
@@ -28,7 +29,7 @@ public class DashboardServiceImpl implements DashboardService {
     private OrderMapper orderMapper;
 
     @Resource
-    private RedisService redisService;
+    private RedisManager redisManager;
 
     @Autowired
     private HttpSession httpSession;
@@ -42,46 +43,46 @@ public class DashboardServiceImpl implements DashboardService {
         Integer curOrderNum, preOrderNum, curRefundOrder, lastRefundOrder, orderNum, orderSum;
 
         //全部加缓存
-        mIncome = redisService.get(DashboardKey.board, "mIncome", Long.class);
+        mIncome = redisManager.get(DashboardKey.board, "mIncome", Long.class);
         if (mIncome == null) {
             mIncome = orderMapper.selectCurPayment();
             mIncome = mIncome == null ? 0L : mIncome;
-            redisService.set(DashboardKey.board, "mIncome", mIncome);
+            redisManager.set(DashboardKey.board, "mIncome", mIncome);
         }
 
-        lastIncome = redisService.get(DashboardKey.board, "lastIncome", Long.class);
+        lastIncome = redisManager.get(DashboardKey.board, "lastIncome", Long.class);
         if (lastIncome == null) {
             lastIncome = orderMapper.selectLastPayment();
             lastIncome = lastIncome == null ? 0L : lastIncome;
-            redisService.set(DashboardKey.board, "lastIncome", lastIncome);
+            redisManager.set(DashboardKey.board, "lastIncome", lastIncome);
         }
 
-        curOrderNum = redisService.get(DashboardKey.board, "curOrderNum", Integer.class);
+        curOrderNum = redisManager.get(DashboardKey.board, "curOrderNum", Integer.class);
         if (curOrderNum == null) {
             curOrderNum = orderMapper.selectCurOrderNum();
             curOrderNum = curOrderNum == null ? 0 : curOrderNum;
-            redisService.set(DashboardKey.board, "curOrderNum", curOrderNum);
+            redisManager.set(DashboardKey.board, "curOrderNum", curOrderNum);
         }
 
-        preOrderNum = redisService.get(DashboardKey.board, "preOrderNum", Integer.class);
+        preOrderNum = redisManager.get(DashboardKey.board, "preOrderNum", Integer.class);
         if (preOrderNum == null) {
             preOrderNum = orderMapper.selectLastOrderNum();
             preOrderNum = preOrderNum == null ? 0 : preOrderNum;
-            redisService.set(DashboardKey.board, "preOrderNum", preOrderNum);
+            redisManager.set(DashboardKey.board, "preOrderNum", preOrderNum);
         }
 
-        curRefundOrder = redisService.get(DashboardKey.board, "preOrderNum", Integer.class);
+        curRefundOrder = redisManager.get(DashboardKey.board, "preOrderNum", Integer.class);
         if (curRefundOrder == null) {
             curRefundOrder = orderMapper.selectCurRefundOrder();
             curRefundOrder = curRefundOrder == null ? 0 : curRefundOrder;
-            redisService.set(DashboardKey.board, "curRefundOrder", curRefundOrder);
+            redisManager.set(DashboardKey.board, "curRefundOrder", curRefundOrder);
         }
 
-        lastRefundOrder = redisService.get(DashboardKey.board, "lastRefundOrder", Integer.class);
+        lastRefundOrder = redisManager.get(DashboardKey.board, "lastRefundOrder", Integer.class);
         if (lastRefundOrder == null) {
             lastRefundOrder = orderMapper.selectLastRefundOrder();
             lastRefundOrder = lastRefundOrder == null ? 0 : lastRefundOrder;
-            redisService.set(DashboardKey.board, "lastRefundOrder", lastRefundOrder);
+            redisManager.set(DashboardKey.board, "lastRefundOrder", lastRefundOrder);
         }
 
         int count = RunnableThreadWebCount.addCount("111");
@@ -112,24 +113,24 @@ public class DashboardServiceImpl implements DashboardService {
 
         Date temp = new Date();
         Order order = new Order();
-        for (int i = 0; i < 31; i++) {
+        for (int i = TimeQuantumEnum.zero.getValue(); i < TimeQuantumEnum.thirtyone.getValue(); i++) {
             calendar.add(Calendar.DATE, 1);
             temp = calendar.getTime();
             order.setCreateTime(temp);
             //每天的订单数
-            orderNum = redisService.get(DashboardKey.board, "orderNum", Integer.class);
+            orderNum = redisManager.get(DashboardKey.board, "orderNum", Integer.class);
             if (orderNum == null) {
                 orderNum = orderMapper.selectDayOrderNum(order);
                 orderNum = orderNum == null ? 0 : orderNum;
-                redisService.set(DashboardKey.board, "orderNum", orderNum);
+                redisManager.set(DashboardKey.board, "orderNum", orderNum);
             }
 
             //每天的收入
-            orderSum = redisService.get(DashboardKey.board, "orderSum", Integer.class);
+            orderSum = redisManager.get(DashboardKey.board, "orderSum", Integer.class);
             if (orderSum == null) {
                 orderSum = orderMapper.selectDayOrderSum(order);
                 orderSum = orderSum == null ? 0 : orderSum;
-                redisService.set(DashboardKey.board, "orderSum", orderSum);
+                redisManager.set(DashboardKey.board, "orderSum", orderSum);
             }
             data2.add(orderNum);
             data3.add(orderSum);

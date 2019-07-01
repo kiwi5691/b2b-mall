@@ -18,6 +18,11 @@
       SELECT * from tb_user  where userName = #{userName, jdbcType=VARCHAR} and password = #{password, jdbcType=VARCHAR} and state = 1
   </select>
 
+    <select id="selectAllByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT * from tb_user  where userName = #{userName, jdbcType=VARCHAR} and state = 1
+    </select>
+
+
     <select id="selectIsName" resultType="java.lang.Integer" parameterType="java.lang.String">
         SELECT 1 from tb_user  where userName = #{userName, jdbcType=VARCHAR}
     </select>

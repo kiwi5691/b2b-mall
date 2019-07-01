@@ -1,16 +1,29 @@
 package com.b2b.mall.common.redis;
 
 import com.alibaba.fastjson.JSON;
+import com.b2b.mall.common.redis.KeyPrefix.KeyPrefix;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * redis服务
  */
 @Service
-public class RedisService {
+@Slf4j
+public class RedisManager {
+
+    private static final Logger logger = LoggerFactory.getLogger(RedisManager.class);
 
     @Autowired
     JedisPool jedisPool;
@@ -32,6 +45,51 @@ public class RedisService {
         }
 
     }
+    /**
+     * 批量删除key
+     * @param keys
+     */
+    public void del(Collection keys){
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            //对key增加前缀，即可用于分类，也避免key重复
+           jedis.del(String.valueOf(keys));
+        } finally {
+            returnToPool(jedis);
+        }
+    }
+
+    /**
+     * 实现redis keys 模糊查询
+     * @author hq
+     * @param pattern
+     * @return
+     */
+    private List<String> scan(String pattern){
+        JedisCluster jedisCluster =null;
+        List<String> keys = new ArrayList<>();
+        //获取所有连接池节点
+        Map<String, JedisPool> nodes = jedisCluster.getClusterNodes();
+        //遍历所有连接池，逐个进行模糊查询
+        for(String k : nodes.keySet()){
+            JedisPool pool = nodes.get(k);
+            //获取Jedis对象，Jedis对象支持keys模糊查询
+            Jedis connection = pool.getResource();
+            try {
+                keys.addAll(connection.keys(pattern));
+            } catch(Exception e){
+                logger.error("获取key异常", e);
+            } finally{
+                logger.info("关闭连接");
+                //一定要关闭连接！
+                connection.close();
+            }
+        }
+        logger.info("已获取所有keys");
+        return keys;
+    }
+
 
     /**
      * 存储对象

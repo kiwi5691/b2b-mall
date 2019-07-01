@@ -47,11 +47,6 @@
                 <version>1.2.5</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-spring-boot-web-starter</artifactId>
-                <version>1.4.0</version>
-            </dependency>
 
             <dependency>
                 <groupId>org.hibernate.validator</groupId>

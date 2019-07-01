@@ -21,9 +21,21 @@ public enum CommonParamsEnum {
     NOT_FOUND(404),
 
     /**
+     * 数字403
+     */
+    UN_AUTHENTICATION(403),
+
+    /**
+     * 数字500
+     */
+    SERVER_ERROR(500),
+
+    /**
      * 数字1024
      */
     BYTE(1024);
+
+
 
     private Integer value;
 

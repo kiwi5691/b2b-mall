@@ -11,7 +11,8 @@ public enum TimeQuantumEnum {
     twelve(12),
     thirteen(13),
     eighteen(18),
-    twetytwo(24);
+    twetytwo(24),
+    thirtyone(31);
 
     private Integer value;
 
