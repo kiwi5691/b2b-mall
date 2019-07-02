@@ -609,7 +609,7 @@
                         return true;
                     }
 
-                    // Forbid suppressing "Warning" step if the user is to young
+                    // Forbid suppressing "Warning" step if the manage is to young
                     if (newIndex === 3 && Number($("#age").val()) < 18)
                     {
                         return false;
@@ -617,7 +617,7 @@
 
                     var form = $(this);
 
-                    // Clean up if user went backward before
+                    // Clean up if manage went backward before
                     if (currentIndex < newIndex)
                     {
                         // To remove error styles
@@ -633,13 +633,13 @@
                 },
                 onStepChanged: function (event, currentIndex, priorIndex)
                 {
-                    // Suppress (skip) "Warning" step if the user is old enough.
+                    // Suppress (skip) "Warning" step if the manage is old enough.
                     if (currentIndex === 2 && Number($("#age").val()) >= 18)
                     {
                         $(this).steps("next");
                     }
 
-                    // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                    // Suppress (skip) "Warning" step if the manage is old enough and wants to the previous step.
                     if (currentIndex === 2 && priorIndex === 3)
                     {
                         $(this).steps("previous");
