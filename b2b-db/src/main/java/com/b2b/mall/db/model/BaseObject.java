@@ -1,6 +1,8 @@
 package com.b2b.mall.db.model;
 
-public class BaseObject {
+import java.io.Serializable;
+
+public class BaseObject implements Serializable {
 
 	private int start;
 	private int end;

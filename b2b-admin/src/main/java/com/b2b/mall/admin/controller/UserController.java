@@ -44,6 +44,17 @@ public class UserController {
     private String Sender;
 
     /**
+     * 初始化跳转
+     *
+     * @param model
+     * @return
+     */
+    @GetMapping("/")
+    public String IndexGet(Model model) {
+        return "redirect:user/login";
+    }
+
+    /**
      * 登录跳转
      *
      * @param model
