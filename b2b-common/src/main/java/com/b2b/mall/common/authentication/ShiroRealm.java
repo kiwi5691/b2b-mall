@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.b2b.mall.common.service.UserService;
+import com.b2b.mall.db.model.Role;
 import com.b2b.mall.db.model.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -20,9 +21,11 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,32 +87,38 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(
             PrincipalCollection principalCollection) {
-//        logger.info("##################执行Shiro权限认证##################");
-//        // 获取当前登录输入的用户名，等价于(String)
-//        String loginName = (String) super
-//                .getAvailablePrincipal(principalCollection);
-//        // 到数据库查是否有此对象
-//        User user = userService.selectAllByName(loginName);
-//        if (user != null) {
-//            // 权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
-//            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//            // 用户的角色集合
-//            Set<String> set = new HashSet<String>();
-//            set.add(user.getRname());
-//            info.setRoles(set);
-//            // 用户的权限集合
-//            List<SysRolePermission> srpList = sysRolePermissionService
-//                    .selectByRid(user.getRid());
-//            List<String> pNameList = new ArrayList<String>();
-//            for (SysRolePermission sysRolePermission : srpList) {
-//                pNameList.add(sysPermissionService.selectByPrimaryKey(
-//                        sysRolePermission.getPid()).getPermission());
+        //授权
+        logger.debug("授予角色和权限");
+        // 添加权限 和 角色信息
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        // 获取当前登陆用户
+        Subject subject = SecurityUtils.getSubject();
+        User user = (User) subject.getPrincipal();
+        if (user.getBusiness().equals("超级无敌管理员")) {
+            // 超级管理员，添加所有角色、添加所有权限
+            authorizationInfo.addRole("*");
+            authorizationInfo.addStringPermission("*");
+        } else {
+            // 普通用户，查询用户的角色，根据角色查询权限
+//            Integer userId = user.getId();
+//            List<Role> roles = this.authService.getRoleByUser(userId);
+//            if (null != roles && roles.size() > 0) {
+//                for (Role role : roles) {
+//                    authorizationInfo.addRole(role.getCode());
+//                    // 角色对应的权限数据
+//                    List<Permission> perms = this.authService.findPermsByRoleId(role
+//                            .getId());
+//                    if (null != perms && perms.size() > 0) {
+//                        // 授权角色下所有权限
+//                        for (Permission perm : perms) {
+//                            authorizationInfo.addStringPermission(perm
+//                                    .getCode());
+//                        }
+//                    }
+//                }
 //            }
-//            info.addStringPermissions(pNameList);
-//            return info;
-//        }
-        // 返回null的话，就会导致任何用户访问被拦截的请求时，都会自动跳转到unauthorizedUrl指定的地址
-        return null;
+        }
+        return authorizationInfo;
     }
 
 }
