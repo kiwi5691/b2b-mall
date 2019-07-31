@@ -928,330 +928,147 @@ INSERT INTO `tb_login_log` VALUES (11, 'kiwi', '2019-06-12 12:35:17', '内网IP|
 
 
 -- ----------------------------
--- Table structure for tb_menu
+-- Table structure for permission
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_menu`;
-CREATE TABLE `tb_menu`  (
-                         `MENU_ID` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '菜单/按钮ID',
-                         `PARENtb_ID` bigint(20) NOT NULL COMMENT '上级菜单ID',
-                         `MENU_NAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '菜单/按钮名称',
-                         `URL` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '菜单URL',
-                         `PERMS` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '权限标识',
-                         `ICON` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图标',
-                         `TYPE` char(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '类型 0菜单 1按钮',
-                         `ORDER_NUM` bigint(20) NULL DEFAULT NULL COMMENT '排序',
-                         `CREATE_TIME` datetime(0) NOT NULL COMMENT '创建时间',
-                         `MODIFY_TIME` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
-                         PRIMARY KEY (`MENU_ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 175 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单表' ROW_FORMAT = Dynamic;
+DROP TABLE IF EXISTS `tb_permission`;
+CREATE TABLE `tb_permission` (
+                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                            `name` varchar(30) DEFAULT NULL COMMENT '菜单名称',
+                            `pid` int(11) DEFAULT NULL COMMENT '父菜单id',
+                            `zindex` int(2) DEFAULT NULL COMMENT '菜单排序',
+                            `istype` int(1) DEFAULT NULL COMMENT '权限分类（0 菜单；1 功能）',
+                            `descpt` varchar(50) DEFAULT NULL COMMENT '描述',
+                            `code` varchar(20) DEFAULT                             `icon` varchar(30) DEFAULT NULL COMMENT '菜单NULL COMMENT '菜单编号',
+图标名称',
+                            `page` varchar(50) DEFAULT NULL COMMENT '菜单url',
+                            `insert_time` datetime DEFAULT NULL COMMENT '添加时间',
+                            `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+                            PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
--- Records of tb_menu
+-- Records of permission
 -- ----------------------------
-INSERT INTO `tb_menu` VALUES (1, 0, '系统管理', NULL, NULL, 'layui-icon-setting', '0', 1, '2017-12-27 16:39:07', NULL);
-INSERT INTO `tb_menu` VALUES (2, 0, '系统监控', '', '', 'layui-icon-alert', '0', 2, '2017-12-27 16:45:51', '2019-06-13 11:20:40');
-INSERT INTO `tb_menu` VALUES (3, 1, '用户管理', '/system/user', 'user:view', 'layui-icon-meh', '0', 1, '2017-12-27 16:47:13', '2019-06-13 11:13:55');
-INSERT INTO `tb_menu` VALUES (4, 1, '角色管理', '/system/role', 'role:view', '', '0', 2, '2017-12-27 16:48:09', '2019-06-13 08:57:19');
-INSERT INTO `tb_menu` VALUES (5, 1, '菜单管理', '/system/menu', 'menu:view', '', '0', 3, '2017-12-27 16:48:57', '2019-06-13 08:57:34');
-INSERT INTO `tb_menu` VALUES (6, 1, '部门管理', '/system/dept', 'dept:view', '', '0', 4, '2017-12-27 16:57:33', '2019-06-14 19:56:00');
-INSERT INTO `tb_menu` VALUES (8, 2, '在线用户', '/monitor/online', 'online:view', '', '0', 1, '2017-12-27 16:59:33', '2019-06-13 14:30:31');
-INSERT INTO `tb_menu` VALUES (10, 2, '系统日志', '/monitor/log', 'log:view', '', '0', 2, '2017-12-27 17:00:50', '2019-06-13 14:30:37');
-INSERT INTO `tb_menu` VALUES (11, 3, '新增用户', NULL, 'user:add', NULL, '1', NULL, '2017-12-27 17:02:58', NULL);
-INSERT INTO `tb_menu` VALUES (12, 3, '修改用户', NULL, 'user:update', NULL, '1', NULL, '2017-12-27 17:04:07', NULL);
-INSERT INTO `tb_menu` VALUES (13, 3, '删除用户', NULL, 'user:delete', NULL, '1', NULL, '2017-12-27 17:04:58', NULL);
-INSERT INTO `tb_menu` VALUES (14, 4, '新增角色', NULL, 'role:add', NULL, '1', NULL, '2017-12-27 17:06:38', NULL);
-INSERT INTO `tb_menu` VALUES (15, 4, '修改角色', NULL, 'role:update', NULL, '1', NULL, '2017-12-27 17:06:38', NULL);
-INSERT INTO `tb_menu` VALUES (16, 4, '删除角色', NULL, 'role:delete', NULL, '1', NULL, '2017-12-27 17:06:38', NULL);
-INSERT INTO `tb_menu` VALUES (17, 5, '新增菜单', NULL, 'menu:add', NULL, '1', NULL, '2017-12-27 17:08:02', NULL);
-INSERT INTO `tb_menu` VALUES (18, 5, '修改菜单', NULL, 'menu:update', NULL, '1', NULL, '2017-12-27 17:08:02', NULL);
-INSERT INTO `tb_menu` VALUES (19, 5, '删除菜单', NULL, 'menu:delete', NULL, '1', NULL, '2017-12-27 17:08:02', NULL);
-INSERT INTO `tb_menu` VALUES (20, 6, '新增部门', NULL, 'dept:add', NULL, '1', NULL, '2017-12-27 17:09:24', NULL);
-INSERT INTO `tb_menu` VALUES (21, 6, '修改部门', NULL, 'dept:update', NULL, '1', NULL, '2017-12-27 17:09:24', NULL);
-INSERT INTO `tb_menu` VALUES (22, 6, '删除部门', NULL, 'dept:delete', NULL, '1', NULL, '2017-12-27 17:09:24', NULL);
-INSERT INTO `tb_menu` VALUES (23, 8, '踢出用户', NULL, 'user:kickout', NULL, '1', NULL, '2017-12-27 17:11:13', NULL);
-INSERT INTO `tb_menu` VALUES (24, 10, '删除日志', NULL, 'log:delete', NULL, '1', NULL, '2017-12-27 17:11:45', '2019-06-06 05:56:40');
-INSERT INTO `tb_menu` VALUES (101, 0, '任务调度', NULL, NULL, 'layui-icon-time-circle', '0', 3, '2018-02-24 15:52:57', NULL);
-INSERT INTO `tb_menu` VALUES (102, 101, '定时任务', '/job/job', 'job:view', '', '0', 1, '2018-02-24 15:53:53', '2018-04-25 09:05:12');
-INSERT INTO `tb_menu` VALUES (103, 102, '新增任务', NULL, 'job:add', NULL, '1', NULL, '2018-02-24 15:55:10', NULL);
-INSERT INTO `tb_menu` VALUES (104, 102, '修改任务', NULL, 'job:update', NULL, '1', NULL, '2018-02-24 15:55:53', NULL);
-INSERT INTO `tb_menu` VALUES (105, 102, '删除任务', NULL, 'job:delete', NULL, '1', NULL, '2018-02-24 15:56:18', NULL);
-INSERT INTO `tb_menu` VALUES (106, 102, '暂停任务', NULL, 'job:pause', NULL, '1', NULL, '2018-02-24 15:57:08', NULL);
-INSERT INTO `tb_menu` VALUES (107, 102, '恢复任务', NULL, 'job:resume', NULL, '1', NULL, '2018-02-24 15:58:21', NULL);
-INSERT INTO `tb_menu` VALUES (108, 102, '立即执行任务', NULL, 'job:run', NULL, '1', NULL, '2018-02-24 15:59:45', NULL);
-INSERT INTO `tb_menu` VALUES (109, 101, '调度日志', '/job/log', 'job:log:view', '', '0', 2, '2018-02-24 16:00:45', '2019-06-09 02:48:19');
-INSERT INTO `tb_menu` VALUES (110, 109, '删除日志', NULL, 'job:log:delete', NULL, '1', NULL, '2018-02-24 16:01:21', NULL);
-INSERT INTO `tb_menu` VALUES (113, 2, 'Redis监控', '/monitor/redis/info', 'redis:view', '', '0', 4, '2018-06-28 14:29:42', '2019-06-13 14:30:45');
-INSERT INTO `tb_menu` VALUES (114, 2, 'Redis终端', '/monitor/redis/terminal', 'redis:terminal:view', '', '0', 5, '2018-06-28 15:35:21', '2019-06-13 14:30:54');
-INSERT INTO `tb_menu` VALUES (115, 0, '其他模块', NULL, NULL, 'layui-icon-gift', '0', 5, '2019-05-27 10:18:07', NULL);
-INSERT INTO `tb_menu` VALUES (116, 115, 'Apex图表', '', '', NULL, '0', 2, '2019-05-27 10:21:35', NULL);
-INSERT INTO `tb_menu` VALUES (117, 116, '线性图表', '/others/apex/line', 'apex:line:view', NULL, '0', 1, '2019-05-27 10:24:49', NULL);
-INSERT INTO `tb_menu` VALUES (118, 115, '高德地图', '/others/map', 'map:view', '', '0', 3, '2019-05-27 17:13:12', '2019-06-12 15:33:00');
-INSERT INTO `tb_menu` VALUES (119, 116, '面积图表', '/others/apex/area', 'apex:area:view', NULL, '0', 2, '2019-05-27 18:49:22', NULL);
-INSERT INTO `tb_menu` VALUES (120, 116, '柱形图表', '/others/apex/column', 'apex:column:view', NULL, '0', 3, '2019-05-27 18:51:33', NULL);
-INSERT INTO `tb_menu` VALUES (121, 116, '雷达图表', '/others/apex/radar', 'apex:radar:view', NULL, '0', 4, '2019-05-27 18:56:05', NULL);
-INSERT INTO `tb_menu` VALUES (122, 116, '条形图表', '/others/apex/bar', 'apex:bar:view', NULL, '0', 5, '2019-05-27 18:57:02', NULL);
-INSERT INTO `tb_menu` VALUES (123, 116, '混合图表', '/others/apex/mix', 'apex:mix:view', '', '0', 6, '2019-05-27 18:58:04', '2019-06-06 02:55:23');
-INSERT INTO `tb_menu` VALUES (125, 115, '导入导出', '/others/eximport', 'others:eximport:view', '', '0', 4, '2019-05-27 19:01:57', '2019-06-13 01:20:14');
-INSERT INTO `tb_menu` VALUES (126, 132, '系统图标', '/others/febs/icon', 'febs:icons:view', '', '0', 4, '2019-05-27 19:03:18', '2019-06-06 03:05:26');
-INSERT INTO `tb_menu` VALUES (127, 2, '请求追踪', '/monitor/httptrace', 'httptrace:view', '', '0', 6, '2019-05-27 19:06:38', '2019-06-13 14:36:43');
-INSERT INTO `tb_menu` VALUES (128, 2, '系统信息', NULL, NULL, NULL, '0', 7, '2019-05-27 19:08:23', NULL);
-INSERT INTO `tb_menu` VALUES (129, 128, 'JVM信息', '/monitor/jvm', 'jvm:view', '', '0', 1, '2019-05-27 19:08:50', '2019-06-13 14:36:51');
-INSERT INTO `tb_menu` VALUES (130, 128, 'Tomcat信息', '/monitor/tomcat', 'tomcat:view', '', '0', 2, '2019-05-27 19:09:26', '2019-06-13 14:36:57');
-INSERT INTO `tb_menu` VALUES (131, 128, '服务器信息', '/monitor/server', 'server:view', '', '0', 3, '2019-05-27 19:10:07', '2019-06-13 14:37:04');
-INSERT INTO `tb_menu` VALUES (132, 115, 'FEBS组件', '', '', NULL, '0', 1, '2019-05-27 19:13:54', NULL);
-INSERT INTO `tb_menu` VALUES (133, 132, '表单组件', '/others/febs/form', 'febs:form:view', NULL, '0', 1, '2019-05-27 19:14:45', NULL);
-INSERT INTO `tb_menu` VALUES (134, 132, 'FEBS工具', '/others/febs/tools', 'febs:tools:view', '', '0', 3, '2019-05-29 10:11:22', '2019-06-12 13:21:27');
-INSERT INTO `tb_menu` VALUES (135, 132, '表单组合', '/others/febs/form/group', 'febs:formgroup:view', NULL, '0', 2, '2019-05-29 10:16:19', NULL);
-INSERT INTO `tb_menu` VALUES (136, 2, '登录日志', '/monitor/loginlog', 'loginlog:view', '', '0', 3, '2019-05-29 15:56:15', '2019-06-13 14:35:56');
-INSERT INTO `tb_menu` VALUES (137, 0, '代码生成', '', NULL, 'layui-icon-verticalright', '0', 4, '2019-06-03 15:35:58', NULL);
-INSERT INTO `tb_menu` VALUES (138, 137, '生成配置', '/generator/configure', 'generator:configure:view', NULL, '0', 1, '2019-06-03 15:38:36', NULL);
-INSERT INTO `tb_menu` VALUES (139, 137, '代码生成', '/generator/generator', 'generator:view', '', '0', 2, '2019-06-03 15:39:15', '2019-06-13 14:31:38');
-INSERT INTO `tb_menu` VALUES (159, 132, '其他组件', '/others/febs/others', 'others:febs:others', '', '0', 5, '2019-06-12 07:51:08', '2019-06-12 07:51:40');
-INSERT INTO `tb_menu` VALUES (160, 3, '密码重置', NULL, 'user:password:reset', NULL, '1', NULL, '2019-06-13 08:40:13', NULL);
-INSERT INTO `tb_menu` VALUES (161, 3, '导出Excel', NULL, 'user:export', NULL, '1', NULL, '2019-06-13 08:40:34', NULL);
-INSERT INTO `tb_menu` VALUES (162, 4, '导出Excel', NULL, 'role:export', NULL, '1', NULL, '2019-06-13 14:29:00', '2019-06-13 14:29:11');
-INSERT INTO `tb_menu` VALUES (163, 5, '导出Excel', NULL, 'menu:export', NULL, '1', NULL, '2019-06-13 14:29:32', NULL);
-INSERT INTO `tb_menu` VALUES (164, 6, '导出Excel', NULL, 'dept:export', NULL, '1', NULL, '2019-06-13 14:29:59', NULL);
-INSERT INTO `tb_menu` VALUES (165, 138, '修改配置', NULL, 'generator:configure:update', NULL, '1', NULL, '2019-06-13 14:32:09', '2019-06-13 14:32:20');
-INSERT INTO `tb_menu` VALUES (166, 139, '生成代码', NULL, 'generator:generate', NULL, '1', NULL, '2019-06-13 14:32:51', NULL);
-INSERT INTO `tb_menu` VALUES (167, 125, '模板下载', NULL, 'eximport:template', NULL, '1', NULL, '2019-06-13 14:33:37', NULL);
-INSERT INTO `tb_menu` VALUES (168, 125, '导出Excel', NULL, 'eximport:export', NULL, '1', NULL, '2019-06-13 14:33:57', NULL);
-INSERT INTO `tb_menu` VALUES (169, 125, '导入Excel', NULL, 'eximport:import', NULL, '1', NULL, '2019-06-13 14:34:19', NULL);
-INSERT INTO `tb_menu` VALUES (170, 10, '导出Excel', NULL, 'log:export', NULL, '1', NULL, '2019-06-13 14:34:55', NULL);
-INSERT INTO `tb_menu` VALUES (171, 136, '删除日志', NULL, 'loginlog:delete', NULL, '1', NULL, '2019-06-13 14:35:27', '2019-06-13 14:36:08');
-INSERT INTO `tb_menu` VALUES (172, 136, '导出Excel', NULL, 'loginlog:export', NULL, '1', NULL, '2019-06-13 14:36:26', NULL);
-INSERT INTO `tb_menu` VALUES (173, 102, '导出Excel', NULL, 'job:export', NULL, '1', NULL, '2019-06-13 14:37:25', NULL);
-INSERT INTO `tb_menu` VALUES (174, 109, '导出Excel', NULL, 'job:log:export', NULL, '1', NULL, '2019-06-13 14:37:46', '2019-06-13 14:38:02');
-
-
+INSERT INTO `permission` VALUES ('1', '系统管理', '0', '100', '0', '系统管理', 'system', '', '/', '2017-12-20 16:22:43', '2018-01-09 19:26:36');
+INSERT INTO `permission` VALUES ('2', '用户管理', '1', '1100', '0', '用户管理', 'usermanage', '', '/user/userList', '2017-12-20 16:27:03', '2018-01-09 19:26:30');
+INSERT INTO `permission` VALUES ('3', '角色管理', '1', '1200', '0', '角色管理', 'rolemanage', '', '/auth/roleManage', '2017-12-20 16:27:03', '2018-01-09 19:26:42');
+INSERT INTO `permission` VALUES ('4', '权限管理', '1', '1300', '0', '权限管理', 'permmanage', null, '/auth/permList', '2017-12-30 19:17:32', '2018-01-09 19:26:48');
+INSERT INTO `permission` VALUES ('5', '商品管理', '0', '300', '0', '商品管理', 'shops', null, '/', '2017-12-30 19:17:50', '2018-01-09 19:20:11');
+INSERT INTO `permission` VALUES ('6', '渠道管理', '0', '200', '0', '渠道管理', 'channel', null, '/', '2018-01-01 11:07:17', '2018-01-09 19:05:42');
+INSERT INTO `permission` VALUES ('8', '订单管理', '0', '400', '0', '订单管理', 'orders', null, '/', '2018-01-09 09:26:53', '2018-01-09 19:20:40');
+INSERT INTO `permission` VALUES ('10', '渠道信息列表', '6', '2200', '0', '渠道信息列表', 'channelPage', null, '/channel/channelListPage', '2018-01-09 19:07:05', '2018-01-09 19:31:13');
+INSERT INTO `permission` VALUES ('11', '渠道会员列表', '6', '2300', '0', '渠道会员列表', 'channelUsers', null, '/channel/channelUserListPage', '2018-01-09 19:07:52', '2018-01-18 14:08:08');
+INSERT INTO `permission` VALUES ('13', '商品列表', '5', '3100', '0', '商品列表', 'shopPage', null, '/shop/shopPage', '2018-01-09 19:33:53', '2018-04-22 21:18:11');
+INSERT INTO `permission` VALUES ('14', '商品订单列表', '8', '4100', '0', '商品订单列表', 'orderPage', null, '/order/orderPage', '2018-01-09 19:34:33', '2018-04-22 21:17:58');
 
 -- ----------------------------
--- Table structure for tb_role
+-- Table structure for role
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_role`;
-CREATE TABLE `tb_role`  (
-                         `ROLE_ID` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '角色ID',
-                         `ROLE_NAME` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色名称',
-                         `REMARK` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '角色描述',
-                         `CREATE_TIME` datetime(0) NOT NULL COMMENT '创建时间',
-                         `MODIFY_TIME` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
-                         PRIMARY KEY (`ROLE_ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 81 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
+                      `id` int(5) NOT NULL AUTO_INCREMENT,
+                      `role_name` varchar(30) DEFAULT NULL COMMENT '角色名称',
+                      `descpt` varchar(50) DEFAULT NULL COMMENT '角色描述',
+                      `code` varchar(20) DEFAULT NULL COMMENT '角色编号',
+                      `insert_uid` int(11) DEFAULT NULL COMMENT '操作用户id',
+                      `insert_time` datetime DEFAULT NULL COMMENT '添加数据时间',
+                      `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+                      PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of tb_role
+-- Records of role
 -- ----------------------------
-INSERT INTO `tb_role` VALUES (1, '系统管理员', '系统管理员，拥有所有操作权限 ^_^', '2019-06-14 16:23:11', '2019-06-14 20:52:14');
-INSERT INTO `tb_role` VALUES (2, '注册账户', '注册账户，拥有查看，新增权限（新增用户除外）和导出Excel权限', '2019-06-14 16:00:15', '2019-06-14 20:47:47');
-INSERT INTO `tb_role` VALUES (77, 'Redis监控员', '负责Redis模块', '2019-06-14 20:49:22', NULL);
-INSERT INTO `tb_role` VALUES (78, '系统监控员', '负责整个系统监控模块', '2019-06-14 20:50:07', NULL);
-INSERT INTO `tb_role` VALUES (79, '跑批人员', '负责任务调度跑批模块', '2019-06-14 20:51:02', NULL);
-INSERT INTO `tb_role` VALUES (80, '开发人员', '拥有代码生成模块的权限', '2019-06-14 20:51:26', NULL);
+INSERT INTO `role` VALUES ('1', '超级管理', '超级管理员', 'superman', null, '2018-01-09 19:28:53', '2018-01-09 19:34:56');
+INSERT INTO `role` VALUES ('2', '高级管理员', '高级管理员', 'highmanage', null, '2018-01-17 13:53:23', '2018-01-18 13:39:29');
+INSERT INTO `role` VALUES ('3', '经理', '经理', 'bdmanage', null, '2018-01-18 13:41:47', '2018-04-22 21:15:38');
+INSERT INTO `role` VALUES ('4', '质检员', '质检员', 'checkmanage', null, '2018-01-18 14:03:00', '2018-04-22 21:15:59');
+INSERT INTO `role` VALUES ('5', '客维员', '客维员', 'guestmanage', null, '2018-01-18 14:06:48', '2018-04-22 21:16:07');
 
+-- ----------------------------
+-- Table structure for role_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `role_permission`;
+CREATE TABLE `role_permission` (
+                                 `permit_id` int(5) NOT NULL AUTO_INCREMENT,
+                                 `role_id` int(5) NOT NULL,
+                                 PRIMARY KEY (`permit_id`,`role_id`),
+                                 KEY `perimitid` (`permit_id`) USING BTREE,
+                                 KEY `roleid` (`role_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of role_permission
+-- ----------------------------
+INSERT INTO `role_permission` VALUES ('1', '1');
+INSERT INTO `role_permission` VALUES ('1', '2');
+INSERT INTO `role_permission` VALUES ('2', '1');
+INSERT INTO `role_permission` VALUES ('2', '2');
+INSERT INTO `role_permission` VALUES ('3', '1');
+INSERT INTO `role_permission` VALUES ('3', '2');
+INSERT INTO `role_permission` VALUES ('4', '1');
+INSERT INTO `role_permission` VALUES ('5', '1');
+INSERT INTO `role_permission` VALUES ('5', '2');
+INSERT INTO `role_permission` VALUES ('5', '3');
+INSERT INTO `role_permission` VALUES ('5', '5');
+INSERT INTO `role_permission` VALUES ('6', '1');
+INSERT INTO `role_permission` VALUES ('6', '2');
+INSERT INTO `role_permission` VALUES ('6', '3');
+INSERT INTO `role_permission` VALUES ('6', '4');
+INSERT INTO `role_permission` VALUES ('6', '5');
+INSERT INTO `role_permission` VALUES ('7', '1');
+INSERT INTO `role_permission` VALUES ('8', '1');
+INSERT INTO `role_permission` VALUES ('8', '2');
+INSERT INTO `role_permission` VALUES ('8', '3');
+INSERT INTO `role_permission` VALUES ('8', '5');
+INSERT INTO `role_permission` VALUES ('10', '1');
+INSERT INTO `role_permission` VALUES ('10', '2');
+INSERT INTO `role_permission` VALUES ('10', '3');
+INSERT INTO `role_permission` VALUES ('10', '4');
+INSERT INTO `role_permission` VALUES ('11', '1');
+INSERT INTO `role_permission` VALUES ('11', '2');
+INSERT INTO `role_permission` VALUES ('11', '3');
+INSERT INTO `role_permission` VALUES ('11', '5');
+INSERT INTO `role_permission` VALUES ('12', '1');
+INSERT INTO `role_permission` VALUES ('12', '2');
+INSERT INTO `role_permission` VALUES ('12', '3');
+INSERT INTO `role_permission` VALUES ('13', '1');
+INSERT INTO `role_permission` VALUES ('13', '2');
+INSERT INTO `role_permission` VALUES ('13', '3');
+INSERT INTO `role_permission` VALUES ('13', '5');
+INSERT INTO `role_permission` VALUES ('14', '1');
+INSERT INTO `role_permission` VALUES ('14', '2');
+INSERT INTO `role_permission` VALUES ('14', '3');
+INSERT INTO `role_permission` VALUES ('14', '5');
 
 
 -- ----------------------------
--- Table structure for t_dept
+-- Table structure for user_role
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_dept`;
-CREATE TABLE `tb_dept`  (
-                         `DEPT_ID` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '部门ID',
-                         `PARENT_ID` bigint(20) NOT NULL COMMENT '上级部门ID',
-                         `DEPT_NAME` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '部门名称',
-                         `ORDER_NUM` bigint(20) NULL DEFAULT NULL COMMENT '排序',
-                         `CREATE_TIME` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-                         `MODIFY_TIME` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
-                         PRIMARY KEY (`DEPT_ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '部门表' ROW_FORMAT = Dynamic;
+DROP TABLE IF EXISTS `user_role`;
+CREATE TABLE `user_role` (
+                           `user_id` int(11) NOT NULL,
+                           `role_id` int(5) NOT NULL,
+                           PRIMARY KEY (`user_id`,`role_id`),
+                           KEY `userid` (`user_id`) USING BTREE,
+                           KEY `roleid` (`role_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of t_dept
+-- Records of user_role
 -- ----------------------------
-INSERT INTO `tb_dept` VALUES (1, 0, '开发部', 1, '2019-06-14 20:56:41', NULL);
-INSERT INTO `tb_dept` VALUES (2, 1, '开发一部', 1, '2019-06-14 20:58:46', NULL);
-INSERT INTO `tb_dept` VALUES (3, 1, '开发二部', 2, '2019-06-14 20:58:56', NULL);
-INSERT INTO `tb_dept` VALUES (4, 0, '采购部', 2, '2019-06-14 20:59:56', NULL);
-INSERT INTO `tb_dept` VALUES (5, 0, '财务部', 3, '2019-06-14 21:00:08', NULL);
-INSERT INTO `tb_dept` VALUES (6, 0, '销售部', 4, '2019-06-14 21:00:15', NULL);
-INSERT INTO `tb_dept` VALUES (7, 0, '工程部', 5, '2019-06-14 21:00:42', NULL);
-INSERT INTO `tb_dept` VALUES (8, 0, '行政部', 6, '2019-06-14 21:00:49', NULL);
-INSERT INTO `tb_dept` VALUES (9, 0, '人力资源部', 8, '2019-06-14 21:01:14', '2019-06-14 21:01:34');
-INSERT INTO `tb_dept` VALUES (10, 0, '系统部', 7, '2019-06-14 21:01:31', NULL);
-
--- ----------------------------
--- Table structure for tb_role_menu
--- ----------------------------
-DROP TABLE IF EXISTS `tb_role_menu`;
-CREATE TABLE `tb_role_menu`  (
-                              `ROLE_ID` bigint(20) NOT NULL COMMENT '角色ID',
-                              `MENU_ID` bigint(20) NOT NULL COMMENT '菜单/按钮ID'
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色菜单关联表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of tb_role_menu
--- ----------------------------
-INSERT INTO `tb_role_menu` VALUES (2, 1);
-INSERT INTO `tb_role_menu` VALUES (2, 3);
-INSERT INTO `tb_role_menu` VALUES (2, 161);
-INSERT INTO `tb_role_menu` VALUES (2, 4);
-INSERT INTO `tb_role_menu` VALUES (2, 14);
-INSERT INTO `tb_role_menu` VALUES (2, 162);
-INSERT INTO `tb_role_menu` VALUES (2, 5);
-INSERT INTO `tb_role_menu` VALUES (2, 17);
-INSERT INTO `tb_role_menu` VALUES (2, 163);
-INSERT INTO `tb_role_menu` VALUES (2, 6);
-INSERT INTO `tb_role_menu` VALUES (2, 20);
-INSERT INTO `tb_role_menu` VALUES (2, 164);
-INSERT INTO `tb_role_menu` VALUES (2, 2);
-INSERT INTO `tb_role_menu` VALUES (2, 8);
-INSERT INTO `tb_role_menu` VALUES (2, 10);
-INSERT INTO `tb_role_menu` VALUES (2, 170);
-INSERT INTO `tb_role_menu` VALUES (2, 136);
-INSERT INTO `tb_role_menu` VALUES (2, 172);
-INSERT INTO `tb_role_menu` VALUES (2, 113);
-INSERT INTO `tb_role_menu` VALUES (2, 114);
-INSERT INTO `tb_role_menu` VALUES (2, 127);
-INSERT INTO `tb_role_menu` VALUES (2, 128);
-INSERT INTO `tb_role_menu` VALUES (2, 129);
-INSERT INTO `tb_role_menu` VALUES (2, 130);
-INSERT INTO `tb_role_menu` VALUES (2, 131);
-INSERT INTO `tb_role_menu` VALUES (2, 101);
-INSERT INTO `tb_role_menu` VALUES (2, 102);
-INSERT INTO `tb_role_menu` VALUES (2, 173);
-INSERT INTO `tb_role_menu` VALUES (2, 109);
-INSERT INTO `tb_role_menu` VALUES (2, 174);
-INSERT INTO `tb_role_menu` VALUES (2, 137);
-INSERT INTO `tb_role_menu` VALUES (2, 138);
-INSERT INTO `tb_role_menu` VALUES (2, 139);
-INSERT INTO `tb_role_menu` VALUES (2, 115);
-INSERT INTO `tb_role_menu` VALUES (2, 132);
-INSERT INTO `tb_role_menu` VALUES (2, 133);
-INSERT INTO `tb_role_menu` VALUES (2, 135);
-INSERT INTO `tb_role_menu` VALUES (2, 134);
-INSERT INTO `tb_role_menu` VALUES (2, 126);
-INSERT INTO `tb_role_menu` VALUES (2, 159);
-INSERT INTO `tb_role_menu` VALUES (2, 116);
-INSERT INTO `tb_role_menu` VALUES (2, 117);
-INSERT INTO `tb_role_menu` VALUES (2, 119);
-INSERT INTO `tb_role_menu` VALUES (2, 120);
-INSERT INTO `tb_role_menu` VALUES (2, 121);
-INSERT INTO `tb_role_menu` VALUES (2, 122);
-INSERT INTO `tb_role_menu` VALUES (2, 123);
-INSERT INTO `tb_role_menu` VALUES (2, 118);
-INSERT INTO `tb_role_menu` VALUES (2, 125);
-INSERT INTO `tb_role_menu` VALUES (2, 167);
-INSERT INTO `tb_role_menu` VALUES (2, 168);
-INSERT INTO `tb_role_menu` VALUES (2, 169);
-INSERT INTO `tb_role_menu` VALUES (77, 2);
-INSERT INTO `tb_role_menu` VALUES (77, 113);
-INSERT INTO `tb_role_menu` VALUES (77, 114);
-INSERT INTO `tb_role_menu` VALUES (78, 2);
-INSERT INTO `tb_role_menu` VALUES (78, 8);
-INSERT INTO `tb_role_menu` VALUES (78, 23);
-INSERT INTO `tb_role_menu` VALUES (78, 10);
-INSERT INTO `tb_role_menu` VALUES (78, 24);
-INSERT INTO `tb_role_menu` VALUES (78, 170);
-INSERT INTO `tb_role_menu` VALUES (78, 136);
-INSERT INTO `tb_role_menu` VALUES (78, 171);
-INSERT INTO `tb_role_menu` VALUES (78, 172);
-INSERT INTO `tb_role_menu` VALUES (78, 113);
-INSERT INTO `tb_role_menu` VALUES (78, 114);
-INSERT INTO `tb_role_menu` VALUES (78, 127);
-INSERT INTO `tb_role_menu` VALUES (78, 128);
-INSERT INTO `tb_role_menu` VALUES (78, 129);
-INSERT INTO `tb_role_menu` VALUES (78, 130);
-INSERT INTO `tb_role_menu` VALUES (78, 131);
-INSERT INTO `tb_role_menu` VALUES (79, 101);
-INSERT INTO `tb_role_menu` VALUES (79, 102);
-INSERT INTO `tb_role_menu` VALUES (79, 103);
-INSERT INTO `tb_role_menu` VALUES (79, 104);
-INSERT INTO `tb_role_menu` VALUES (79, 105);
-INSERT INTO `tb_role_menu` VALUES (79, 106);
-INSERT INTO `tb_role_menu` VALUES (79, 107);
-INSERT INTO `tb_role_menu` VALUES (79, 108);
-INSERT INTO `tb_role_menu` VALUES (79, 173);
-INSERT INTO `tb_role_menu` VALUES (79, 109);
-INSERT INTO `tb_role_menu` VALUES (79, 110);
-INSERT INTO `tb_role_menu` VALUES (79, 174);
-INSERT INTO `tb_role_menu` VALUES (80, 137);
-INSERT INTO `tb_role_menu` VALUES (80, 138);
-INSERT INTO `tb_role_menu` VALUES (80, 165);
-INSERT INTO `tb_role_menu` VALUES (80, 139);
-INSERT INTO `tb_role_menu` VALUES (80, 166);
-INSERT INTO `tb_role_menu` VALUES (1, 1);
-INSERT INTO `tb_role_menu` VALUES (1, 3);
-INSERT INTO `tb_role_menu` VALUES (1, 11);
-INSERT INTO `tb_role_menu` VALUES (1, 12);
-INSERT INTO `tb_role_menu` VALUES (1, 13);
-INSERT INTO `tb_role_menu` VALUES (1, 160);
-INSERT INTO `tb_role_menu` VALUES (1, 161);
-INSERT INTO `tb_role_menu` VALUES (1, 4);
-INSERT INTO `tb_role_menu` VALUES (1, 14);
-INSERT INTO `tb_role_menu` VALUES (1, 15);
-INSERT INTO `tb_role_menu` VALUES (1, 16);
-INSERT INTO `tb_role_menu` VALUES (1, 162);
-INSERT INTO `tb_role_menu` VALUES (1, 5);
-INSERT INTO `tb_role_menu` VALUES (1, 17);
-INSERT INTO `tb_role_menu` VALUES (1, 18);
-INSERT INTO `tb_role_menu` VALUES (1, 19);
-INSERT INTO `tb_role_menu` VALUES (1, 163);
-INSERT INTO `tb_role_menu` VALUES (1, 6);
-INSERT INTO `tb_role_menu` VALUES (1, 20);
-INSERT INTO `tb_role_menu` VALUES (1, 21);
-INSERT INTO `tb_role_menu` VALUES (1, 22);
-INSERT INTO `tb_role_menu` VALUES (1, 164);
-INSERT INTO `tb_role_menu` VALUES (1, 2);
-INSERT INTO `tb_role_menu` VALUES (1, 8);
-INSERT INTO `tb_role_menu` VALUES (1, 23);
-INSERT INTO `tb_role_menu` VALUES (1, 10);
-INSERT INTO `tb_role_menu` VALUES (1, 24);
-INSERT INTO `tb_role_menu` VALUES (1, 170);
-INSERT INTO `tb_role_menu` VALUES (1, 136);
-INSERT INTO `tb_role_menu` VALUES (1, 171);
-INSERT INTO `tb_role_menu` VALUES (1, 172);
-INSERT INTO `tb_role_menu` VALUES (1, 113);
-INSERT INTO `tb_role_menu` VALUES (1, 114);
-INSERT INTO `tb_role_menu` VALUES (1, 127);
-INSERT INTO `tb_role_menu` VALUES (1, 128);
-INSERT INTO `tb_role_menu` VALUES (1, 129);
-INSERT INTO `tb_role_menu` VALUES (1, 130);
-INSERT INTO `tb_role_menu` VALUES (1, 131);
-INSERT INTO `tb_role_menu` VALUES (1, 101);
-INSERT INTO `tb_role_menu` VALUES (1, 102);
-INSERT INTO `tb_role_menu` VALUES (1, 103);
-INSERT INTO `tb_role_menu` VALUES (1, 104);
-INSERT INTO `tb_role_menu` VALUES (1, 105);
-INSERT INTO `tb_role_menu` VALUES (1, 106);
-INSERT INTO `tb_role_menu` VALUES (1, 107);
-INSERT INTO `tb_role_menu` VALUES (1, 108);
-INSERT INTO `tb_role_menu` VALUES (1, 173);
-INSERT INTO `tb_role_menu` VALUES (1, 109);
-INSERT INTO `tb_role_menu` VALUES (1, 110);
-INSERT INTO `tb_role_menu` VALUES (1, 174);
-INSERT INTO `tb_role_menu` VALUES (1, 137);
-INSERT INTO `tb_role_menu` VALUES (1, 138);
-INSERT INTO `tb_role_menu` VALUES (1, 165);
-INSERT INTO `tb_role_menu` VALUES (1, 139);
-INSERT INTO `tb_role_menu` VALUES (1, 166);
-INSERT INTO `tb_role_menu` VALUES (1, 115);
-INSERT INTO `tb_role_menu` VALUES (1, 132);
-INSERT INTO `tb_role_menu` VALUES (1, 133);
-INSERT INTO `tb_role_menu` VALUES (1, 135);
-INSERT INTO `tb_role_menu` VALUES (1, 134);
-INSERT INTO `tb_role_menu` VALUES (1, 126);
-INSERT INTO `tb_role_menu` VALUES (1, 159);
-INSERT INTO `tb_role_menu` VALUES (1, 116);
-INSERT INTO `tb_role_menu` VALUES (1, 117);
-INSERT INTO `tb_role_menu` VALUES (1, 119);
-INSERT INTO `tb_role_menu` VALUES (1, 120);
-INSERT INTO `tb_role_menu` VALUES (1, 121);
-INSERT INTO `tb_role_menu` VALUES (1, 122);
-INSERT INTO `tb_role_menu` VALUES (1, 123);
-INSERT INTO `tb_role_menu` VALUES (1, 118);
-INSERT INTO `tb_role_menu` VALUES (1, 125);
-INSERT INTO `tb_role_menu` VALUES (1, 167);
-INSERT INTO `tb_role_menu` VALUES (1, 168);
-INSERT INTO `tb_role_menu` VALUES (1, 169);
+INSERT INTO `user_role` VALUES ('1', '1');
+INSERT INTO `user_role` VALUES ('3', '5');
+INSERT INTO `user_role` VALUES ('12', '5');
+INSERT INTO `user_role` VALUES ('19', '3');
+INSERT INTO `user_role` VALUES ('20', '2');
+INSERT INTO `user_role` VALUES ('21', '4');
+INSERT INTO `user_role` VALUES ('22', '5');
+INSERT INTO `user_role` VALUES ('23', '3');
+INSERT INTO `user_role` VALUES ('24', '5');
+INSERT INTO `user_role` VALUES ('25', '2');
+INSERT INTO `user_role` VALUES ('26', '5');
+INSERT INTO `user_role` VALUES ('27', '5');
 
 -- ----------------------------
 -- Table structure for tb_user
@@ -1278,30 +1095,6 @@ CREATE TABLE `tb_user` (
 INSERT INTO `tb_user` VALUES ('6', 'admin', 'admin', '小花', '运营岗', '1818181818', null, '2018-03-19', '2018-03-19', '1');
 INSERT INTO `tb_user` VALUES ('7', 'big', 'big', '111111aaa', '111', '1773232392@qq.com', null, '2018-03-30', '2018-04-04', '1');
 INSERT INTO `tb_user` VALUES ('1', 'kiwi', 'kiwi', 'kiwi','超级无敌管理员', '805344479@qq.com', null, '2019-06-14', '2019-06-14', '1');
-
-
--- ----------------------------
--- Table structure for tb_user_role
--- ----------------------------
-DROP TABLE IF EXISTS `tb_user_role`;
-CREATE TABLE `tb_user_role`  (
-                              `USER_ID` bigint(20) NOT NULL COMMENT '用户ID',
-                              `ROLE_ID` bigint(20) NOT NULL COMMENT '角色ID'
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户角色关联表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of tb_user_role
--- ----------------------------
-INSERT INTO `tb_user_role` VALUES (1, 1);
-INSERT INTO `tb_user_role` VALUES (2, 2);
-INSERT INTO `tb_user_role` VALUES (3, 77);
-INSERT INTO `tb_user_role` VALUES (4, 78);
-INSERT INTO `tb_user_role` VALUES (5, 79);
-INSERT INTO `tb_user_role` VALUES (6, 80);
-INSERT INTO `tb_user_role` VALUES (7, 78);
-INSERT INTO `tb_user_role` VALUES (7, 79);
-INSERT INTO `tb_user_role` VALUES (7, 80);
-
 
 
 -- ----------------------------

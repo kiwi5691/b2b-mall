@@ -6,13 +6,7 @@ package com.b2b.mall.common.authentication;
  */
 
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import com.b2b.mall.common.service.UserService;
-import com.b2b.mall.db.model.Role;
 import com.b2b.mall.db.model.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -100,7 +94,7 @@ public class ShiroRealm extends AuthorizingRealm {
             authorizationInfo.addStringPermission("*");
         } else {
             // 普通用户，查询用户的角色，根据角色查询权限
-//            Integer userId = user.getId();
+//           Integer userId = user.getId();
 //            List<Role> roles = this.authService.getRoleByUser(userId);
 //            if (null != roles && roles.size() > 0) {
 //                for (Role role : roles) {
