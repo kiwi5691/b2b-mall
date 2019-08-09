@@ -949,23 +949,23 @@ CREATE TABLE `tb_permission` (
 -- ----------------------------
 -- Records of permission
 -- ----------------------------
-INSERT INTO `permission` VALUES ('1', '系统管理', '0', '100', '0', '系统管理', 'system', '', '/', '2017-12-20 16:22:43', '2018-01-09 19:26:36');
-INSERT INTO `permission` VALUES ('2', '用户管理', '1', '1100', '0', '用户管理', 'usermanage', '', '/user/userList', '2017-12-20 16:27:03', '2018-01-09 19:26:30');
-INSERT INTO `permission` VALUES ('3', '角色管理', '1', '1200', '0', '角色管理', 'rolemanage', '', '/auth/roleManage', '2017-12-20 16:27:03', '2018-01-09 19:26:42');
-INSERT INTO `permission` VALUES ('4', '权限管理', '1', '1300', '0', '权限管理', 'permmanage', null, '/auth/permList', '2017-12-30 19:17:32', '2018-01-09 19:26:48');
-INSERT INTO `permission` VALUES ('5', '商品管理', '0', '300', '0', '商品管理', 'shops', null, '/', '2017-12-30 19:17:50', '2018-01-09 19:20:11');
-INSERT INTO `permission` VALUES ('6', '渠道管理', '0', '200', '0', '渠道管理', 'channel', null, '/', '2018-01-01 11:07:17', '2018-01-09 19:05:42');
-INSERT INTO `permission` VALUES ('8', '订单管理', '0', '400', '0', '订单管理', 'orders', null, '/', '2018-01-09 09:26:53', '2018-01-09 19:20:40');
-INSERT INTO `permission` VALUES ('10', '渠道信息列表', '6', '2200', '0', '渠道信息列表', 'channelPage', null, '/channel/channelListPage', '2018-01-09 19:07:05', '2018-01-09 19:31:13');
-INSERT INTO `permission` VALUES ('11', '渠道会员列表', '6', '2300', '0', '渠道会员列表', 'channelUsers', null, '/channel/channelUserListPage', '2018-01-09 19:07:52', '2018-01-18 14:08:08');
-INSERT INTO `permission` VALUES ('13', '商品列表', '5', '3100', '0', '商品列表', 'shopPage', null, '/shop/shopPage', '2018-01-09 19:33:53', '2018-04-22 21:18:11');
-INSERT INTO `permission` VALUES ('14', '商品订单列表', '8', '4100', '0', '商品订单列表', 'orderPage', null, '/order/orderPage', '2018-01-09 19:34:33', '2018-04-22 21:17:58');
+INSERT INTO `tb_permission` VALUES ('1', '系统管理', '0', '100', '0', '系统管理', 'system', '', '/', '2017-12-20 16:22:43', '2018-01-09 19:26:36');
+INSERT INTO `tb_permission` VALUES ('2', '用户管理', '1', '1100', '0', '用户管理', 'usermanage', '', '/user/userList', '2017-12-20 16:27:03', '2018-01-09 19:26:30');
+INSERT INTO `tb_permission` VALUES ('3', '角色管理', '1', '1200', '0', '角色管理', 'rolemanage', '', '/auth/roleManage', '2017-12-20 16:27:03', '2018-01-09 19:26:42');
+INSERT INTO `tb_permission` VALUES ('4', '权限管理', '1', '1300', '0', '权限管理', 'permmanage', null, '/auth/permList', '2017-12-30 19:17:32', '2018-01-09 19:26:48');
+INSERT INTO `tb_permission` VALUES ('5', '商品管理', '0', '300', '0', '商品管理', 'shops', null, '/', '2017-12-30 19:17:50', '2018-01-09 19:20:11');
+INSERT INTO `tb_permission` VALUES ('6', '渠道管理', '0', '200', '0', '渠道管理', 'channel', null, '/', '2018-01-01 11:07:17', '2018-01-09 19:05:42');
+INSERT INTO `tb_permission` VALUES ('8', '订单管理', '0', '400', '0', '订单管理', 'orders', null, '/', '2018-01-09 09:26:53', '2018-01-09 19:20:40');
+INSERT INTO `tb_permission` VALUES ('10', '渠道信息列表', '6', '2200', '0', '渠道信息列表', 'channelPage', null, '/channel/channelListPage', '2018-01-09 19:07:05', '2018-01-09 19:31:13');
+INSERT INTO `tb_permission` VALUES ('11', '渠道会员列表', '6', '2300', '0', '渠道会员列表', 'channelUsers', null, '/channel/channelUserListPage', '2018-01-09 19:07:52', '2018-01-18 14:08:08');
+INSERT INTO `tb_permission` VALUES ('13', '商品列表', '5', '3100', '0', '商品列表', 'shopPage', null, '/shop/shopPage', '2018-01-09 19:33:53', '2018-04-22 21:18:11');
+INSERT INTO `tb_permission` VALUES ('14', '商品订单列表', '8', '4100', '0', '商品订单列表', 'orderPage', null, '/order/orderPage', '2018-01-09 19:34:33', '2018-04-22 21:17:58');
 
 -- ----------------------------
 -- Table structure for role
 -- ----------------------------
-DROP TABLE IF EXISTS `role`;
-CREATE TABLE `role` (
+DROP TABLE IF EXISTS `tb_role`;
+CREATE TABLE `tb_role` (
                       `id` int(5) NOT NULL AUTO_INCREMENT,
                       `role_name` varchar(30) DEFAULT NULL COMMENT '角色名称',
                       `descpt` varchar(50) DEFAULT NULL COMMENT '角色描述',
@@ -979,17 +979,17 @@ CREATE TABLE `role` (
 -- ----------------------------
 -- Records of role
 -- ----------------------------
-INSERT INTO `role` VALUES ('1', '超级管理', '超级管理员', 'superman', null, '2018-01-09 19:28:53', '2018-01-09 19:34:56');
-INSERT INTO `role` VALUES ('2', '高级管理员', '高级管理员', 'highmanage', null, '2018-01-17 13:53:23', '2018-01-18 13:39:29');
-INSERT INTO `role` VALUES ('3', '经理', '经理', 'bdmanage', null, '2018-01-18 13:41:47', '2018-04-22 21:15:38');
-INSERT INTO `role` VALUES ('4', '质检员', '质检员', 'checkmanage', null, '2018-01-18 14:03:00', '2018-04-22 21:15:59');
-INSERT INTO `role` VALUES ('5', '客维员', '客维员', 'guestmanage', null, '2018-01-18 14:06:48', '2018-04-22 21:16:07');
+INSERT INTO `tb_role` VALUES ('1', '超级管理', '超级管理员', 'superman', null, '2018-01-09 19:28:53', '2018-01-09 19:34:56');
+INSERT INTO `tb_role` VALUES ('2', '高级管理员', '高级管理员', 'highmanage', null, '2018-01-17 13:53:23', '2018-01-18 13:39:29');
+INSERT INTO `tb_role` VALUES ('3', '经理', '经理', 'bdmanage', null, '2018-01-18 13:41:47', '2018-04-22 21:15:38');
+INSERT INTO `tb_role` VALUES ('4', '质检员', '质检员', 'checkmanage', null, '2018-01-18 14:03:00', '2018-04-22 21:15:59');
+INSERT INTO `tb_role` VALUES ('5', '客维员', '客维员', 'guestmanage', null, '2018-01-18 14:06:48', '2018-04-22 21:16:07');
 
 -- ----------------------------
--- Table structure for role_permission
+-- Table structure for tb_role_permission
 -- ----------------------------
-DROP TABLE IF EXISTS `role_permission`;
-CREATE TABLE `role_permission` (
+DROP TABLE IF EXISTS `tb_tb_role_permission`;
+CREATE TABLE `tb_tb_role_permission` (
                                  `permit_id` int(5) NOT NULL AUTO_INCREMENT,
                                  `role_id` int(5) NOT NULL,
                                  PRIMARY KEY (`permit_id`,`role_id`),
@@ -998,55 +998,55 @@ CREATE TABLE `role_permission` (
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
--- Records of role_permission
+-- Records of tb_role_permission
 -- ----------------------------
-INSERT INTO `role_permission` VALUES ('1', '1');
-INSERT INTO `role_permission` VALUES ('1', '2');
-INSERT INTO `role_permission` VALUES ('2', '1');
-INSERT INTO `role_permission` VALUES ('2', '2');
-INSERT INTO `role_permission` VALUES ('3', '1');
-INSERT INTO `role_permission` VALUES ('3', '2');
-INSERT INTO `role_permission` VALUES ('4', '1');
-INSERT INTO `role_permission` VALUES ('5', '1');
-INSERT INTO `role_permission` VALUES ('5', '2');
-INSERT INTO `role_permission` VALUES ('5', '3');
-INSERT INTO `role_permission` VALUES ('5', '5');
-INSERT INTO `role_permission` VALUES ('6', '1');
-INSERT INTO `role_permission` VALUES ('6', '2');
-INSERT INTO `role_permission` VALUES ('6', '3');
-INSERT INTO `role_permission` VALUES ('6', '4');
-INSERT INTO `role_permission` VALUES ('6', '5');
-INSERT INTO `role_permission` VALUES ('7', '1');
-INSERT INTO `role_permission` VALUES ('8', '1');
-INSERT INTO `role_permission` VALUES ('8', '2');
-INSERT INTO `role_permission` VALUES ('8', '3');
-INSERT INTO `role_permission` VALUES ('8', '5');
-INSERT INTO `role_permission` VALUES ('10', '1');
-INSERT INTO `role_permission` VALUES ('10', '2');
-INSERT INTO `role_permission` VALUES ('10', '3');
-INSERT INTO `role_permission` VALUES ('10', '4');
-INSERT INTO `role_permission` VALUES ('11', '1');
-INSERT INTO `role_permission` VALUES ('11', '2');
-INSERT INTO `role_permission` VALUES ('11', '3');
-INSERT INTO `role_permission` VALUES ('11', '5');
-INSERT INTO `role_permission` VALUES ('12', '1');
-INSERT INTO `role_permission` VALUES ('12', '2');
-INSERT INTO `role_permission` VALUES ('12', '3');
-INSERT INTO `role_permission` VALUES ('13', '1');
-INSERT INTO `role_permission` VALUES ('13', '2');
-INSERT INTO `role_permission` VALUES ('13', '3');
-INSERT INTO `role_permission` VALUES ('13', '5');
-INSERT INTO `role_permission` VALUES ('14', '1');
-INSERT INTO `role_permission` VALUES ('14', '2');
-INSERT INTO `role_permission` VALUES ('14', '3');
-INSERT INTO `role_permission` VALUES ('14', '5');
+INSERT INTO `tb_role_permission` VALUES ('1', '1');
+INSERT INTO `tb_role_permission` VALUES ('1', '2');
+INSERT INTO `tb_role_permission` VALUES ('2', '1');
+INSERT INTO `tb_role_permission` VALUES ('2', '2');
+INSERT INTO `tb_role_permission` VALUES ('3', '1');
+INSERT INTO `tb_role_permission` VALUES ('3', '2');
+INSERT INTO `tb_role_permission` VALUES ('4', '1');
+INSERT INTO `tb_role_permission` VALUES ('5', '1');
+INSERT INTO `tb_role_permission` VALUES ('5', '2');
+INSERT INTO `tb_role_permission` VALUES ('5', '3');
+INSERT INTO `tb_role_permission` VALUES ('5', '5');
+INSERT INTO `tb_role_permission` VALUES ('6', '1');
+INSERT INTO `tb_role_permission` VALUES ('6', '2');
+INSERT INTO `tb_role_permission` VALUES ('6', '3');
+INSERT INTO `tb_role_permission` VALUES ('6', '4');
+INSERT INTO `tb_role_permission` VALUES ('6', '5');
+INSERT INTO `tb_role_permission` VALUES ('7', '1');
+INSERT INTO `tb_role_permission` VALUES ('8', '1');
+INSERT INTO `tb_role_permission` VALUES ('8', '2');
+INSERT INTO `tb_role_permission` VALUES ('8', '3');
+INSERT INTO `tb_role_permission` VALUES ('8', '5');
+INSERT INTO `tb_role_permission` VALUES ('10', '1');
+INSERT INTO `tb_role_permission` VALUES ('10', '2');
+INSERT INTO `tb_role_permission` VALUES ('10', '3');
+INSERT INTO `tb_role_permission` VALUES ('10', '4');
+INSERT INTO `tb_role_permission` VALUES ('11', '1');
+INSERT INTO `tb_role_permission` VALUES ('11', '2');
+INSERT INTO `tb_role_permission` VALUES ('11', '3');
+INSERT INTO `tb_role_permission` VALUES ('11', '5');
+INSERT INTO `tb_role_permission` VALUES ('12', '1');
+INSERT INTO `tb_role_permission` VALUES ('12', '2');
+INSERT INTO `tb_role_permission` VALUES ('12', '3');
+INSERT INTO `tb_role_permission` VALUES ('13', '1');
+INSERT INTO `tb_role_permission` VALUES ('13', '2');
+INSERT INTO `tb_role_permission` VALUES ('13', '3');
+INSERT INTO `tb_role_permission` VALUES ('13', '5');
+INSERT INTO `tb_role_permission` VALUES ('14', '1');
+INSERT INTO `tb_role_permission` VALUES ('14', '2');
+INSERT INTO `tb_role_permission` VALUES ('14', '3');
+INSERT INTO `tb_role_permission` VALUES ('14', '5');
 
 
 -- ----------------------------
--- Table structure for user_role
+-- Table structure for tb_user_role
 -- ----------------------------
-DROP TABLE IF EXISTS `user_role`;
-CREATE TABLE `user_role` (
+DROP TABLE IF EXISTS `tb_tb_user_role`;
+CREATE TABLE `tb_user_role` (
                            `user_id` int(11) NOT NULL,
                            `role_id` int(5) NOT NULL,
                            PRIMARY KEY (`user_id`,`role_id`),
@@ -1055,20 +1055,20 @@ CREATE TABLE `user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of user_role
+-- Records of tb_user_role
 -- ----------------------------
-INSERT INTO `user_role` VALUES ('1', '1');
-INSERT INTO `user_role` VALUES ('3', '5');
-INSERT INTO `user_role` VALUES ('12', '5');
-INSERT INTO `user_role` VALUES ('19', '3');
-INSERT INTO `user_role` VALUES ('20', '2');
-INSERT INTO `user_role` VALUES ('21', '4');
-INSERT INTO `user_role` VALUES ('22', '5');
-INSERT INTO `user_role` VALUES ('23', '3');
-INSERT INTO `user_role` VALUES ('24', '5');
-INSERT INTO `user_role` VALUES ('25', '2');
-INSERT INTO `user_role` VALUES ('26', '5');
-INSERT INTO `user_role` VALUES ('27', '5');
+INSERT INTO `tb_user_role` VALUES ('1', '1');
+INSERT INTO `tb_user_role` VALUES ('3', '5');
+INSERT INTO `tb_user_role` VALUES ('12', '5');
+INSERT INTO `tb_user_role` VALUES ('19', '3');
+INSERT INTO `tb_user_role` VALUES ('20', '2');
+INSERT INTO `tb_user_role` VALUES ('21', '4');
+INSERT INTO `tb_user_role` VALUES ('22', '5');
+INSERT INTO `tb_user_role` VALUES ('23', '3');
+INSERT INTO `tb_user_role` VALUES ('24', '5');
+INSERT INTO `tb_user_role` VALUES ('25', '2');
+INSERT INTO `tb_user_role` VALUES ('26', '5');
+INSERT INTO `tb_user_role` VALUES ('27', '5');
 
 -- ----------------------------
 -- Table structure for tb_user
