@@ -131,7 +131,7 @@ public class UserController {
      * @param model
      * @return
      */
-    @GetMapping("/user/register")
+    @GetMapping({"/user/register","/user/register.html"})
     public String register(Model model) {
         return "user/register";
     }
@@ -159,7 +159,6 @@ public class UserController {
             model.addAttribute("error", "恭喜您，注册成功！");
             return "user/login";
         }
-
         return "user/register";
     }
 

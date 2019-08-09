@@ -938,8 +938,8 @@ CREATE TABLE `tb_permission` (
                             `zindex` int(2) DEFAULT NULL COMMENT '菜单排序',
                             `istype` int(1) DEFAULT NULL COMMENT '权限分类（0 菜单；1 功能）',
                             `descpt` varchar(50) DEFAULT NULL COMMENT '描述',
-                            `code` varchar(20) DEFAULT                             `icon` varchar(30) DEFAULT NULL COMMENT '菜单NULL COMMENT '菜单编号',
-图标名称',
+                            `code` varchar(20) DEFAULT NULL COMMENT '菜单编号',
+                            `icon` varchar(30) DEFAULT NULL COMMENT '菜单图标名称',
                             `page` varchar(50) DEFAULT NULL COMMENT '菜单url',
                             `insert_time` datetime DEFAULT NULL COMMENT '添加时间',
                             `update_time` datetime DEFAULT NULL COMMENT '更新时间',
@@ -953,13 +953,13 @@ INSERT INTO `tb_permission` VALUES ('1', '系统管理', '0', '100', '0', '系�
 INSERT INTO `tb_permission` VALUES ('2', '用户管理', '1', '1100', '0', '用户管理', 'usermanage', '', '/user/userList', '2017-12-20 16:27:03', '2018-01-09 19:26:30');
 INSERT INTO `tb_permission` VALUES ('3', '角色管理', '1', '1200', '0', '角色管理', 'rolemanage', '', '/auth/roleManage', '2017-12-20 16:27:03', '2018-01-09 19:26:42');
 INSERT INTO `tb_permission` VALUES ('4', '权限管理', '1', '1300', '0', '权限管理', 'permmanage', null, '/auth/permList', '2017-12-30 19:17:32', '2018-01-09 19:26:48');
-INSERT INTO `tb_permission` VALUES ('5', '商品管理', '0', '300', '0', '商品管理', 'shops', null, '/', '2017-12-30 19:17:50', '2018-01-09 19:20:11');
-INSERT INTO `tb_permission` VALUES ('6', '渠道管理', '0', '200', '0', '渠道管理', 'channel', null, '/', '2018-01-01 11:07:17', '2018-01-09 19:05:42');
-INSERT INTO `tb_permission` VALUES ('8', '订单管理', '0', '400', '0', '订单管理', 'orders', null, '/', '2018-01-09 09:26:53', '2018-01-09 19:20:40');
-INSERT INTO `tb_permission` VALUES ('10', '渠道信息列表', '6', '2200', '0', '渠道信息列表', 'channelPage', null, '/channel/channelListPage', '2018-01-09 19:07:05', '2018-01-09 19:31:13');
-INSERT INTO `tb_permission` VALUES ('11', '渠道会员列表', '6', '2300', '0', '渠道会员列表', 'channelUsers', null, '/channel/channelUserListPage', '2018-01-09 19:07:52', '2018-01-18 14:08:08');
-INSERT INTO `tb_permission` VALUES ('13', '商品列表', '5', '3100', '0', '商品列表', 'shopPage', null, '/shop/shopPage', '2018-01-09 19:33:53', '2018-04-22 21:18:11');
-INSERT INTO `tb_permission` VALUES ('14', '商品订单列表', '8', '4100', '0', '商品订单列表', 'orderPage', null, '/order/orderPage', '2018-01-09 19:34:33', '2018-04-22 21:17:58');
+INSERT INTO `tb_permission` VALUES ('5', '商品管理', '0', '300', '0', '商品管理', 'itemManage', null, '/user/itemManage_0_0_0', '2017-12-30 19:17:50', '2018-01-09 19:20:11');
+INSERT INTO `tb_permission` VALUES ('6', '库存管理', '0', '200', '0', '库存管理', 'stockManage', null, '/user/stockManage_0_0_0', '2018-01-01 11:07:17', '2018-01-09 19:05:42');
+INSERT INTO `tb_permission` VALUES ('8', '订单管理', '0', '400', '0', '订单管理', 'orderManage', null, '/user/orderManage_0_0_0', '2018-01-09 09:26:53', '2018-01-09 19:20:40');
+INSERT INTO `tb_permission` VALUES ('10', '商品分类', '6', '2200', '0', '商品分类', 'itemCategoryManage', null, '/user/itemCategoryManage_0_0_0', '2018-01-09 19:07:05', '2018-01-09 19:31:13');
+INSERT INTO `tb_permission` VALUES ('11', '回收管理', '6', '2300', '0', '回收管理', 'recoverManage', null, '/user/recoverManage_0_0_0', '2018-01-09 19:07:52', '2018-01-18 14:08:08');
+INSERT INTO `tb_permission` VALUES ('13', '订单退款', '5', '3100', '0', '订单退款', 'orderRefund', null, '/user/orderRefund_0_0_0', '2018-01-09 19:33:53', '2018-04-22 21:18:11');
+INSERT INTO `tb_permission` VALUES ('14', '发货管理', '8', '4100', '0', '发货管理', 'shippingManage', null, '/user/shippingManage_0_0_0', '2018-01-09 19:34:33', '2018-04-22 21:17:58');
 
 -- ----------------------------
 -- Table structure for role
@@ -979,7 +979,7 @@ CREATE TABLE `tb_role` (
 -- ----------------------------
 -- Records of role
 -- ----------------------------
-INSERT INTO `tb_role` VALUES ('1', '超级管理', '超级管理员', 'superman', null, '2018-01-09 19:28:53', '2018-01-09 19:34:56');
+INSERT INTO `tb_role` VALUES ('1', '超级无敌管理员', '超级无敌管理员', 'superman', null, '2018-01-09 19:28:53', '2018-01-09 19:34:56');
 INSERT INTO `tb_role` VALUES ('2', '高级管理员', '高级管理员', 'highmanage', null, '2018-01-17 13:53:23', '2018-01-18 13:39:29');
 INSERT INTO `tb_role` VALUES ('3', '经理', '经理', 'bdmanage', null, '2018-01-18 13:41:47', '2018-04-22 21:15:38');
 INSERT INTO `tb_role` VALUES ('4', '质检员', '质检员', 'checkmanage', null, '2018-01-18 14:03:00', '2018-04-22 21:15:59');
@@ -988,8 +988,8 @@ INSERT INTO `tb_role` VALUES ('5', '客维员', '客维员', 'guestmanage', null
 -- ----------------------------
 -- Table structure for tb_role_permission
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_tb_role_permission`;
-CREATE TABLE `tb_tb_role_permission` (
+DROP TABLE IF EXISTS `tb_role_permission`;
+CREATE TABLE `tb_role_permission` (
                                  `permit_id` int(5) NOT NULL AUTO_INCREMENT,
                                  `role_id` int(5) NOT NULL,
                                  PRIMARY KEY (`permit_id`,`role_id`),

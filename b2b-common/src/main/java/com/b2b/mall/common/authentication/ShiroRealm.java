@@ -5,8 +5,13 @@ package com.b2b.mall.common.authentication;
  * @Date 2019/6/29 17:19
  */
 
-
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import com.b2b.mall.common.service.AuthService;
 import com.b2b.mall.common.service.UserService;
+import com.b2b.mall.db.model.Permission;
+import com.b2b.mall.db.model.Role;
 import com.b2b.mall.db.model.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -23,9 +28,11 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 获取用户的角色和权限信息
@@ -36,6 +43,9 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private AuthService authService;
 
 
     /**
@@ -94,23 +104,26 @@ public class ShiroRealm extends AuthorizingRealm {
             authorizationInfo.addStringPermission("*");
         } else {
             // 普通用户，查询用户的角色，根据角色查询权限
-//           Integer userId = user.getId();
-//            List<Role> roles = this.authService.getRoleByUser(userId);
-//            if (null != roles && roles.size() > 0) {
-//                for (Role role : roles) {
-//                    authorizationInfo.addRole(role.getCode());
-//                    // 角色对应的权限数据
-//                    List<Permission> perms = this.authService.findPermsByRoleId(role
-//                            .getId());
-//                    if (null != perms && perms.size() > 0) {
-//                        // 授权角色下所有权限
-//                        for (Permission perm : perms) {
-//                            authorizationInfo.addStringPermission(perm
-//                                    .getCode());
-//                        }
-//                    }
-//                }
-//            }
+
+            Integer userId = user.getId();
+            List<Role> roles = this.authService.getRoleByUser(userId);
+            if (null != roles && roles.size() > 0) {
+                for (Role role : roles) {
+                    authorizationInfo.addRole(role.getCode());
+                    // 角色对应的权限数据
+                    List<Permission> perms = this.authService.findPermsByRoleId(role
+                            .getId());
+                    if (null != perms && perms.size() > 0) {
+                        // 授权角色下所有权限
+                        for (Permission perm : perms) {
+                            authorizationInfo.addStringPermission(perm
+                                    .getCode());
+                        }
+
+                        perms.forEach(System.out::println);
+                    }
+                }
+            }
         }
         return authorizationInfo;
     }
