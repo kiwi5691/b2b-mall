@@ -74,7 +74,6 @@ public class OrderController {
      * @return
      */
     @RequestMapping("/user/orderRefund_{pageCurrent}_{pageSize}_{pageCount}")
-    @RequiresPermissions(value = "usermanage")
     public String refundManage(Order order, @PathVariable Integer pageCurrent,
                                @PathVariable Integer pageSize,
                                @PathVariable Integer pageCount,
