@@ -64,17 +64,9 @@ public class ShiroRealm extends AuthorizingRealm {
         // 查出是否有此用户
         User user = userService.selectAllByName(token.getUsername());
         if (user != null) {
-            Session session = SecurityUtils.getSubject().getSession();
-            //成功则放入session
-            session.setAttribute("user", user);
-            // 若存在，将此用户存放到登录认证info中，无需自己做密码对比，Shiro进行密码对比校验
             Object principal = user.getUserName();
-            //2)credentials：密码
             Object credentials = user.getPassword();
-            //3)realmName：当前realm对象的name，调用父类的getName()方法即可
             String realmName = getName();
-            //4)credentialsSalt盐值
-            //使用账号作为盐值
             ByteSource credentialsSalt = ByteSource.Util.bytes(principal);
 
             return new SimpleAuthenticationInfo(principal, credentials, credentialsSalt, realmName);
@@ -91,19 +83,22 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(
             PrincipalCollection principalCollection) {
-        //授权
         logger.debug("授予角色和权限");
-        // 添加权限 和 角色信息
-        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        // 获取当前登陆用户
+
+
+
         Subject subject = SecurityUtils.getSubject();
         User user = (User) subject.getPrincipal();
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+
         if (user.getBusiness().equals("超级无敌管理员")) {
             // 超级管理员，添加所有角色、添加所有权限
             authorizationInfo.addRole("*");
             authorizationInfo.addStringPermission("*");
         } else {
             // 普通用户，查询用户的角色，根据角色查询权限
+
+            logger.info("usr Id is"+ user.getId());
 
             Integer userId = user.getId();
             List<Role> roles = this.authService.getRoleByUser(userId);

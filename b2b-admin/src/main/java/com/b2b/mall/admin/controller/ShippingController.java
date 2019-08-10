@@ -5,6 +5,7 @@ import com.b2b.mall.admin.service.ShippingService;
 import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.*;
 import com.b2b.mall.db.model.*;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,7 @@ public class ShippingController {
     }
 
     @RequestMapping("/user/shippingManage_{pageCurrent}_{pageSize}_{pageCount}")
+    @RequiresPermissions(value ="shippingManage")
     public String orderManage(OrderShipping orderShipping, @PathVariable Integer pageCurrent,
                               @PathVariable Integer pageSize,
                               @PathVariable Integer pageCount,

@@ -1,5 +1,6 @@
 package com.b2b.mall.admin.controller;
 
+import com.b2b.mall.common.service.AuthService;
 import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.*;
 import com.b2b.mall.db.model.*;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户管理
@@ -31,6 +33,10 @@ public class UserController {
 
     @Resource
     private UserMapper userMapper;
+
+
+    @Resource
+    private AuthService authService;
 
     @Autowired
     private HttpSession httpSession;
@@ -67,7 +73,7 @@ public class UserController {
 
     /**
      * 登录
-     *
+     *这里有一个测试权限的用例待删除。
      * @param
      * @param model
      * @param
@@ -76,9 +82,15 @@ public class UserController {
     @PostMapping("/user/login")
     public String loginPost(User users, Model model) {
 
+        Integer userId= userMapper.selectAllByName(users.getUserName()).getId();
+        logger.info("usr Id is"+ users.getId());
         String username = users.getUserName();
         logger.info("用户paswd为:"+users.getPassword());
-        UsernamePasswordToken token = new UsernamePasswordToken(username, users.getPassword());
+
+
+
+
+        UsernamePasswordToken token = new UsernamePasswordToken(username, users.getPassword(),true);
         //获取当前的Subject
         Subject currentUser = SecurityUtils.getSubject();
         try {
@@ -112,18 +124,41 @@ public class UserController {
             Date date = new Date();
 //            users.setUserLudt(date);
 //            usersMapper.basicUpdate(users);
+//            logger.info("usr Id is"+ users.getPassword());
+
             users.setUserLudt(new Date());
             httpSession.setAttribute("user", users);
             String timeQuannum="";
             timeQuannum =DateUtil.checkTimeQuantum();
             httpSession.setAttribute("time",timeQuannum);
             User name = (User) httpSession.getAttribute("manage");
+
+            List<Role> roles = this.authService.getRoleByUser(userId);
+            if (null != roles && roles.size() > 0) {
+                for (Role role : roles) {
+                    // 角色对应的权限数据
+                    logger.info("role is"+role.getCode());
+                    List<Permission> perms = this.authService.findPermsByRoleId(role
+                            .getId());
+                    if (null != perms && perms.size() > 0) {
+                        // 授权角色下所有权限
+                        for (Permission perm : perms) {
+                            logger.info(perm.getCode());
+                        }
+                    }
+                    }
+                }
+//
+//            Subject subject = SecurityUtils.getSubject();
+//            User user = (User) subject.getPrincipal();
+//            logger.info("subjet is"+user.getId());
             return "redirect:dashboard";
         }else {
             token.clear();
             return "user/login";
         }
     }
+
 
     /**
      * 注册

@@ -2,6 +2,7 @@ package com.b2b.mall.admin.config;
 
 
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.b2b.mall.common.authentication.ShiroRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -35,6 +36,74 @@ import java.util.Map;
 public class ShiroConfiguration {
 
     private static final Logger logger = LoggerFactory.getLogger(ShiroConfiguration.class);
+
+
+
+
+    /**
+     * ShiroFilterFactoryBean 处理拦截资源文件过滤器
+     *	</br>1,配置shiro安全管理器接口securityManage;
+     *	</br>2,shiro 连接约束配置filterChainDefinitions;
+     */
+    @Bean(name = "shiroFilter")
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(
+            org.apache.shiro.mgt.SecurityManager securityManager) {
+
+        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+        logger.debug("-----------------Shiro拦截器工厂类注入开始");
+
+        // 配置shiro安全管理器 SecurityManager
+        shiroFilterFactoryBean.setSecurityManager(securityManager);
+        // 指定要求登录时的链接
+        shiroFilterFactoryBean.setLoginUrl("/user/login");
+        // 登录成功后要跳转的链接
+        shiroFilterFactoryBean.setSuccessUrl("/user/dashboard");
+        // 未授权时跳转的界面;
+        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+
+        Map<String, String> filterChainDefinitionManager = new LinkedHashMap<>();
+
+        filterChainDefinitionManager.put("/logout", "logout");
+        filterChainDefinitionManager.put("/user/dashboard", "user");
+        filterChainDefinitionManager.put("/user/login", "anon");
+        filterChainDefinitionManager.put("/cms/article/add",
+                "perms[article:add]");
+        filterChainDefinitionManager.put("/cms/article/edit.*",
+                "perms[article:edit]");
+        // 可以理解为不拦截
+        filterChainDefinitionManager.put("/static/**", "anon");// 静态资源不拦截
+        shiroFilterFactoryBean
+                .setFilterChainDefinitionMap(filterChainDefinitionManager);
+
+        return shiroFilterFactoryBean;
+    }
+
+
+    /**
+     * shiro安全管理器设置realm认证和ehcache缓存管理
+     * @return
+     */
+    @Bean public org.apache.shiro.mgt.SecurityManager securityManager() {
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        // 设置realm.
+        securityManager.setRealm(shiroRealm());
+        // //注入ehcache缓存管理器;
+        securityManager.setCacheManager(ehCacheManager());
+        // //注入session管理器;
+        securityManager.setSessionManager(sessionManager());
+        //注入Cookie记住我管理器
+        securityManager.setRememberMeManager(rememberMeManager());
+        return securityManager;
+    }
+
+
+    //用于thymeleaf模板使用shiro标签
+    @Bean
+    public ShiroDialect shiroDialect() {
+        return new ShiroDialect();
+    }
+
+
     // 适用于Spring的Bean后处理器自动调用实现 或接口的Shiro对象上的init（）和/或
     // destroy（）方法。这种后处理器使得在Spring中更容易配置Shiro
     // bean，因为用户从不必担心是否必须指定init-method和destroy-method bean属性。
@@ -43,6 +112,14 @@ public class ShiroConfiguration {
         return new LifecycleBeanPostProcessor();
     }
 
+
+    @Bean
+    @ConditionalOnMissingBean
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator daap = new DefaultAdvisorAutoProxyCreator();
+        daap.setProxyTargetClass(true);
+        return daap;
+    }
 
     // 处理认证匹配处理器：如果自定义需要实现继承HashedCredentialsMatcher
     // 指定加密方式方式，也可以在这里加入缓存，当用户超过五次登陆错误就锁定该用户禁止不断尝试登陆
@@ -78,76 +155,6 @@ public class ShiroConfiguration {
 
 
 
-    /**
-     * ShiroFilterFactoryBean 处理拦截资源文件过滤器
-     *	</br>1,配置shiro安全管理器接口securityManage;
-     *	</br>2,shiro 连接约束配置filterChainDefinitions;
-     */
-    @Bean(name = "shiroFilter")
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(
-            org.apache.shiro.mgt.SecurityManager securityManager) {
-        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        logger.debug("-----------------Shiro拦截器工厂类注入开始");
-
-        // 配置shiro安全管理器 SecurityManager
-        shiroFilterFactoryBean.setSecurityManager(securityManager);
-
-
-
-        // 指定要求登录时的链接
-        shiroFilterFactoryBean.setLoginUrl("/user/login");
-        // 登录成功后要跳转的链接
-        shiroFilterFactoryBean.setSuccessUrl("/user/dashboard");
-        // 未授权时跳转的界面;
-        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
-
-        Map<String, String> filterChainDefinitionManager = new LinkedHashMap<>();
-
-        filterChainDefinitionManager.put("/logout", "logout");
-        filterChainDefinitionManager.put("/index", "anon");
-        filterChainDefinitionManager.put("/user/dashboard", "anon");
-        filterChainDefinitionManager.put("/user/login", "anon");// anon 可以理解为不拦截
-        filterChainDefinitionManager.put("/ajaxLogin", "anon");// anon
-        filterChainDefinitionManager.put("/apps/content", "user");
-        filterChainDefinitionManager.put("/cms/content", "user");
-        filterChainDefinitionManager.put("/sys/content", "user");
-        filterChainDefinitionManager.put("/cms/article/add",
-                "perms[article:add]");
-        filterChainDefinitionManager.put("/cms/article/edit.*",
-                "perms[article:edit]");
-        // 可以理解为不拦截
-        filterChainDefinitionManager.put("/static/**", "anon");// 静态资源不拦截
-        filterChainDefinitionManager.put("/**", "anon");
-        shiroFilterFactoryBean
-                .setFilterChainDefinitionMap(filterChainDefinitionManager);
-
-        return shiroFilterFactoryBean;
-    }
-
-    /**
-     * shiro安全管理器设置realm认证和ehcache缓存管理
-     * @return
-     */
-    @Bean public org.apache.shiro.mgt.SecurityManager securityManager() {
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        // 设置realm.
-        securityManager.setRealm(shiroRealm());
-        // //注入ehcache缓存管理器;
-        securityManager.setCacheManager(ehCacheManager());
-        // //注入session管理器;
-        securityManager.setSessionManager(sessionManager());
-        //注入Cookie记住我管理器
-        securityManager.setRememberMeManager(rememberMeManager());
-        return securityManager;
-    }
-
-    @Bean
-    @ConditionalOnMissingBean
-    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
-        DefaultAdvisorAutoProxyCreator daap = new DefaultAdvisorAutoProxyCreator();
-        daap.setProxyTargetClass(true);
-        return daap;
-    }
 
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor() {

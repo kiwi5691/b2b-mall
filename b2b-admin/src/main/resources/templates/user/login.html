@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 
 <head>
 
@@ -40,7 +41,9 @@
 				<p class="text-muted text-center">
 					<small>没有账号 ?</small>
 				</p>
+				<shiro:user>　　
 				<a class="btn btn-sm btn-white btn-block" th:href="@{register}" href="register.html">注  册</a>
+				</shiro:user>　　
 			</form>
 			<!--<p class="m-t">-->
 				<!--<small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small>-->

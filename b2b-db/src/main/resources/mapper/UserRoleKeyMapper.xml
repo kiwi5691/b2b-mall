@@ -37,7 +37,7 @@
   <select id="findByUserId" resultMap="BaseResultMap">
     SELECT
       user_id,role_id
-    FROM user_role WHERE user_id=#{userId}
+    FROM tb_user_role WHERE user_id=#{userId}
   </select>
   <!--= End findByUserId 根据用户获取用户角色中间表 -->
 </mapper>

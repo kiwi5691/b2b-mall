@@ -37,7 +37,7 @@
   <!--=Start findByRole 根据角色查询中间表数据-->
   <select id="findByRole" resultMap="BaseResultMap">
     SELECT role_id,permit_id
-    from role_permission
+    from tb_role_permission
     WHERE role_id=#{roleId}
   </select>
   <!--=End findByRole 根据角色查询中间表数据-->

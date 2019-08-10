@@ -16,15 +16,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
-    from role
+    from tb_role
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from role
+    delete from tb_role
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="com.b2b.mall.db.model.Role" >
-    insert into role
+    insert into tb_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -73,7 +73,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.b2b.mall.db.model.Role" >
-    update role
+    update tb_role
     <set >
       <if test="roleName != null" >
         role_name = #{roleName,jdbcType=VARCHAR},
@@ -97,7 +97,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.b2b.mall.db.model.Role" >
-    update role
+    update tb_role
     set role_name = #{roleName,jdbcType=VARCHAR},
         descpt = #{descpt,jdbcType=VARCHAR},
         code = #{code,jdbcType=VARCHAR},
@@ -109,7 +109,7 @@
 
 
   <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.b2b.mall.db.model.Role" >
-    insert into role (id, role_name, descpt,
+    insert into tb_role (id, role_name, descpt,
                       code, insert_uid, insert_time,
                       update_time)
     values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{descpt,jdbcType=VARCHAR},
@@ -120,7 +120,7 @@
   <select id="findList" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from role
+    from tb_role
   </select>
   <!--=End findList 分页查询角色列表-->
 
@@ -141,8 +141,8 @@
   <select id="findRoleAndPerms" resultMap="rolePerms">
     select
       r.*,rp.role_id,rp.permit_id
-    from role r
-           INNER JOIN role_permission rp ON r.id=rp.role_id
+    from tb_role r
+           INNER JOIN tb_role_permission rp ON r.id=rp.role_id
     WHERE r.id=#{id}
   </select>
   <!--=End findRoleAndPerms 查询角色列表-->
@@ -151,8 +151,8 @@
   <select id="getRoleByUserId" resultMap="BaseResultMap">
     select
       ur.role_id id,r.role_name,r.code
-    from user_role ur
-           INNER JOIN role r ON r.id=ur.role_id
+    from tb_user_role ur
+           INNER JOIN tb_role r ON r.id=ur.role_id
     WHERE ur.user_id=#{userId}
   </select>
   <!--=End getRoleByUserId 根据用户id查询角色数据-->
@@ -161,7 +161,7 @@
   <select id="getRoles" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from role
+    from tb_role
   </select>
   <!--=End getRoles 查询角色列表-->
 </mapper>
