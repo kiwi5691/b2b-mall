@@ -4,8 +4,11 @@ package com.b2b.mall.admin.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.b2b.mall.common.authentication.ShiroRealm;
+import net.sf.ehcache.CacheException;
+import net.sf.ehcache.CacheManager;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.io.ResourceUtils;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -23,6 +26,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -145,12 +149,29 @@ public class ShiroConfiguration {
         return realm;
     }
 
-    // 缓存
-    @Bean(name = "ehCacheManager")
-    @DependsOn("lifecycleBeanPostProcessor")
+    /**
+     * ehcache缓存管理器；shiro整合ehcache：
+     * 通过安全管理器：securityManager
+     * 单例的cache防止热部署重启失败
+     * @return EhCacheManager
+     */
+    @Bean
     public EhCacheManager ehCacheManager() {
-        EhCacheManager ehCacheManager = new EhCacheManager();
-        return ehCacheManager;
+        logger.debug(
+                "=====shiro整合ehcache缓存：ShiroConfiguration.getEhCacheManager()");
+        EhCacheManager ehcache = new EhCacheManager();
+        CacheManager cacheManager = CacheManager.getCacheManager("shiro");
+        if(cacheManager == null){
+            try {
+
+                cacheManager = CacheManager.create(ResourceUtils.getInputStreamForPath("classpath:config/ehcache.xml"));
+
+            } catch (CacheException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+        ehcache.setCacheManager(cacheManager);
+        return ehcache;
     }
 
 

@@ -81,15 +81,11 @@ public class UserController {
      */
     @PostMapping("/user/login")
     public String loginPost(User users, Model model) {
-
-        Integer userId= userMapper.selectAllByName(users.getUserName()).getId();
-        logger.info("usr Id is"+ users.getId());
+//
+//        Integer userId= userMapper.selectAllByName(users.getUserName()).getId();
+//        logger.info("usr Id is"+ users.getId());
         String username = users.getUserName();
         logger.info("用户paswd为:"+users.getPassword());
-
-
-
-
         UsernamePasswordToken token = new UsernamePasswordToken(username, users.getPassword(),true);
         //获取当前的Subject
         Subject currentUser = SecurityUtils.getSubject();
@@ -132,22 +128,22 @@ public class UserController {
             timeQuannum =DateUtil.checkTimeQuantum();
             httpSession.setAttribute("time",timeQuannum);
             User name = (User) httpSession.getAttribute("manage");
-
-            List<Role> roles = this.authService.getRoleByUser(userId);
-            if (null != roles && roles.size() > 0) {
-                for (Role role : roles) {
-                    // 角色对应的权限数据
-                    logger.info("role is"+role.getCode());
-                    List<Permission> perms = this.authService.findPermsByRoleId(role
-                            .getId());
-                    if (null != perms && perms.size() > 0) {
-                        // 授权角色下所有权限
-                        for (Permission perm : perms) {
-                            logger.info(perm.getCode());
-                        }
-                    }
-                    }
-                }
+//
+//            List<Role> roles = this.authService.getRoleByUser(userId);
+//            if (null != roles && roles.size() > 0) {
+//                for (Role role : roles) {
+//                    // 角色对应的权限数据
+//                    logger.info("role is"+role.getCode());
+//                    List<Permission> perms = this.authService.findPermsByRoleId(role
+//                            .getId());
+//                    if (null != perms && perms.size() > 0) {
+//                        // 授权角色下所有权限
+//                        for (Permission perm : perms) {
+//                            logger.info(perm.getCode());
+//                        }
+//                    }
+//                    }
+//                }
 //
 //            Subject subject = SecurityUtils.getSubject();
 //            User user = (User) subject.getPrincipal();
@@ -237,22 +233,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/user/userManage")
-    public String userManageGet(Model model) {
-        User user = (User) httpSession.getAttribute("manage");
-        User user1 = userMapper.selectByNameAndPwd(user);
-        model.addAttribute("user", user1);
-        return "manage/userManage";
-    }
 
-    @PostMapping("/user/userManage")
-    public String userManagePost(Model model, User user, HttpSession httpSession) {
-        Date date = new Date();
-        user.setUpdateDate(date);
-        int i = userMapper.update(user);
-        httpSession.setAttribute("user",user);
-        return "redirect:userManage";
-    }
 
 
 }

@@ -26,6 +26,21 @@ public enum CommonParamsEnum {
     UN_AUTHENTICATION(403),
 
     /**
+     *UnknowError","未知错误"
+    */
+    UNKNOW_ERROR(-1),
+
+    /**
+     *,"UserNotFind","用户不存在"
+    */
+    USER_NOT_FIND(-101),
+
+    /**
+     *,"BadRequest","请求有误"
+    */
+    BAD_REQUEST(400),
+
+    /**
      * 数字500
      */
     SERVER_ERROR(500),

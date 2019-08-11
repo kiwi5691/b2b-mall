@@ -46,9 +46,7 @@
                     <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">订单管理</span><span class="label label-warning pull-right" th:text="${session.order}"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li id="orderManage"><a th:href="@{orderManage_0_0_0}">订单管理</a></li>
-<!--                        <shiro:hasRole name="superman">-->
-<!--                            <li id="orderRefund"><a th:href="@{orderRefund_0_0_0}">订单退款</a></li>-->
-<!--                        </shiro:hasRole>-->
+                        <li id="orderRefund"><a th:href="@{orderRefund_0_0_0}">订单退款</a></li>
                         <li id="shippingManage"><a th:href="@{shippingManage_0_0_0}">发货管理</a></li>
                         <li id="deliveryManage"><a th:href="@{deliveryManage}">物流公司</a></li>
                     </ul>
@@ -57,9 +55,9 @@
                     <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li id="userManage"><a th:href="@{userManage}">个人资料修改</a></li>
-                        <li id="userManage"><a th:href="@{userManage}">用户查询</a></li>
-                        <li id="userManage"><a th:href="@{userManage}">冻结与解冻</a></li>
-                        <li id="userManage"><a th:href="@{userManage}">管理员查询</a></li>
+                        <li id="userSearch"><a th:href="@{userSearch}">用户/权限查询</a></li>
+                        <li id="manageLock"><a th:href="@{manageLock}">冻结与解冻</a></li>
+                        <li id="managerManangement"><a th:href="@{managerManangement}">管理员管理</a></li>
                     </ul>
                 </li>
 

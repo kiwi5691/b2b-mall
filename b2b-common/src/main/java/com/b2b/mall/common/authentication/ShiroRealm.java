@@ -64,12 +64,11 @@ public class ShiroRealm extends AuthorizingRealm {
         // 查出是否有此用户
         User user = userService.selectAllByName(token.getUsername());
         if (user != null) {
-            Object principal = user.getUserName();
+//            Object principal = user.getUserName();
             Object credentials = user.getPassword();
-            String realmName = getName();
-            ByteSource credentialsSalt = ByteSource.Util.bytes(principal);
+            ByteSource credentialsSalt = ByteSource.Util.bytes(user.getUserName());
 
-            return new SimpleAuthenticationInfo(principal, credentials, credentialsSalt, realmName);
+            return new SimpleAuthenticationInfo(user, credentials, credentialsSalt, getName());
         }
         return null;
     }
@@ -89,9 +88,13 @@ public class ShiroRealm extends AuthorizingRealm {
 
         Subject subject = SecurityUtils.getSubject();
         User user = (User) subject.getPrincipal();
+        logger.info("user is0"+user.getId()+user.getUserName());
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
-        if (user.getBusiness().equals("超级无敌管理员")) {
+        User users = userService.selectAllByName(user.getUserName());
+
+        logger.info("user biz is"+user.getBusiness());
+        if (users.getBusiness().equals("超级无敌管理员")) {
             // 超级管理员，添加所有角色、添加所有权限
             authorizationInfo.addRole("*");
             authorizationInfo.addStringPermission("*");
