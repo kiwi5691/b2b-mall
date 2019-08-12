@@ -27,8 +27,31 @@ public interface IStatusMessage {
 		//多用户在线（踢出用户）
 		UPDATE("1102","UPDATE"),
 		//用户信息或权限已更新（退出重新登录）
-		LOCK("1111","LOCK");
+		LOCK("1111","LOCK"),
 		//用户已锁定
+
+		/**
+		 * 数字404
+		 */
+		NOT_FOUND("404","NOT_FOUND"),
+		/**
+		 * 数字403
+		 */
+		UN_AUTHENTICATION("403","UN_AUTHENTICATION"),
+		/**
+		 *,"BadRequest","请求有误"
+		 */
+		BAD_REQUEST("400","BAD_REQUEST"),
+
+		/**
+		 * 数字500
+		 */
+		SERVER_ERROR("500","SERVER_ERROR");
+
+
+		String Code01 = "01";
+		String Msg01 = "请求成功";
+
 		private String code;
 		private String message;
 

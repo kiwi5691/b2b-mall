@@ -4,6 +4,8 @@ import com.b2b.mall.common.service.AuthService;
 import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.*;
 import com.b2b.mall.db.model.*;
+import org.apache.shiro.cache.Cache;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -22,6 +24,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 用户管理
@@ -34,6 +37,10 @@ public class UserController {
     @Resource
     private UserMapper userMapper;
 
+
+
+    @Autowired
+    private EhCacheManager ecm;
 
     @Resource
     private AuthService authService;
@@ -81,13 +88,10 @@ public class UserController {
      */
     @PostMapping("/user/login")
     public String loginPost(User users, Model model) {
-//
-//        Integer userId= userMapper.selectAllByName(users.getUserName()).getId();
-//        logger.info("usr Id is"+ users.getId());
+
         String username = users.getUserName();
         logger.info("用户paswd为:"+users.getPassword());
         UsernamePasswordToken token = new UsernamePasswordToken(username, users.getPassword(),true);
-        //获取当前的Subject
         Subject currentUser = SecurityUtils.getSubject();
         try {
             //在调用了login方法后,SecurityManager会收到AuthenticationToken,并将其发送给已配置的Realm执行必须的认证检查
@@ -109,45 +113,31 @@ public class UserController {
             logger.info("对用户[" + username + "]进行登录验证..验证未通过,错误次数过多");
             model.addAttribute("error", "用户名或密码错误次数过多");
         }catch(AuthenticationException ae){
-            //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
             logger.info("对用户[" + username + "]进行登录验证..验证未通过,堆栈轨迹如下");
             model.addAttribute("error", "用户名或密码不正确");
             ae.printStackTrace();
+        }
+        Cache<String, AtomicInteger> passwordRetryCache = ecm
+                .getCache("passwordRetryCache");
+        if (null != passwordRetryCache) {
+            int retryNum = (passwordRetryCache.get(users.getUserName()) == null ? 0
+                    : passwordRetryCache.get(users.getUserName())).intValue();
+            logger.debug("输错次数：" + retryNum);
+            if (retryNum > 0 && retryNum < 6) {
+                model.addAttribute("error", "用户名或密码错误" + retryNum + "次,再输错"
+                        + (6 - retryNum) + "次账号将锁定");
+            }
         }
         //验证是否登录成功
         if(currentUser.isAuthenticated()){
             logger.info("用户[" + username + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
             Date date = new Date();
-//            users.setUserLudt(date);
-//            usersMapper.basicUpdate(users);
-//            logger.info("usr Id is"+ users.getPassword());
-
             users.setUserLudt(new Date());
             httpSession.setAttribute("user", users);
             String timeQuannum="";
             timeQuannum =DateUtil.checkTimeQuantum();
             httpSession.setAttribute("time",timeQuannum);
             User name = (User) httpSession.getAttribute("manage");
-//
-//            List<Role> roles = this.authService.getRoleByUser(userId);
-//            if (null != roles && roles.size() > 0) {
-//                for (Role role : roles) {
-//                    // 角色对应的权限数据
-//                    logger.info("role is"+role.getCode());
-//                    List<Permission> perms = this.authService.findPermsByRoleId(role
-//                            .getId());
-//                    if (null != perms && perms.size() > 0) {
-//                        // 授权角色下所有权限
-//                        for (Permission perm : perms) {
-//                            logger.info(perm.getCode());
-//                        }
-//                    }
-//                    }
-//                }
-//
-//            Subject subject = SecurityUtils.getSubject();
-//            User user = (User) subject.getPrincipal();
-//            logger.info("subjet is"+user.getId());
             return "redirect:dashboard";
         }else {
             token.clear();

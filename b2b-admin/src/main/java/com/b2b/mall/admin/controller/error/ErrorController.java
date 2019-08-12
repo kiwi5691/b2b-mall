@@ -1,5 +1,6 @@
 package com.b2b.mall.admin.controller.error;
 import com.b2b.mall.common.enums.CommonParamsEnum;
+import com.b2b.mall.common.enums.IStatusMessage;
 import org.junit.rules.ErrorCollector;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +23,10 @@ public class ErrorController  extends ErrorCollector{
     @GetMapping(value = ERROR_PATH)
     public String handleError(HttpServletRequest request,HttpStatus httpStatus) {
         final Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
-        if (statusCode.equals(CommonParamsEnum.NOT_FOUND.getValue())) {
+        if (statusCode.equals(IStatusMessage.SystemStatus.NOT_FOUND.getCode())) {
             return "redirect:/404";
         }
-        else if (statusCode.equals(CommonParamsEnum.UN_AUTHENTICATION.getValue())){
+        else if (statusCode.equals(IStatusMessage.SystemStatus.UN_AUTHENTICATION.getCode())){
             return "redirect:/403";
         }
         else{

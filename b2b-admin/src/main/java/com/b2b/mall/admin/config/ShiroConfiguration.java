@@ -3,7 +3,9 @@ package com.b2b.mall.admin.config;
 
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.b2b.mall.common.authentication.RetryLimitHashedCredentialsMatcher;
 import com.b2b.mall.common.authentication.ShiroRealm;
+import com.b2b.mall.common.filter.KickoutSessionFilter;
 import net.sf.ehcache.CacheException;
 import net.sf.ehcache.CacheManager;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -129,7 +131,8 @@ public class ShiroConfiguration {
     // 指定加密方式方式，也可以在这里加入缓存，当用户超过五次登陆错误就锁定该用户禁止不断尝试登陆
     @Bean(name = "hashedCredentialsMatcher")
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
-        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+
+        HashedCredentialsMatcher credentialsMatcher = new  RetryLimitHashedCredentialsMatcher(ehCacheManager());
         credentialsMatcher.setHashAlgorithmName("MD5");
         credentialsMatcher.setHashIterations(1024);
         credentialsMatcher.setStoredCredentialsHexEncoded(true);
@@ -225,6 +228,27 @@ public class ShiroConfiguration {
         simpleCookie.setMaxAge(86400);
         return simpleCookie;
     }
+
+    /**
+     * kickoutSessionFilter同一个用户多设备登录限制
+     */
+    public KickoutSessionFilter kickoutSessionFilter(){
+        KickoutSessionFilter kickoutSessionFilter = new KickoutSessionFilter();
+        //使用cacheManager获取相应的cache来缓存用户登录的会话；用于保存用户—会话之间的关系的；
+        //这里我们还是用之前shiro使用的ehcache实现的cacheManager()缓存管理
+        //也可以重新另写一个，重新配置缓存时间之类的自定义缓存属性
+        kickoutSessionFilter.setCacheManager(ehCacheManager());
+        //用于根据会话ID，获取会话进行踢出操作的；
+        kickoutSessionFilter.setSessionManager(sessionManager());
+        //是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户；踢出顺序。
+        kickoutSessionFilter.setKickoutAfter(false);
+        //同一个用户最大的会话数，默认1；比如2的意思是同一个用户允许最多同时两个人登录；
+        kickoutSessionFilter.setMaxSession(1);
+        //被踢出后重定向到的地址；
+        kickoutSessionFilter.setKickoutUrl("/toLogin?kickout=1");
+        return kickoutSessionFilter;
+    }
+
 
     /**
      * 设置记住我cookie过期时间

@@ -63,17 +63,9 @@
                                 </div>
                             </div>
                             <div class="ibox-content" style="display: block;">
-                                <form action="shippingManage_0_0_0">
-                                    <div class="row">
-                                    </div>
-                                </form>
                                 <div class="row">
                                     <div class="col-sm-6 m-b-xs">
-                                    </div>
-                                    <div class="col-sm-2 m-b-xs">
-                                        <p  th:value="${role}" />
-                                    </div>
-                                    <div class="col-sm-6 m-b-xs">
+                                        <p  th:value="${session.role}" />
                                     </div>
                                 </div>
 
@@ -83,7 +75,7 @@
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>订单列表</h5>
+                                <h5>您拥有的权限</h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
                                         <i class="fa fa-chevron-up"></i>
@@ -95,28 +87,24 @@
                                     <table class=" table table-hover" data-page-size="12">
                                         <thead>
                                         <tr>
-                                            <th width="5%">订单ID</th>
-                                            <th width="8%">收货人全名</th>
-                                            <th width="8%">固定电话</th>
-                                            <th width="8%">移动电话</th>
-                                            <td width="8%">省份</td>
-                                            <th width="8%">城市</th>
-                                            <th width="8%">区/县</th>
-                                            <td width="8%">收货地址</td>
-                                            <th width="8%">邮政编码</th>
-                                            <th width="8%">创建时间</th>
+                                            <th width="5%">权限名称</th>
+                                            <th width="8%">权限描述</th>
+                                            <th width="8%">权限菜单编号</th>
+                                            <th width="8%">权限url</th>
+                                            <td width="8%">添加时间</td>
+                                            <th width="8%">更新时间</th>
                                             <th width="8%">更新时间</th>
                                             <th>操作</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="permissionList : ${permissionList}">
-                                            <td th:text="${permissionList}">Onions</td>
-<!--                                            <td th:text="${orderShipping.receiverName}">Onions</td>-->
-<!--                                            <td th:text="${orderShipping.receiverPhone}">Onions</td>-->
-<!--                                            <td th:text="${orderShipping.receiverMobile}">Onions</td>-->
-<!--                                            <td th:text="${orderShipping.receiverState}">Onions</td>-->
-<!--                                            <td th:text="${orderShipping.receiverCity}">Onions</td>-->
+                                        <tr th:each="permission : ${permissionList}">
+                                            <td th:text="${permission.name}">Onions</td>
+                                            <td th:text="${permission.descpt}">Onions</td>
+                                            <td th:text="${permission.code}">Onions</td>
+                                            <td th:text="${permission.page}">Onions</td>
+                                            <td th:text="${permission.insertTime}">Onions</td>
+                                            <td th:text="${permission.updateTime}">Onions</td>
 <!--                                            <td th:text="${orderShipping.receiverDistrict}">Onions</td>-->
 <!--                                            <td th:text="${orderShipping.receiverAddress}">Onions</td>-->
 <!--                                            <td th:text="${orderShipping.receiverZip}">Onions</td>-->
@@ -127,13 +115,6 @@
 <!--                                            </td>-->
                                         </tr>
                                         </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <td colspan="12">
-                                                <ul id="pageHTML" class="pagination pull-right"></ul>
-                                            </td>
-                                        </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
                             </div>

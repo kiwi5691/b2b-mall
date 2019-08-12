@@ -1,4 +1,4 @@
-package filter;
+package com.b2b.mall.common.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

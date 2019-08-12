@@ -15,15 +15,6 @@ public enum CommonParamsEnum {
      */
     FIVE(5),
 
-    /**
-     * 数字404
-     */
-    NOT_FOUND(404),
-
-    /**
-     * 数字403
-     */
-    UN_AUTHENTICATION(403),
 
     /**
      *UnknowError","未知错误"

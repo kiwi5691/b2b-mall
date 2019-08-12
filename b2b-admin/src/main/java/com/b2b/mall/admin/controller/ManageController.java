@@ -77,37 +77,26 @@ public class ManageController {
     @GetMapping("/user/userSearch")
     public String userSearchGet(Model model) {
 
+        List<Permission> permissionList = null;
         Subject subject = SecurityUtils.getSubject();
         User user = (User) subject.getPrincipal();
 
+        logger.info("id is"+user.getId());
         List<Role> roles = this.authService.getRoleByUser(user.getId());
-
-        //TODO 先为String到时候改成Permission
-        List<String> permissionList = null;
 
         if (null != roles && roles.size() > 0) {
             for (Role role : roles) {
-                // 角色对应的权限数据
-                model.addAttribute("role", role.getCode());
-                List<Permission> perms = this.authService.findPermsByRoleId(role
+                logger.info("role is"+ role.getCode());
+                httpSession.setAttribute("role", "role.getCode()");
+                permissionList = this.authService.findPermsByRoleId(role
                         .getId());
-                if (null != perms && perms.size() > 0) {
-                    // 授权角色下所有权限
-                    for (Permission perm : perms) {
-                        logger.info("perm is",perm.getCode());
 
-                        permissionList.add(perm.getCode());
-                    }
                 }
-
 //                Set<String> permissionSet = permissionList.stream().map(Menu::getPerms).collect(Collectors.toSet());
-
-                model.addAttribute("permissionList", permissionList);
-
             }
-        }
+        logger.info("test per s:"+permissionList.get(0).getCode());
 
-
+        model.addAttribute("permissionList", permissionList);
         return "manage/userSearch";
     }
 
