@@ -1,7 +1,8 @@
-package com.b2b.mall.admin.controller;
+package com.b2b.mall.admin.controller.order;
 
 
 import com.b2b.mall.admin.service.OrderService;
+import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.*;
 import com.b2b.mall.db.model.*;
@@ -36,6 +37,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    @Log("打开订单管理")
     @RequestMapping("/user/orderManage_{pageCurrent}_{pageSize}_{pageCount}")
     public String orderManage(Order order, @PathVariable Integer pageCurrent,
                               @PathVariable Integer pageSize,
@@ -73,6 +75,7 @@ public class OrderController {
      * @param model
      * @return
      */
+    @Log("打开退款管理")
     @RequestMapping("/user/orderRefund_{pageCurrent}_{pageSize}_{pageCount}")
     public String refundManage(Order order, @PathVariable Integer pageCurrent,
                                @PathVariable Integer pageSize,

@@ -1,9 +1,10 @@
 package com.b2b.mall.admin.aspect;
 
+import com.b2b.mall.admin.service.ILogService;
 import com.b2b.mall.common.properties.Properties;
 import com.b2b.mall.common.util.HttpContextUtil;
 import com.b2b.mall.common.util.IPUtil;
-import com.b2b.mall.db.model.Log;
+import com.b2b.mall.db.model.LogWithBlobs;
 import com.b2b.mall.db.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
@@ -29,8 +30,8 @@ public class LogAspect {
     @Autowired
     private Properties properties;
 
-//    @Autowired
-//    private ILogService logService;
+    @Autowired
+    private ILogService logService;
 
     @Pointcut("@annotation(com.b2b.mall.admin.annotation.Log)")
     public void pointcut() {
@@ -51,13 +52,13 @@ public class LogAspect {
         if (properties.isOpenAopLog()) {
             // 保存日志
             User user = (User) SecurityUtils.getSubject().getPrincipal();
-            Log log = new Log();
+            LogWithBlobs log = new LogWithBlobs();
             if (user != null) {
                 log.setUsername(user.getUserName());
             }
             log.setIp(ip);
             log.setTime(time);
-//            logService.saveLog(point, log);
+            logService.saveLog(point, log);
         }
         return result;
     }

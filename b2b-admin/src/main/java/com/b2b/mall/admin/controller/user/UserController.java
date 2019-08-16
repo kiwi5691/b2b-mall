@@ -1,6 +1,7 @@
-package com.b2b.mall.admin.controller;
+package com.b2b.mall.admin.controller.user;
 
 import com.b2b.mall.common.service.AuthService;
+import com.b2b.mall.common.service.ILoginLogService;
 import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.*;
 import com.b2b.mall.db.model.*;
@@ -23,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -37,6 +37,8 @@ public class UserController {
     @Resource
     private UserMapper userMapper;
 
+    @Resource
+    private ILoginLogService loginLogService;
 
 
     @Autowired
@@ -131,6 +133,11 @@ public class UserController {
         //验证是否登录成功
         if(currentUser.isAuthenticated()){
             logger.info("用户[" + username + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
+            LoginLog loginLog = new LoginLog();
+            loginLog.setUsername(username);
+            loginLog.setSystemBrowserInfo();
+            loginLogService.saveLoginLog(loginLog);
+
             Date date = new Date();
             users.setUserLudt(new Date());
             httpSession.setAttribute("user", users);

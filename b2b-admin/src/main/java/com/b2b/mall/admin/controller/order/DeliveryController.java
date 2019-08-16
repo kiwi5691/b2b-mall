@@ -1,4 +1,4 @@
-package com.b2b.mall.admin.controller;
+package com.b2b.mall.admin.controller.order;
 
 import com.alibaba.fastjson.JSONArray;
 import com.b2b.mall.admin.service.DeliveryService;

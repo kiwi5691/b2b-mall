@@ -72,6 +72,7 @@ public class ShiroConfiguration {
         filterChainDefinitionManager.put("/logout", "logout");
         filterChainDefinitionManager.put("/user/dashboard", "user");
         filterChainDefinitionManager.put("/user/login", "anon");
+        filterChainDefinitionManager.put("/test", "anon");
         filterChainDefinitionManager.put("/cms/article/add",
                 "perms[article:add]");
         filterChainDefinitionManager.put("/cms/article/edit.*",

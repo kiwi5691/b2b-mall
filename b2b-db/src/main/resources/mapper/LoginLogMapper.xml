@@ -23,6 +23,37 @@
     delete from tb_login_log
     where ID = #{id,jdbcType=BIGINT}
   </delete>
+  <select id="findTotalVisitCount" resultType="java.lang.Long">
+    select count(1) from tb_login_log
+  </select>
+
+  <select id="findTodayVisitCount" resultType="java.lang.Long">
+    select count(1) from tb_login_log where datediff(login_time,now())=0
+  </select>
+
+  <select id="findTodayIp" resultType="java.lang.Long">
+    select count(distinct(ip)) from tb_login_log where datediff(login_time,now())=0
+  </select>
+
+  <select id="findLastSevenDaysVisitCount" resultType="map" parameterType="java.lang.String">
+    select
+    date_format(l.login_time, '%m-%d') days,
+    count(1) count
+    from
+    (
+    select
+    *
+    from
+    tb_login_log
+    where
+    date_sub(curdate(), interval 10 day) &lt;= date(login_time)
+    ) as l where 1 = 1
+    <if test="username != null and username != ''">
+      and l.username = #{username}
+    </if>
+    group by
+    days
+  </select>
   <insert id="insert" parameterType="com.b2b.mall.db.model.LoginLog">
     insert into tb_login_log (ID, USERNAME, LOGIN_TIME, 
       LOCATION, IP, SYSTEM, 
@@ -114,4 +145,13 @@
       BROWSER = #{browser,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=BIGINT}
   </update>
+<!--  删除判断小于指定日期-->
+  <delete id="delBeforeData" parameterType="java.sql.Date">
+    delete * from tb_login_log
+    where LOGIN_TIME &lt;#{LOGIN_TIME,jdbcType=TIMESTAMP}
+  </delete>
+   <select id="selBeforeData" parameterType="java.sql.Date" resultType="com.b2b.mall.db.model.LoginLog">
+        select * from tb_login_log
+        where LOGIN_TIME &lt;#{LOGIN_TIME,jdbcType=TIMESTAMP}
+   </select>
 </mapper>

@@ -1,4 +1,4 @@
-package com.b2b.mall.admin.controller;
+package com.b2b.mall.admin.controller.auth;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

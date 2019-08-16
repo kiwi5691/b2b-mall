@@ -10,7 +10,7 @@
 
 
 #### 技术架构
-- 后端采用的技术：   Shiro,Druid,Redis,Jedis,Jackson,JavaMail
+- 后端采用的技术：   Shiro,Druid,Redis,Jedis,Jackson,JavaMail,AOP,Quartz
 - 前端采用的技术：        HTML,JavaScript,Css,Thymeleaf
 
 #### 项目特点
@@ -21,6 +21,7 @@
 - 引入了jExcelApi，导出ExcelA报表
 - 引入了shiro框架，友好的实现权限-角色
 - 引入了quartz，实现任务化日志删除
+- 引入了aspect写入登录/操作日志到数据库
 #### 项目环境
 - 安装 JDK（1.8+）
 - 安装 Maven (3.3.0+)

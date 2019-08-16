@@ -1,4 +1,4 @@
-package com.b2b.mall.admin.controller;
+package com.b2b.mall.admin.controller.system;
 
 import org.springframework.stereotype.Controller;
 

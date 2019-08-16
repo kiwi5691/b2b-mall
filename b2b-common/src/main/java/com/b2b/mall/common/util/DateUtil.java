@@ -3,6 +3,7 @@ package com.b2b.mall.common.util;
 import com.b2b.mall.common.enums.TimeQuantumEnum;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -23,6 +24,33 @@ public class DateUtil {
         Date result = null;
         try {
             result = sdf.parse(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static Date preciseDate(String date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date result = null;
+        try {
+            result = sdf.parse(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static Date dateBefore7() {
+
+        SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.DATE,-7);
+        Date date = c.getTime();
+        Date result = null;
+        try {
+            result = format.parse(String.valueOf(date));
         } catch (Exception e) {
             e.printStackTrace();
         }

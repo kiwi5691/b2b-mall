@@ -1,4 +1,4 @@
-package com.b2b.mall.admin.controller;
+package com.b2b.mall.admin.controller.goods;
 
 
 import com.b2b.mall.admin.service.Impl.StockServiceImpl;

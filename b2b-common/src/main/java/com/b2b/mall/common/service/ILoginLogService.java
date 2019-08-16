@@ -1,29 +1,40 @@
-package com.b2b.mall.db.mapper;
+package com.b2b.mall.common.service;
+
 
 import com.b2b.mall.db.model.LoginLog;
 import com.b2b.mall.db.model.User;
 
-import java.util.Date;
+
 import java.util.List;
 import java.util.Map;
 
-public interface LoginLogMapper {
-    int deleteByPrimaryKey(Long id);
+/**
+ * @author kiwi
+ */
+public interface ILoginLogService  {
 
-    int insert(LoginLog record);
+    /**
+     * 获取登录日志分页信息
+     *
+     * @param loginLog 传参
+     * @param request  request
+     * @return IPage<LoginLog>
+     */
+//    List<LoginLog> findLoginLogs(LoginLog loginLog, QueryRequest request);
 
-    int insertSelective(LoginLog record);
+    /**
+     * 保存登录日志
+     *
+     * @param loginLog 登录日志
+     */
+    void saveLoginLog(LoginLog loginLog);
 
-    LoginLog selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(LoginLog record);
-
-    int updateByPrimaryKey(LoginLog record);
-
-    int delBeforeData(Date date);
-
-
-    List<LoginLog> selBeforeData(Date date);
+    /**
+     * 删除登录日志
+     *
+     * @param ids 日志 id集合
+     */
+    void deleteLoginLogs(String[] ids);
 
     /**
      * 获取系统总访问次数
@@ -53,5 +64,4 @@ public interface LoginLogMapper {
      * @return 系统近七天来的访问记录
      */
     List<Map<String, Object>> findLastSevenDaysVisitCount(User user);
-
 }

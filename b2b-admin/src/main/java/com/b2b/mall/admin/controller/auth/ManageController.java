@@ -1,5 +1,6 @@
-package com.b2b.mall.admin.controller;
+package com.b2b.mall.admin.controller.auth;
 
+import com.b2b.mall.admin.controller.user.UserController;
 import com.b2b.mall.common.service.AuthService;
 import com.b2b.mall.db.mapper.UserMapper;
 import com.b2b.mall.db.model.Permission;
@@ -21,8 +22,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @auther kiwi
