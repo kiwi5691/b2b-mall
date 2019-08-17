@@ -2,7 +2,9 @@ package com.b2b.mall.common.service.Impl;
 
 import com.b2b.mall.common.service.JobService;
 import com.b2b.mall.common.util.DateUtil;
+import com.b2b.mall.db.mapper.LogMapper;
 import com.b2b.mall.db.mapper.LoginLogMapper;
+import com.b2b.mall.db.model.LogWithBlobs;
 import com.b2b.mall.db.model.LoginLog;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,8 @@ public class JobServiceImpl implements JobService {
     @Resource
     private LoginLogMapper loginLogMapper;
 
+    @Resource
+    private LogMapper logMapper;
     /**
      *@auther kiwi
      * 删除指定日期前的数据
@@ -50,5 +54,22 @@ public class JobServiceImpl implements JobService {
         loginTimes.stream().forEach(System.out::println);
 
         return loginLogs;
+    }
+
+    @Override
+    public void delBeforeOpLog() {
+        try{
+            logMapper.delBeforeOpData(DateUtil.dateBeforeTwoWeeks());
+
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+    }
+
+    @Override
+    public List<?> selBeforeOpLog() {
+        List<LogWithBlobs> opLogs = logMapper.selBeforeOpData(DateUtil.dateBeforeTwoWeeks());
+        return opLogs;
     }
 }

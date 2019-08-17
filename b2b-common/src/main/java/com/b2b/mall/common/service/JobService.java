@@ -9,4 +9,7 @@ import java.util.List;
 public interface JobService {
     void delBeforeLog();
     List<?> selBeforeLog();
+    void delBeforeOpLog();
+    List<?> selBeforeOpLog();
+
 }

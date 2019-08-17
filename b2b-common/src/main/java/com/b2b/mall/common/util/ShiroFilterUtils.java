@@ -27,21 +27,14 @@ public class ShiroFilterUtils {
     public static boolean isAjax(ServletRequest request){
     	String header = ((HttpServletRequest) request).getHeader("X-Requested-With");
     	if("XMLHttpRequest".equalsIgnoreCase(header)){
-    		logger.debug("shiro工具类【wyait-manager-->ShiroFilterUtils.isAjax】当前请求,为Ajax请求");
+    		logger.debug("shiro工具类hiroFilterUtils.isAjax当前请求,为Ajax请求");
     		return Boolean.TRUE;
     	}
-    	logger.debug("shiro工具类【wyait-manager-->ShiroFilterUtils.isAjax】当前请求,非Ajax请求");
+    	logger.debug("shiro工具类ShiroFilterUtils.isAjax当前请求,非Ajax请求");
     	return Boolean.FALSE;
     }
 
-	/**
-	 *
-	 * @描述：response输出json
-	 * @创建人：wyait
-	 * @创建时间：2018年4月24日 下午5:14:22
-	 * @param response
-	 * @param result
-	 */
+
 	public static void out(HttpServletResponse response, ResponseResult result){
 		PrintWriter out = null;
 		try {
@@ -49,9 +42,9 @@ public class ShiroFilterUtils {
 			response.setContentType("application/json");//设置返回类型
 			out = response.getWriter();
 			out.println(objectMapper.writeValueAsString(result));//输出
-			logger.error("用户在线数量限制【wyait-manage-->ShiroFilterUtils.out】响应json信息成功");
+			logger.error("用户在线数量限制ShiroFilterUtils.out响应json信息成功");
 		} catch (Exception e) {
-			logger.error("用户在线数量限制【wyait-manage-->ShiroFilterUtils.out】响应json信息出错", e);
+			logger.error("用户在线数量限制ShiroFilterUtils.out响应json信息出错", e);
 		}finally{
 			if(null != out){
 				out.flush();

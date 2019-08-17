@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class QuartzConfiguration {
 
-    //更新频率
-    private final int TIME = 18000;
+    //更新频率为一星期
+    private final int TIME = 604800000;
 
     /**
      *@Auther kiwi
@@ -32,7 +32,7 @@ public class QuartzConfiguration {
     /**
      *@Auther kiwi
      *@Data 2019/6/15
-     * 定义了每2秒来触发特定的Job
+     * 定义了一星期秒来触发特定的Job
      @param  * @param
      *@reutn org.quartz.Trigger
     */

@@ -18,8 +18,14 @@ public class TestController {
     private JobService logService;
 
     @RequestMapping("/test")
-    public List<?> test(){
+    public List<?> testlogin(){
 
         return logService.selBeforeLog();
+    }
+
+    @RequestMapping("/testOp")
+    public List<?> testop(){
+
+        return logService.selBeforeOpLog();
     }
 }

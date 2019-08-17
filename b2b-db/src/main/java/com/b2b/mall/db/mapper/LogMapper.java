@@ -3,6 +3,9 @@ package com.b2b.mall.db.mapper;
 import com.b2b.mall.db.model.Log;
 import com.b2b.mall.db.model.LogWithBlobs;
 
+import java.util.Date;
+import java.util.List;
+
 public interface LogMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -17,4 +20,9 @@ public interface LogMapper {
     int updateByPrimaryKeyWithBLOBs(LogWithBlobs record);
 
     int updateByPrimaryKey(Log record);
+
+    int delBeforeOpData(Date date);
+
+
+    List<LogWithBlobs> selBeforeOpData(Date date);
 }
