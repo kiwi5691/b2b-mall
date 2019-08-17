@@ -41,16 +41,17 @@ public class DateUtil {
         return result;
     }
 
-    public static Date dateBefore7() {
+    public static Date dateBeforeTwoWeeks() {
 
         SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
-        c.add(Calendar.DATE,-7);
+        c.add(Calendar.DATE,-14);
         Date date = c.getTime();
+        String dateStr = format.format(date);
         Date result = null;
         try {
-            result = format.parse(String.valueOf(date));
+            result = format.parse(dateStr);
         } catch (Exception e) {
             e.printStackTrace();
         }

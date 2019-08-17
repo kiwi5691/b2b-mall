@@ -146,11 +146,11 @@
     where ID = #{id,jdbcType=BIGINT}
   </update>
 <!--  删除判断小于指定日期-->
-  <delete id="delBeforeData" parameterType="java.sql.Date">
+  <delete id="delBeforeData" parameterType="java.util.Date" >
     delete * from tb_login_log
     where LOGIN_TIME &lt;#{LOGIN_TIME,jdbcType=TIMESTAMP}
   </delete>
-   <select id="selBeforeData" parameterType="java.sql.Date" resultType="com.b2b.mall.db.model.LoginLog">
+   <select id="selBeforeData" parameterType="java.util.Date" resultType="com.b2b.mall.db.model.LoginLog">
         select * from tb_login_log
         where LOGIN_TIME &lt;#{LOGIN_TIME,jdbcType=TIMESTAMP}
    </select>

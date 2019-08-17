@@ -7,6 +7,7 @@ import com.b2b.mall.db.model.LoginLog;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -31,14 +32,23 @@ public class JobServiceImpl implements JobService {
     */
     @Override
     public void delBeforeLog() {
+       try{
+           loginLogMapper.delBeforeData(DateUtil.dateBeforeTwoWeeks());
 
+       }catch (Exception e){
+           e.printStackTrace();
+
+       }
     }
 
     @Override
-    public void selBeforeLog() {
-        List<LoginLog> loginLogs = loginLogMapper.selBeforeData(DateUtil.dateBefore7());
+    public List<?> selBeforeLog() {
+        List<LoginLog> loginLogs = loginLogMapper.selBeforeData(DateUtil.dateBeforeTwoWeeks());
+
         Set<Date> loginTimes= loginLogs.stream().map(LoginLog::getLoginTime).collect(Collectors.toSet());
 
         loginTimes.stream().forEach(System.out::println);
+
+        return loginLogs;
     }
 }
