@@ -37,7 +37,7 @@ public class JobServiceImpl implements JobService {
     @Override
     public void delBeforeLog() {
        try{
-           loginLogMapper.delBeforeData(DateUtil.dateBeforeTwoWeeks());
+           loginLogMapper.delBeforeData(DateUtil.dateBeforeMoth());
 
        }catch (Exception e){
            e.printStackTrace();
@@ -47,7 +47,7 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public List<?> selBeforeLog() {
-        List<LoginLog> loginLogs = loginLogMapper.selBeforeData(DateUtil.dateBeforeTwoWeeks());
+        List<LoginLog> loginLogs = loginLogMapper.selBeforeData(DateUtil.dateBeforeMoth());
 
         Set<Date> loginTimes= loginLogs.stream().map(LoginLog::getLoginTime).collect(Collectors.toSet());
 
@@ -59,7 +59,7 @@ public class JobServiceImpl implements JobService {
     @Override
     public void delBeforeOpLog() {
         try{
-            logMapper.delBeforeOpData(DateUtil.dateBeforeTwoWeeks());
+            logMapper.delBeforeOpData(DateUtil.dateBeforeMoth());
 
         }catch (Exception e){
             e.printStackTrace();
@@ -69,7 +69,7 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public List<?> selBeforeOpLog() {
-        List<LogWithBlobs> opLogs = logMapper.selBeforeOpData(DateUtil.dateBeforeTwoWeeks());
+        List<LogWithBlobs> opLogs = logMapper.selBeforeOpData(DateUtil.dateBeforeMoth());
         return opLogs;
     }
 }

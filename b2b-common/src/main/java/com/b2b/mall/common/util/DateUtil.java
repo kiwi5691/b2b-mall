@@ -41,12 +41,12 @@ public class DateUtil {
         return result;
     }
 
-    public static Date dateBeforeTwoWeeks() {
+    public static Date dateBeforeMoth() {
 
         SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
-        c.add(Calendar.DATE,-14);
+        c.add(Calendar.DATE,-30);
         Date date = c.getTime();
         String dateStr = format.format(date);
         Date result = null;

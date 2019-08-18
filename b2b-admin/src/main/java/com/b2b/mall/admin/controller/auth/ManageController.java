@@ -1,5 +1,6 @@
 package com.b2b.mall.admin.controller.auth;
 
+import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.admin.controller.user.UserController;
 import com.b2b.mall.common.service.AuthService;
 import com.b2b.mall.db.mapper.UserMapper;
@@ -51,6 +52,7 @@ public class ManageController {
     @Value("${spring.mail.username}")
     private String Sender;
 
+    @Log("打开个人资料修改")
     @GetMapping("/user/userManage")
     public String userManageGet(Model model) {
 
@@ -62,7 +64,7 @@ public class ManageController {
     }
 
 
-
+    @Log("提交个人资料修改")
     @PostMapping("/user/userManage")
     public String userManagePost(Model model, User user, HttpSession httpSession) {
         Date date = new Date();
@@ -72,7 +74,7 @@ public class ManageController {
         return "redirect:userManage";
     }
 
-
+    @Log("打开用户/权限查询")
     @GetMapping("/user/userSearch")
     public String userSearchGet(Model model) {
 

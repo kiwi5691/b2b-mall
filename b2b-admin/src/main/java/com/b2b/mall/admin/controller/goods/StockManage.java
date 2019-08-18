@@ -1,6 +1,7 @@
 package com.b2b.mall.admin.controller.goods;
 
 
+import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.admin.service.Impl.StockServiceImpl;
 import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.*;
@@ -27,6 +28,7 @@ public class StockManage {
         this.stockService = stockService;
     }
 
+    @Log("打开库存管理")
     @RequestMapping("/user/stockManage_{pageCurrent}_{pageSize}_{pageCount}")
     public String stockManage(Item item, @PathVariable Integer pageCurrent,
                               @PathVariable Integer pageSize,

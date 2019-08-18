@@ -1,5 +1,6 @@
 package com.b2b.mall.admin.controller.goods;
 
+import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.admin.service.ItemService;
 import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.ItemCategoryMapper;
@@ -45,6 +46,7 @@ public class ItemController {
         this.itemService = itemService;
     }
 
+    @Log("打开商品管理")
     @RequestMapping("/user/itemManage_{pageCurrent}_{pageSize}_{pageCount}")
     public String itemManage(Item item, @PathVariable Integer pageCurrent,
                              @PathVariable Integer pageSize,
@@ -54,6 +56,7 @@ public class ItemController {
         return "item/itemManage";
     }
 
+    @Log("下载订单管理的execl")
     @RequestMapping("/user/download1")
     public void postItemExcel(HttpServletRequest request, HttpServletResponse response) throws IOException {
         itemService.postItemExcel(request,response);
@@ -61,24 +64,28 @@ public class ItemController {
 
     String imageName = null;
 
+    @Log("打开修改商品")
     @GetMapping("/user/itemEdit")
     public String itemEditGet(Model model, Item item) {
         itemService.itemEditGet(model,item);
         return "item/itemEdit";
     }
 
+    @Log("提交修改商品")
     @PostMapping("/user/itemEdit")
     public String itemEditPost(Model model, HttpServletRequest request, @RequestParam("file") MultipartFile file, Item item, HttpSession httpSession) {
         itemService.itemEditPost(model,request,file,item,httpSession);
         return "redirect:itemManage_0_0_0";
     }
 
+    @Log("获取file信息")
     @GetMapping(value = "/{filename:.+}")
     @ResponseBody
     public ResponseEntity<?> getFile() {
         return itemService.getFile();
     }
 
+    @Log("提交商品修改状态")
     @ResponseBody
     @PostMapping("/user/itemEditState")
     public ResObject<Object> itemEditState(Item item1) {

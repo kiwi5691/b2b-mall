@@ -1,6 +1,7 @@
 package com.b2b.mall.admin.controller.order;
 
 import com.alibaba.fastjson.JSONArray;
+import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.admin.service.DeliveryService;
 import com.b2b.mall.admin.service.Impl.DeliveryServiceImpl;
 import com.b2b.mall.db.model.*;
@@ -25,18 +26,21 @@ public class DeliveryController {
         this.deliveryService = deliveryService;
     }
 
+    @Log("打开物流公司")
     @RequestMapping("user/deliveryManage")
     public String deliveryManage(Delivery delivery, Model model){
        deliveryService.deliveryManage(delivery,model);
         return "others/deliveryManage";
     }
 
+    @Log("搜索快递公司")
     @GetMapping("user/search")
     public String searchGet(Model model, Delivery delivery){
         deliveryService.searchGet(model,delivery);
         return "others/search";
     }
 
+    @Log("提交搜索快递公司")
     @PostMapping("user/search")
     public String searchPost(Model model, Delivery delivery){
         deliveryService.searchPost(model,delivery);
@@ -47,11 +51,13 @@ public class DeliveryController {
         return deliveryService.getExpress100(deliveryCode,expressNo);
     }
 
+    @Log("编辑快递")
     @GetMapping("user/deliveryEdit")
     public String deliveryEditGet(Model model, Delivery delivery){
         return "others/deliveryEdit";
     }
 
+    @Log("提交编辑快递")
     @PostMapping("user/deliveryEdit")
     public String deliveryEditPost(Model model, Delivery delivery){
         deliveryService.deliveryEditPost(model,delivery);
@@ -59,6 +65,7 @@ public class DeliveryController {
     }
 
 
+    @Log("删除快递")
     @RequestMapping("user/deliveryDeleteState")
     public String deliveryDeleteStatePost(Model model, Delivery delivery){
         deliveryService.deliveryDeleteStatePost(model,delivery);

@@ -1,6 +1,7 @@
 package com.b2b.mall.admin.controller;
 
 
+import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.admin.service.DashboardService;
 import com.b2b.mall.common.util.RunnableThreadWebCount;
 import com.b2b.mall.db.model.*;
@@ -27,6 +28,7 @@ public class DashboardController {
         this.dashboardService = dashboardService;
     }
 
+    @Log("跳转至控制面板页面")
     @GetMapping("/user/dashboard")
     public String dashboard(Model model, Stats stats) {
 

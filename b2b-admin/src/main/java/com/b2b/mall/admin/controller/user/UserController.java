@@ -1,5 +1,6 @@
 package com.b2b.mall.admin.controller.user;
 
+import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.common.service.AuthService;
 import com.b2b.mall.common.service.ILoginLogService;
 import com.b2b.mall.common.util.*;
@@ -75,6 +76,7 @@ public class UserController {
      * @param model
      * @return
      */
+    @Log("打开登录")
     @GetMapping({"/user/login","/user/login.html"})
     public String loginGet(Model model) {
         return "user/login";
@@ -88,6 +90,7 @@ public class UserController {
      * @param
      * @return
      */
+    @Log("提交登录")
     @PostMapping("/user/login")
     public String loginPost(User users, Model model) {
 
@@ -159,6 +162,7 @@ public class UserController {
      * @param model
      * @return
      */
+    @Log("打开注册")
     @GetMapping({"/user/register","/user/register.html"})
     public String register(Model model) {
         return "user/register";
@@ -170,6 +174,7 @@ public class UserController {
      * @param model
      * @return
      */
+    @Log("提交注册")
     @PostMapping("/user/register")
     public String registerPost(User user, Model model) {
         System.out.println("用户名" + user.getUserName());
@@ -196,6 +201,7 @@ public class UserController {
      * @param model
      * @return
      */
+    @Log("打开忘记密码")
     @GetMapping("/user/forget")
     public String forgetGet(Model model) {
         return "user/forget";
@@ -209,6 +215,7 @@ public class UserController {
      * @param
      * @return
      */
+    @Log("提交忘记登录")
     @PostMapping("/user/forget")
     public String forgetPost(User user, Model model) {
         String password = userMapper.selectPasswordByName(user);

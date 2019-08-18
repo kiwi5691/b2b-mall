@@ -1,6 +1,7 @@
 package com.b2b.mall.admin.controller.goods;
 
 
+import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.admin.service.ReltemService;
 import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.*;
@@ -29,6 +30,7 @@ public class ReItemController {
         this.reltemService = reltemService;
     }
 
+    @Log("打开回收管理")
     @RequestMapping("/user/recoverManage_{pageCurrent}_{pageSize}_{pageCount}")
     public String itemManage(ReItem reItem, @PathVariable Integer pageCurrent,
                              @PathVariable Integer pageSize,
@@ -38,12 +40,14 @@ public class ReItemController {
         return "item/recoverManage";
     }
 
+    @Log("提交回收管理修改状态")
     @ResponseBody
     @PostMapping("/user/reItemEditState")
     public ResObject<Object> reItemEditState(ReItem reItem) {
         return reltemService.reItemEditState(reItem);
     }
 
+    @Log("删除商品管理状态")
     @ResponseBody
     @PostMapping("/user/deleteItemEditState")
     public ResObject<Object> deleteItemEditState(ReItem reItem) {

@@ -1,6 +1,7 @@
 package com.b2b.mall.admin.controller.order;
 
 
+import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.admin.service.ShippingService;
 import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.*;
@@ -29,6 +30,7 @@ public class ShippingController {
         this.shippingService = shippingService;
     }
 
+    @Log("打开订单管理")
     @RequestMapping("/user/shippingManage_{pageCurrent}_{pageSize}_{pageCount}")
     @RequiresPermissions(value ="shippingManage")
     public String orderManage(OrderShipping orderShipping, @PathVariable Integer pageCurrent,
@@ -39,6 +41,7 @@ public class ShippingController {
         return "order/shippingManage";
     }
 
+    @Log("提交订单管理")
     @ResponseBody
     @PostMapping("/user/shippingEditState")
     public ResObject<Object> shippingEditState(OrderShipping orderShipping){

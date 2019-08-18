@@ -1,5 +1,6 @@
 package com.b2b.mall.admin.controller.goods;
 
+import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.admin.service.Impl.ItemCategoryServiceImpl;
 import com.b2b.mall.admin.service.ItemCategoryService;
 import com.b2b.mall.common.util.Constant;
@@ -32,6 +33,7 @@ public class ItemCategoryController {
         this.itemCategoryService = itemCategoryService;
     }
 
+    @Log("打开商品分类")
     @RequestMapping("/user/itemCategoryManage_{pageCurrent}_{pageSize}_{pageCount}")
     public String itemCategoryManage(ItemCategory itemCategory,
                                      @PathVariable Integer pageCurrent,
@@ -42,16 +44,20 @@ public class ItemCategoryController {
         return "item/itemCategoryManage";
     }
 
+    @Log("打开商品分类修改")
     @GetMapping("/user/itemCategoryEdit")
     public String itemCategoryEditGet(Model model, ItemCategory itemCategory) {
         itemCategoryService.itemCategoryEditGet(model,itemCategory);
         return "item/itemCategoryEdit";
     }
+
+    @Log("提交商品分类修改")
     @PostMapping("/user/itemCategoryEdit")
     public String newsCategoryEditPost(Model model, ItemCategory itemCategory, @RequestParam MultipartFile[] imageFile, HttpSession httpSession) {
         return itemCategoryService.newsCategoryEditPost(model,itemCategory,imageFile,httpSession);
     }
 
+    @Log("提交商品分类状态")
     @ResponseBody
     @PostMapping("/user/itemCategoryEditState")
     public ResObject<Object> itemCategoryEditState(ItemCategory itemCategory){

@@ -52,12 +52,14 @@ public class OrderController {
        orderService.downstudents(request,response);
     }
 
+    @Log("打开订单详细")
     @GetMapping("/user/orderDetails")
     public String orderDetailsGet(Model model, Order order) {
         orderService.orderDetailsGet(model,order);
         return "order/orderDetails";
     }
 
+    @Log("提交订单详细")
     @PostMapping("/user/orderDetails")
     public String orderDetailsPost(Model model, @RequestParam MultipartFile[] imageFile, HttpSession httpSession) {
         //根据时间和随机数生成id
@@ -92,12 +94,14 @@ public class OrderController {
      * @param order
      * @return
      */
+    @Log("打开退款审核")
     @GetMapping("/user/orderCheck")
     public String orderCheckGet(Model model, Order order) {
         orderService.orderCheckGet(model,order);
         return "order/orderCheck";
     }
 
+    @Log("提交退款审核")
     @PostMapping("/user/orderCheck")
     public String orderCheckPost(Model model, @RequestParam MultipartFile[] imageFile, Order order, HttpSession httpSession) {
 
