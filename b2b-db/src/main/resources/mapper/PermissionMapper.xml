@@ -216,6 +216,13 @@
     LEFT JOIN tb_role_permission rp ON rp.permit_id=p.id
     WHERE rp.role_id=#{roleId}
   </select>
+  <select id="findAllPermsByRole" resultType="com.b2b.mall.db.model.Permission">
+    select
+    <include refid="Base_Column_List" />
+    from tb_permission p
+    LEFT JOIN tb_role_permission rp ON rp.permit_id=p.id
+    WHERE rp.role_id=#{roleId}
+  </select>
   <!--=End findPermsByRole 根据角色ID查找权限树列表-->
   <!--=Start getUserPerms 根据用户ID查找权限树列表-->
   <select id="getUserPerms" resultType="com.b2b.mall.db.entity.PermissionVO">

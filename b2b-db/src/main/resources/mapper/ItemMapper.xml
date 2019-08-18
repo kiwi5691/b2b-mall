@@ -54,7 +54,6 @@
         </if>
         limit #{start, jdbcType=INTEGER},#{end, jdbcType=INTEGER}
     </select>
-
     <select id="count" resultType="java.lang.Integer" parameterType="com.b2b.mall.db.model.Item">
         SELECT count(*) from tb_item i LEFT JOIN tb_category t ON i.cid = t.id WHERE i.status = 1
         <if test="title != null">

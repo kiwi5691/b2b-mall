@@ -62,6 +62,15 @@
       #{location,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{system,jdbcType=VARCHAR}, 
       #{browser,jdbcType=VARCHAR})
   </insert>
+
+  <select id="list" resultMap="BaseResultMap" parameterType="com.b2b.mall.db.model.LoginLog">
+    SELECT * FROM tb_login_log
+    ORDER BY LOGIN_TIME desc
+    limit #{start, jdbcType=INTEGER},#{end, jdbcType=INTEGER}
+  </select>
+  <select id="count" resultType="java.lang.Integer" >
+  SELECT count(*) from tb_login_log ORDER BY LOGIN_TIME
+  </select>
   <insert id="insertSelective" parameterType="com.b2b.mall.db.model.LoginLog">
     insert into tb_login_log
     <trim prefix="(" suffix=")" suffixOverrides=",">

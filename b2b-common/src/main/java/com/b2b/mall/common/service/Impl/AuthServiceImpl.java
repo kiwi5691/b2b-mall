@@ -144,6 +144,9 @@ public class AuthServiceImpl implements AuthService {
 	}
 
 	@Override
+	public List<Permission> findAllPermsByRoleId(Integer id) { return this.permissionMapper.findAllPermsByRole(id); }
+
+	@Override
 	public List<PermissionVO> getUserPerms(Integer id) {
 		return this.permissionMapper.getUserPerms(id);
 	}

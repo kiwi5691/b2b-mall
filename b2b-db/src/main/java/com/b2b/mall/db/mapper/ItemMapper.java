@@ -5,9 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/**
- * Created by jiangyunxiong on 2018/3/10.
- */
 @Mapper
 public interface ItemMapper {
 

@@ -1,5 +1,6 @@
 package com.b2b.mall.db.mapper;
 
+import com.b2b.mall.db.model.Item;
 import com.b2b.mall.db.model.LoginLog;
 import com.b2b.mall.db.model.User;
 
@@ -11,6 +12,10 @@ public interface LoginLogMapper {
     int deleteByPrimaryKey(Long id);
 
     int insert(LoginLog record);
+
+    int count();
+
+    List<LoginLog> list(LoginLog loginLog);
 
     int insertSelective(LoginLog record);
 

@@ -3,6 +3,7 @@ package com.b2b.mall.admin.controller.auth;
 import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.admin.controller.user.UserController;
 import com.b2b.mall.common.service.AuthService;
+import com.b2b.mall.common.util.DateUtil;
 import com.b2b.mall.db.mapper.UserMapper;
 import com.b2b.mall.db.model.Permission;
 import com.b2b.mall.db.model.Role;
@@ -88,15 +89,19 @@ public class ManageController {
         if (null != roles && roles.size() > 0) {
             for (Role role : roles) {
                 logger.info("role is"+ role.getCode());
-                httpSession.setAttribute("role", "role.getCode()");
-                permissionList = this.authService.findPermsByRoleId(role
+                httpSession.setAttribute("role", role.getCode());
+                permissionList = this.authService.findAllPermsByRoleId(role
                         .getId());
-
                 }
 //                Set<String> permissionSet = permissionList.stream().map(Menu::getPerms).collect(Collectors.toSet());
             }
         logger.info("test per s:"+permissionList.get(0).getCode());
+//        for (Permission permission : permissionList) {
+//            permission.setInsertTimeStr(DateUtil.getDateStr(permission.getInsertTime()));
+//            permission.setUpdateTimeStr(DateUtil.getDateStr(permission.getUpdateTime()));
+//        }
 
+//        permissionList.forEach(p->{p.setInsertTimeStr(DateUtil.getDateStr(p.getInsertTime()));p.setUpdateTimeStr(DateUtil.getDateStr(p.getUpdateTime()));});
         model.addAttribute("permissionList", permissionList);
         return "manage/userSearch";
     }

@@ -1,15 +1,17 @@
 package com.b2b.mall.common.service.Impl;
 
+import com.b2b.mall.common.entity.dto.LoginLogDto;
 import com.b2b.mall.common.service.ILoginLogService;
-import com.b2b.mall.common.util.AddressUtil;
-import com.b2b.mall.common.util.HttpContextUtil;
-import com.b2b.mall.common.util.IPUtil;
+import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.LoginLogMapper;
+import com.b2b.mall.db.model.Item;
+import com.b2b.mall.db.model.ItemCategory;
 import com.b2b.mall.db.model.LoginLog;
 import com.b2b.mall.db.model.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,24 +28,46 @@ public class LoginLogServiceImpl implements ILoginLogService {
 
     @Resource
     private LoginLogMapper loginLogMapper;
-//   @Override
-//    public IPage<LoginLog> findLoginLogs(LoginLog loginLog, QueryRequest request) {
-//        QueryWrapper<LoginLog> queryWrapper = new QueryWrapper<>();
-//
-//        if (StringUtils.isNotBlank(loginLog.getUsername())) {
-//            queryWrapper.lambda().eq(LoginLog::getUsername, loginLog.getUsername().toLowerCase());
-//        }
-//        if (StringUtils.isNotBlank(loginLog.getLoginTimeFrom()) && StringUtils.isNotBlank(loginLog.getLoginTimeTo())) {
-//            queryWrapper.lambda()
-//                    .ge(LoginLog::getLoginTime, loginLog.getLoginTimeFrom())
-//                    .le(LoginLog::getLoginTime, loginLog.getLoginTimeTo());
-//        }
-//
-//        Page<LoginLog> page = new Page<>(request.getPageNum(), request.getPageSize());
-//        SortUtil.handlePageSort(request, page, "loginTime", FebsConstant.ORDER_DESC, true);
-//
-//        return this.page(page, queryWrapper);
-//    }
+
+    List<LoginLog> loginLogs;
+    List<LoginLogDto> loginLogDtos;
+
+    @Override
+    public void findLoginLogs(LoginLog loginLog, Integer pageCurrent, Integer pageSize, Integer pageCount, Model model) {
+        if (pageSize == 0) {
+            pageSize = 50;
+        }
+        if (pageCurrent == 0) {
+            pageCurrent = 1;
+        }
+
+        int rows = loginLogMapper.count();
+        if (pageCount == 0) {
+            pageCount = rows % pageSize == 0 ? (rows / pageSize) : (rows / pageSize) + 1;
+        }
+        loginLog.setStart((pageCurrent - 1) * pageSize);
+        loginLog.setEnd(pageSize);
+
+        loginLogs = loginLogMapper.list(loginLog);
+
+        for (LoginLog loginLog1 : loginLogs) {
+            LoginLogDto loginLogDto = new LoginLogDto();
+            loginLogDto.setBrowser(loginLog1.getBrowser());
+            loginLogDto.setId(loginLog1.getId());
+            loginLogDto.setIp(loginLog1.getIp());
+            loginLogDto.setLocation(loginLog1.getLocation());
+            loginLogDto.setSystem(loginLog1.getSystem());
+            loginLogDto.setUsername(loginLog1.getUsername());
+            loginLogDto.setLoginTime(DateUtil.preciseDate(loginLog1.getLoginTime()));
+            loginLogDtos.add(loginLogDto);
+        }
+
+//        model.addAttribute("loginLogDtos", loginLogDtos);
+//        LoginLogDto loginLogDto;
+//        String pageHTML = PageUtil.getPageContent("itemManage_{pageCurrent}_{pageSize}_{pageCount}?title=" +  + "&userName=" + loginLogDto.getUsername() + "&minPrice" + minPrice + "&maxPrice" + maxPrice, pageCurrent, pageSize, pageCount);
+//        model.addAttribute("pageHTML", pageHTML);
+//        model.addAttribute("item", item);
+    }
 
     @Override
     @Transactional

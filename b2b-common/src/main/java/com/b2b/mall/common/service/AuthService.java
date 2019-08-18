@@ -77,6 +77,8 @@ public interface AuthService {
 	 */
 	List<Permission> findPermsByRoleId(Integer id);
 
+	List<Permission> findAllPermsByRoleId(Integer id);
+
 	/**
 	 * 根据用户id获取权限数据
 	 * @param id

@@ -64,9 +64,7 @@
                             </div>
                             <div class="ibox-content" style="display: block;">
                                 <div class="row">
-                                    <div class="col-sm-6 m-b-xs">
-                                        <p  th:value="${session.role}" />
-                                    </div>
+                                    <h2 th:text="${session.role}">管理员</h2>
                                 </div>
 
                             </div>
@@ -87,14 +85,11 @@
                                     <table class=" table table-hover" data-page-size="12">
                                         <thead>
                                         <tr>
-                                            <th width="5%">权限名称</th>
-                                            <th width="8%">权限描述</th>
-                                            <th width="8%">权限菜单编号</th>
-                                            <th width="8%">权限url</th>
-                                            <td width="8%">添加时间</td>
-                                            <th width="8%">更新时间</th>
-                                            <th width="8%">更新时间</th>
-                                            <th>操作</th>
+                                            <th width="10%">权限名称</th>
+                                            <th width="10%">权限描述</th>
+                                            <th width="10%">权限菜单编号</th>
+                                            <th width="60%">权限url</th>
+                                            <th width="10%">操作</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -103,16 +98,11 @@
                                             <td th:text="${permission.descpt}">Onions</td>
                                             <td th:text="${permission.code}">Onions</td>
                                             <td th:text="${permission.page}">Onions</td>
-                                            <td th:text="${permission.insertTime}">Onions</td>
-                                            <td th:text="${permission.updateTime}">Onions</td>
-<!--                                            <td th:text="${orderShipping.receiverDistrict}">Onions</td>-->
-<!--                                            <td th:text="${orderShipping.receiverAddress}">Onions</td>-->
-<!--                                            <td th:text="${orderShipping.receiverZip}">Onions</td>-->
-<!--                                            <td th:text="${orderShipping.createdStr}">Onions</td>-->
-<!--                                            <td th:text="${orderShipping.updatedStr}">Onions</td>-->
-<!--                                            <td>-->
-<!--                                                <a href="#" th:onclick="'javascript:updateState('+${orderShipping.orderId}+',2);'" title="删除"><i class="fa fa-trash-o text-navy"></i></a>-->
-<!--                                            </td>-->
+                                            <td>
+                                                <a th:href="@{'permission?id='+${permission.id}}" title="修改"><i class="fa fa-edit text-navy"></i></a>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <a href="#" th:onclick="'javascript:updateState('+${permission.id}+',2,0);'" title="删除"><i class="fa fa-trash-o text-navy"></i></a>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -123,7 +113,6 @@
                 </div>
             </div>
 
-            </div>
         	<div class="footer" th:include="footer :: copyright"></div>
       	</div>
 	</div>

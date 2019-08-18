@@ -1,8 +1,10 @@
 package com.b2b.mall.common.service;
 
 
+import com.b2b.mall.db.model.Item;
 import com.b2b.mall.db.model.LoginLog;
 import com.b2b.mall.db.model.User;
+import org.springframework.ui.Model;
 
 
 import java.util.List;
@@ -13,14 +15,8 @@ import java.util.Map;
  */
 public interface ILoginLogService  {
 
-    /**
-     * 获取登录日志分页信息
-     *
-     * @param loginLog 传参
-     * @param request  request
-     * @return IPage<LoginLog>
-     */
-//    List<LoginLog> findLoginLogs(LoginLog loginLog, QueryRequest request);
+    void findLoginLogs(LoginLog loginLog, Integer pageCurrent, Integer pageSize, Integer pageCount, Model model);
+
 
     /**
      * 保存登录日志

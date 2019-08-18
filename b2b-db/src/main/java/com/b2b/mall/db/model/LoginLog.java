@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.Objects;
 @Slf4j
-public class LoginLog {
+public class LoginLog extends BaseObject {
     private Long id;
 
     private String username;

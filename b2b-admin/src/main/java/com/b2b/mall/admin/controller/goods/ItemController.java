@@ -46,6 +46,8 @@ public class ItemController {
         this.itemService = itemService;
     }
 
+
+
     @Log("打开商品管理")
     @RequestMapping("/user/itemManage_{pageCurrent}_{pageSize}_{pageCount}")
     public String itemManage(Item item, @PathVariable Integer pageCurrent,

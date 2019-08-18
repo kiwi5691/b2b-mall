@@ -24,7 +24,10 @@ public class Permission {
     private Date insertTime;
 
     private Date updateTime;
-
+//
+//    private String insertTime;
+//
+//    private String updateTime;
     public Integer getId() {
         return id;
     }
