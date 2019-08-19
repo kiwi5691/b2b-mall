@@ -4,18 +4,15 @@ import com.b2b.mall.common.entity.dto.LoginLogDto;
 import com.b2b.mall.common.service.ILoginLogService;
 import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.LoginLogMapper;
-import com.b2b.mall.db.model.Item;
-import com.b2b.mall.db.model.ItemCategory;
 import com.b2b.mall.db.model.LoginLog;
 import com.b2b.mall.db.model.User;
-import org.apache.commons.lang3.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +20,7 @@ import java.util.Map;
 /**
  * @author kiwi
  */
+@Slf4j
 @Service
 public class LoginLogServiceImpl implements ILoginLogService {
 
@@ -33,7 +31,7 @@ public class LoginLogServiceImpl implements ILoginLogService {
     List<LoginLogDto> loginLogDtos;
 
     @Override
-    public void findLoginLogs(LoginLog loginLog, Integer pageCurrent, Integer pageSize, Integer pageCount, Model model) {
+    public List<?> findLoginLogs(LoginLog loginLog, Integer pageCurrent, Integer pageSize, Integer pageCount, Model model) {
         if (pageSize == 0) {
             pageSize = 50;
         }
@@ -42,6 +40,7 @@ public class LoginLogServiceImpl implements ILoginLogService {
         }
 
         int rows = loginLogMapper.count();
+        log.info("row is"+rows);
         if (pageCount == 0) {
             pageCount = rows % pageSize == 0 ? (rows / pageSize) : (rows / pageSize) + 1;
         }
@@ -50,18 +49,9 @@ public class LoginLogServiceImpl implements ILoginLogService {
 
         loginLogs = loginLogMapper.list(loginLog);
 
-        for (LoginLog loginLog1 : loginLogs) {
-            LoginLogDto loginLogDto = new LoginLogDto();
-            loginLogDto.setBrowser(loginLog1.getBrowser());
-            loginLogDto.setId(loginLog1.getId());
-            loginLogDto.setIp(loginLog1.getIp());
-            loginLogDto.setLocation(loginLog1.getLocation());
-            loginLogDto.setSystem(loginLog1.getSystem());
-            loginLogDto.setUsername(loginLog1.getUsername());
-            loginLogDto.setLoginTime(DateUtil.preciseDate(loginLog1.getLoginTime()));
-            loginLogDtos.add(loginLogDto);
-        }
+      //TODO   loginLogs.forEach(loginLog1 -> loginLog.setTimeStr(DateUtil.preciseDate(loginLog.getLoginTime())));
 
+        return loginLogs;
 //        model.addAttribute("loginLogDtos", loginLogDtos);
 //        LoginLogDto loginLogDto;
 //        String pageHTML = PageUtil.getPageContent("itemManage_{pageCurrent}_{pageSize}_{pageCount}?title=" +  + "&userName=" + loginLogDto.getUsername() + "&minPrice" + minPrice + "&maxPrice" + maxPrice, pageCurrent, pageSize, pageCount);

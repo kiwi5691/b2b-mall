@@ -1,7 +1,6 @@
 package com.b2b.mall.common.service;
 
 
-import com.b2b.mall.db.model.Item;
 import com.b2b.mall.db.model.LoginLog;
 import com.b2b.mall.db.model.User;
 import org.springframework.ui.Model;
@@ -15,7 +14,7 @@ import java.util.Map;
  */
 public interface ILoginLogService  {
 
-    void findLoginLogs(LoginLog loginLog, Integer pageCurrent, Integer pageSize, Integer pageCount, Model model);
+    List<?> findLoginLogs(LoginLog loginLog, Integer pageCurrent, Integer pageSize, Integer pageCount, Model model);
 
 
     /**

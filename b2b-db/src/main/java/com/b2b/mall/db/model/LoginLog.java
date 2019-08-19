@@ -24,6 +24,7 @@ public class LoginLog extends BaseObject {
 
     private String browser;
 
+    private String timeStr;
     public Long getId() {
         return id;
     }
@@ -165,5 +166,13 @@ public class LoginLog extends BaseObject {
             this.system = "";
             this.browser = "";
         }
+    }
+
+    public String getTimeStr() {
+        return timeStr;
+    }
+
+    public void setTimeStr(String timeStr) {
+        this.timeStr = timeStr;
     }
 }

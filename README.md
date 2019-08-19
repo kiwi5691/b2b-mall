@@ -11,7 +11,7 @@
 
 #### 技术架构
 - 后端采用的技术：   Shiro,Druid,Redis,Jedis,Jackson,JavaMail,AOP,Quartz
-- 前端采用的技术：        HTML,JavaScript,Css,Thymeleaf
+- 前端采用的技术：        HTML,JavaScript,Css,Thymeleaf,Vue.js
 
 #### 项目特点
 - 友好的代码结构及注释，便于阅读及二次开发
