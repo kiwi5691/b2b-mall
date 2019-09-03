@@ -30,4 +30,14 @@ public class SystemController {
         loginLogService.findLoginLogs(loginLog,pageCurrent,pageSize,pageCount,model);
         return "log/loginLog";
     }
+
+    @Log("打开操作日志")
+    @RequestMapping("/user/opLog_{pageCurrent}_{pageSize}_{pageCount}")
+    public String opLog(LoginLog loginLog, @PathVariable Integer pageCurrent,
+                           @PathVariable Integer pageSize,
+                           @PathVariable Integer pageCount,
+                           Model model) {
+       // loginLogService.findLoginLogs(loginLog,pageCurrent,pageSize,pageCount,model);
+        return "log/opLog";
+    }
 }

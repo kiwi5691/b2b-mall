@@ -51,12 +51,13 @@ public class LoginLogServiceImpl implements ILoginLogService {
 
       //TODO   loginLogs.forEach(loginLog1 -> loginLog.setTimeStr(DateUtil.preciseDate(loginLog.getLoginTime())));
 
-        return loginLogs;
 //        model.addAttribute("loginLogDtos", loginLogDtos);
 //        LoginLogDto loginLogDto;
 //        String pageHTML = PageUtil.getPageContent("itemManage_{pageCurrent}_{pageSize}_{pageCount}?title=" +  + "&userName=" + loginLogDto.getUsername() + "&minPrice" + minPrice + "&maxPrice" + maxPrice, pageCurrent, pageSize, pageCount);
 //        model.addAttribute("pageHTML", pageHTML);
 //        model.addAttribute("item", item);
+        return loginLogs;
+
     }
 
     @Override
