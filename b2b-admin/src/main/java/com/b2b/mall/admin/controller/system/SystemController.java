@@ -2,9 +2,14 @@ package com.b2b.mall.admin.controller.system;
 
 import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.common.service.ILoginLogService;
+import com.b2b.mall.common.service.OpLogService;
 import com.b2b.mall.db.model.Item;
+import com.b2b.mall.db.model.LogWithBlobs;
 import com.b2b.mall.db.model.LoginLog;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +26,8 @@ public class SystemController {
     @Autowired
     private ILoginLogService loginLogService;
 
+    @Autowired
+    private OpLogService opLogService;
     @Log("打开登录日志")
     @RequestMapping("/user/loginLog_{pageCurrent}_{pageSize}_{pageCount}")
     public String loginLog(LoginLog loginLog, @PathVariable Integer pageCurrent,
@@ -31,13 +38,12 @@ public class SystemController {
         return "log/loginLog";
     }
 
-    @Log("打开操作日志")
     @RequestMapping("/user/opLog_{pageCurrent}_{pageSize}_{pageCount}")
-    public String opLog(LoginLog loginLog, @PathVariable Integer pageCurrent,
-                           @PathVariable Integer pageSize,
-                           @PathVariable Integer pageCount,
-                           Model model) {
-       // loginLogService.findLoginLogs(loginLog,pageCurrent,pageSize,pageCount,model);
+    public String opLog(LogWithBlobs logWithBlobs, @PathVariable Integer pageCurrent,
+                        @PathVariable Integer pageSize,
+                        @PathVariable Integer pageCount,
+                        Model model) {
+        opLogService.findOpLogs(logWithBlobs,pageCurrent,pageSize,pageCount,model);
         return "log/opLog";
     }
 }

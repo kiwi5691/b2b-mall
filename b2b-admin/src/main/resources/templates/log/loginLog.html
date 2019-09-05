@@ -68,16 +68,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="reItem : ${reItemList}">
-                                        <td th:text="${reItem.id}">Onions</td>
-                                        <td th:text="${reItem.title}">Onions</td>
-                                        <td th:text="${reItem.price}">Onions</td>
-                                        <td th:text="${reItem.recoveredStr}">Onions</td>
-
-                                        <td>
-                                            <a href="#" th:onclick="'javascript:updateState('+${reItem.id}+',2,0);'" title="恢复">恢复</a>
-                                            <a href="#" style="margin-left:20px" th:onclick="'javascript:updateState('+${reItem.id}+',1,0);'" title="彻底删除">彻底删除</a>
-                                        </td>
+                                    <tr th:each="loginLog : ${loginLogs}">
+                                        <td th:text="${loginLog.id}">Onions</td>
+                                        <td th:text="${loginLog.username}">Onions</td>
+                                        <td th:text="${loginLog.timeStr}">Onions</td>
+                                        <td th:text="${loginLog.location}">Onions</td>
+                                        <td th:text="${loginLog.ip}">Onions</td>
+                                        <td th:text="${loginLog.system}">Onions</td>
+                                        <td th:text="${loginLog.browser}">Onions</td>
                                     </tr>
                                     </tbody>
                                     <tfoot>

@@ -28,10 +28,9 @@ public class LoginLogServiceImpl implements ILoginLogService {
     private LoginLogMapper loginLogMapper;
 
     List<LoginLog> loginLogs;
-    List<LoginLogDto> loginLogDtos;
 
     @Override
-    public List<?> findLoginLogs(LoginLog loginLog, Integer pageCurrent, Integer pageSize, Integer pageCount, Model model) {
+    public List<LoginLog> findLoginLogs(LoginLog loginLog, Integer pageCurrent, Integer pageSize, Integer pageCount, Model model) {
         if (pageSize == 0) {
             pageSize = 50;
         }
@@ -40,7 +39,6 @@ public class LoginLogServiceImpl implements ILoginLogService {
         }
 
         int rows = loginLogMapper.count();
-        log.info("row is"+rows);
         if (pageCount == 0) {
             pageCount = rows % pageSize == 0 ? (rows / pageSize) : (rows / pageSize) + 1;
         }
@@ -49,13 +47,10 @@ public class LoginLogServiceImpl implements ILoginLogService {
 
         loginLogs = loginLogMapper.list(loginLog);
 
-      //TODO   loginLogs.forEach(loginLog1 -> loginLog.setTimeStr(DateUtil.preciseDate(loginLog.getLoginTime())));
 
-//        model.addAttribute("loginLogDtos", loginLogDtos);
-//        LoginLogDto loginLogDto;
-//        String pageHTML = PageUtil.getPageContent("itemManage_{pageCurrent}_{pageSize}_{pageCount}?title=" +  + "&userName=" + loginLogDto.getUsername() + "&minPrice" + minPrice + "&maxPrice" + maxPrice, pageCurrent, pageSize, pageCount);
-//        model.addAttribute("pageHTML", pageHTML);
-//        model.addAttribute("item", item);
+        loginLogs.forEach(l -> l.setTimeStr(DateUtil.preciseDate(l.getLoginTime())));
+
+        model.addAttribute("loginLogs", loginLogs);
         return loginLogs;
 
     }

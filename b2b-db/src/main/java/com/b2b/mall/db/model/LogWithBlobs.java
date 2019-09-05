@@ -30,4 +30,13 @@ public class LogWithBlobs extends Log {
     public void setParams(String params) {
         this.params = params == null ? null : params.trim();
     }
+
+    @Override
+    public String toString() {
+        return "LogWithBlobs{" +
+                "operation='" + operation + '\'' +
+                ", method='" + method + '\'' +
+                ", params='" + params + '\'' +
+                '}';
+    }
 }

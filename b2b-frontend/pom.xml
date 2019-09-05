@@ -42,11 +42,7 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+
 
 
         <!-- mybatis -->
@@ -92,6 +88,13 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
+
+        <dependency>
+            <groupId>b2b-mall</groupId>
+            <artifactId>b2b-admin</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>b2b-mall</groupId>
             <artifactId>b2b-db</artifactId>

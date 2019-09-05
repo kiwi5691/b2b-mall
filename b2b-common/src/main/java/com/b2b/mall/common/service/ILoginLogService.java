@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public interface ILoginLogService  {
 
-    List<?> findLoginLogs(LoginLog loginLog, Integer pageCurrent, Integer pageSize, Integer pageCount, Model model);
+    List<LoginLog> findLoginLogs(LoginLog loginLog, Integer pageCurrent, Integer pageSize, Integer pageCount, Model model);
 
 
     /**

@@ -2,7 +2,7 @@ package com.b2b.mall.db.model;
 
 import java.util.Date;
 
-public class Log {
+public class Log extends BaseObject {
     private Long id;
 
     private String username;
@@ -14,6 +14,8 @@ public class Log {
     private Date createTime;
 
     private String location;
+
+    private String timeStr;
 
     public Long getId() {
         return id;
@@ -61,5 +63,13 @@ public class Log {
 
     public void setLocation(String location) {
         this.location = location == null ? null : location.trim();
+    }
+
+    public String getTimeStr() {
+        return timeStr;
+    }
+
+    public void setTimeStr(String timeStr) {
+        this.timeStr = timeStr;
     }
 }

@@ -159,8 +159,16 @@
     delete * from tb_log
     where CREATE_TIME &lt;#{createTime,jdbcType=TIMESTAMP}
   </delete>
-  <select id="selBeforeOpData" parameterType="java.util.Date" resultType="com.b2b.mall.db.model.LoginLog">
+  <select id="selBeforeOpData" parameterType="java.util.Date" resultType="com.b2b.mall.db.model.LogWithBlobs">
     select * from tb_log
     where CREATE_TIME &lt;#{createTime,jdbcType=TIMESTAMP}
+  </select>
+  <select id="count" resultType="java.lang.Integer" >
+    SELECT count(*) from tb_log ORDER BY CREATE_TIME
+  </select>
+  <select id="list" resultType="com.b2b.mall.db.model.LogWithBlobs" parameterType="com.b2b.mall.db.model.LogWithBlobs">
+    SELECT * FROM tb_log
+    ORDER BY CREATE_TIME desc
+    limit #{start, jdbcType=INTEGER},#{end, jdbcType=INTEGER}
   </select>
 </mapper>

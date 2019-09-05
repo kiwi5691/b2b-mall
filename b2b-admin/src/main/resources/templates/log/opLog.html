@@ -70,17 +70,16 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-<!--                                    <tr th:each="reItem : ${reItemList}">-->
-<!--                                        <td th:text="${reItem.id}">Onions</td>-->
-<!--                                        <td th:text="${reItem.title}">Onions</td>-->
-<!--                                        <td th:text="${reItem.price}">Onions</td>-->
-<!--                                        <td th:text="${reItem.recoveredStr}">Onions</td>-->
-
-<!--                                        <td>-->
-<!--                                            <a href="#" th:onclick="'javascript:updateState('+${reItem.id}+',2,0);'" title="恢复">恢复</a>-->
-<!--                                            <a href="#" style="margin-left:20px" th:onclick="'javascript:updateState('+${reItem.id}+',1,0);'" title="彻底删除">彻底删除</a>-->
-<!--                                        </td>-->
-<!--                                    </tr>-->
+                                    <tr th:each="logWithBlobs : ${logWithBlobes}">
+                                        <td th:text="${logWithBlobs.id}">Onions</td>
+                                        <td th:text="${logWithBlobs.username}">Onions</td>
+                                        <td th:text="${logWithBlobs.time}">Onions</td>
+                                        <td th:text="${logWithBlobs.method}">Onions</td>
+                                        <td th:text="${logWithBlobs.params}">Onions</td>
+                                        <td th:text="${logWithBlobs.ip}">Onions</td>
+                                        <td th:text="${logWithBlobs.timeStr}">Onions</td>
+                                        <td th:text="${logWithBlobs.location}">Onions</td>
+                                    </tr>
                                     </tbody>
                                     <tfoot>
                                     <tr>
