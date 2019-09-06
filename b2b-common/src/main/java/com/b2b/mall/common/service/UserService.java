@@ -1,6 +1,10 @@
 package com.b2b.mall.common.service;
 
 import com.b2b.mall.db.model.User;
+import org.springframework.ui.Model;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @Auther:kiwi
@@ -8,4 +12,5 @@ import com.b2b.mall.db.model.User;
  */
 public interface UserService {
     User selectAllByName(String userName);
+    User userManagePost(Model model, HttpServletRequest request, User user, HttpSession httpSession);
 }

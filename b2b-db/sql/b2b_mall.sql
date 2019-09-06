@@ -1083,7 +1083,7 @@ CREATE TABLE `tb_user` (
   `email` varchar(45) DEFAULT NULL,
   `headPicture` varchar(45) DEFAULT NULL,
   `addDate` date DEFAULT NULL,
-  `updateDate` date DEFAULT NULL,
+  `updateDate` TIMESTAMP DEFAULT NULL,
   `state` int(11) DEFAULT '0' COMMENT '1：正常\n2：冻结\n3：删除   0锁定 1有效',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`userName`)

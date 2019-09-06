@@ -3,6 +3,8 @@ package com.b2b.mall.admin.controller.auth;
 import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.admin.controller.user.UserController;
 import com.b2b.mall.common.service.AuthService;
+import com.b2b.mall.common.service.UserService;
+import com.b2b.mall.common.util.BaseHTMLStringCase;
 import com.b2b.mall.common.util.DateUtil;
 import com.b2b.mall.db.mapper.UserMapper;
 import com.b2b.mall.db.model.Item;
@@ -46,6 +48,9 @@ public class ManageController {
 
 
     @Resource
+    private UserService userService;
+
+    @Resource
     private AuthService authService;
 
     @Autowired
@@ -85,7 +90,36 @@ public class ManageController {
     @GetMapping("/user/managerManangement")
     public String managerManangementGet(Model model){
         //TODO 准备添加用户
+        List<User> userList = null;
+        userList = userMapper.selectAll();
+        userList.forEach(user -> {
+            user.setAddDateStr(DateUtil.preciseDate(user.getAddDate()));
+            user.setUpDateStr(DateUtil.preciseDate(user.getUpdateDate()));
+            user.setStateStr(BaseHTMLStringCase.lockCheck(String.valueOf(user.getState())));
+        });
+        model.addAttribute("userList",userList);
         return "manage/managerManangement";
+    }
+
+    @Log("打开管理员修改")
+    @GetMapping("/user/managerEdit")
+    public String managerEdit(Model model,User user){
+        User user1=null;
+        user1=userMapper.selectById(user.getUserName());
+        user1.setAddDateStr(DateUtil.preciseDate(user1.getAddDate()));
+        user1.setUpDateStr(DateUtil.preciseDate(user1.getUpdateDate()));
+        user1.setStateStr(BaseHTMLStringCase.lockCheck(String.valueOf(user1.getState())));
+        model.addAttribute("user",user1);
+        return "manage/managerEdit";
+    }
+
+    @Log("提交管理员修改")
+    @RequiresPermissions(value ="system")
+    @PostMapping("/user/managerEdit")
+    public String userManageEditEditPost(Model model, HttpServletRequest request, User user, HttpSession httpSession) {
+
+        userService.userManagePost(model,request,user,httpSession);
+        return "redirect:userSearch";
     }
 
     @Log("打开用户/权限查询")
@@ -128,10 +162,10 @@ public class ManageController {
         return "manage/userPermissionEdit";
     }
 
-    @Log("提交修改商品")
+    @Log("提交权限修改")
     @RequiresPermissions(value ="system")
     @PostMapping("/user/userPermissionEdit")
-    public String userPermissionEditEditPosy(Model model, HttpServletRequest request, Permission permission, HttpSession httpSession) {
+    public String userPermissionEditEditPost(Model model, HttpServletRequest request, Permission permission, HttpSession httpSession) {
 
         authService.permissionEditPost(model,request,permission,httpSession);
         return "redirect:userSearch";

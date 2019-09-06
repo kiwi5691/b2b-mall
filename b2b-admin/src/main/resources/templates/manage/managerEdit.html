@@ -61,42 +61,66 @@
                             </div>
                         </div>
                         <div class="ibox-content">
-                            <form id="formTag" action="userPermissionEdit" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                            <form id="formTag" action="managerEdit" method="POST" class="form-horizontal" enctype="multipart/form-data">
 
-                                <div class="form-group"><label class="col-sm-2 control-label">权限id：</label>
+                                <div class="form-group"><label class="col-sm-2 control-label">用户id：</label>
                                     <div class="col-sm-10">
-                                        <input id="id" name="id" readonly="readonly" type="text" class="form-control" th:value="${permission.id}"/>
+                                        <input id="id" name="id" readonly="readonly" type="text" class="form-control" th:value="${user.id}"/>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
 
-                                <div class="form-group"><label class="col-sm-2 control-label">权限名称：</label>
+                                <div class="form-group"><label class="col-sm-2 control-label">用户账号名：</label>
                                     <div class="col-sm-10">
-                                        <input id="name" name="name" readonly="readonly" type="text" class="form-control" th:value="${permission.name}"/>
-                                    </div>
-                                </div>
-
-                                <div class="hr-line-dashed"></div>
-
-                                <div class="form-group"><label class="col-sm-2 control-label">权限描述：</label>
-                                    <div class="col-sm-10">
-                                        <input id="descpt" name="descpt" readonly="readonly" type="text" class="form-control" th:value="${permission.descpt}"/>
+                                        <input id="userName" name="userName" readonly="readonly" type="text" class="form-control" th:value="${user.userName}"/>
                                     </div>
                                 </div>
 
                                 <div class="hr-line-dashed"></div>
 
-                                <div class="form-group"><label class="col-sm-2 control-label">权限菜单编号：</label>
+                                <div class="form-group"><label class="col-sm-2 control-label">用户真实姓名：</label>
                                     <div class="col-sm-10">
-                                        <input id="code" name="code" readonly="readonly" type="text" class="form-control" th:value="${permission.code}"/>
+                                        <input id="realName" name="realName" readonly="readonly" type="text" class="form-control" th:value="${user.realName}"/>
                                     </div>
                                 </div>
 
                                 <div class="hr-line-dashed"></div>
 
-                                <div class="form-group"><label class="col-sm-2 control-label">权限url：</label>
+                                <div class="form-group"><label class="col-sm-2 control-label">职位：</label>
                                     <div class="col-sm-10">
-                                        <input id="page" name="page" readonly="readonly" type="text" class="form-control" th:value="${permission.page}"/>
+                                        <input id="business" name="business" type="text" class="form-control" th:value="${user.business}"/>
+                                    </div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="form-group"><label class="col-sm-2 control-label">邮箱：</label>
+                                    <div class="col-sm-10">
+                                        <input id="email" name="email" readonly="readonly" type="text" class="form-control" th:value="${user.email}"/>
+                                    </div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="form-group"><label class="col-sm-2 control-label">注册日期：</label>
+                                    <div class="col-sm-10">
+                                        <input id="addDate" name="addDate" readonly="readonly" type="text" class="form-control" th:value="${user.addDateStr}"/>
+                                    </div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="form-group"><label class="col-sm-2 control-label">更新日期：</label>
+                                    <div class="col-sm-10">
+                                        <input id="updateDate" name="updateDate" readonly="readonly" type="text" class="form-control" th:value="${user.upDateStr}"/>
+                                    </div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="form-group"><label class="col-sm-2 control-label">是否冻结：</label>
+                                    <div class="col-sm-10">
+                                        <input id="stateStr" name="stateStr" readonly="readonly" type="text" class="form-control" th:value="${user.stateStr}"/>
                                     </div>
                                 </div>
 
@@ -138,7 +162,6 @@
 
 <!-- SUMMERNOTE -->
 <script th:src="@{/js/plugins/summernote/summernote.min.js}"></script>
-
 
 
 

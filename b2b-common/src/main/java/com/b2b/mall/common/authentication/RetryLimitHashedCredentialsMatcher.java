@@ -1,11 +1,13 @@
 package com.b2b.mall.common.authentication;
 
+import com.b2b.mall.db.mapper.UserMapper;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -37,6 +39,9 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
         String username = (String) token.getPrincipal();  
         //从ehcache中获取密码输错次数
         // retryCount
+
+        //判定管理员有没有锁
+
         AtomicInteger retryCount = passwordRetryCache.get(username);
         if (retryCount == null) {
             //第一次
@@ -46,8 +51,9 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
         //retryCount.incrementAndGet()自增：count + 1
         if (retryCount.incrementAndGet() > 5) {  
             // if retry count > 5 throw  超过5次 锁定
-            throw new ExcessiveAttemptsException("username:"+username+" tried to login more than 5 times in period");
-        }  
+            throw new ExcessiveAttemptsException("账号:"+username+" 密码超过5次了，请等待6分钟");
+        }
+
         //否则走判断密码逻辑
         boolean matches = super.doCredentialsMatch(token, info);  
         if (matches) {  

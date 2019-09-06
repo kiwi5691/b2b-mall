@@ -52,9 +52,7 @@ public class OpLogServiceImpl implements OpLogService {
             }
         });
 
-        logVOS.forEach(logVO -> System.out.println(logVO.toString()+"\n"));
 
-        log.info("gettime +"+ logVOS.get(0).getCreateTime());
         logVOS.forEach(l -> l.setTimeStr(DateUtil.preciseDate(l.getCreateTime())));
 
         String pageHTML = PageUtil.getPageContent("opLog_{pageCurrent}_{pageSize}_{pageCount}?id=" + logWithBlobs.getId() + "&username" + logWithBlobs.getUsername() + "&operation" + logWithBlobs.getOperation() + "&time" + logWithBlobs.getTime() + "&method" + logWithBlobs.getMethod()+"&params"+logWithBlobs.getParams()+"%ip"+logWithBlobs.getIp()+"&timeStr"+logWithBlobs.getTimeStr()+"$location"+logWithBlobs.getLocation(), pageCurrent, pageSize, pageCount);

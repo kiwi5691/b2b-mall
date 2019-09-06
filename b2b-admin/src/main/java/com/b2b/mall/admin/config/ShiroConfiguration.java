@@ -73,10 +73,7 @@ public class ShiroConfiguration {
         filterChainDefinitionManager.put("/user/dashboard", "user");
         filterChainDefinitionManager.put("/user/login", "anon");
         filterChainDefinitionManager.put("/test", "anon");
-        filterChainDefinitionManager.put("/cms/article/add",
-                "perms[article:add]");
-        filterChainDefinitionManager.put("/cms/article/edit.*",
-                "perms[article:edit]");
+        filterChainDefinitionManager.put("/user/logout", "logout");
         // 可以理解为不拦截
         filterChainDefinitionManager.put("/static/**", "anon");// 静态资源不拦截
         shiroFilterFactoryBean

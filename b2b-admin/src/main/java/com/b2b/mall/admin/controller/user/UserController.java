@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -140,10 +141,13 @@ public class UserController {
             loginLog.setUsername(username);
             loginLog.setSystemBrowserInfo();
             loginLogService.saveLoginLog(loginLog);
-
-            Date date = new Date();
-            users.setUserLudt(new Date());
+            users= userMapper.selectAllByName(username);
+            users.setUpDateStr(DateUtil.preciseDate(users.getUpdateDate()));
             httpSession.setAttribute("user", users);
+
+            users.setUpdateDate(new Date());
+
+            userMapper.updateLust(users);
             String timeQuannum="";
             timeQuannum =DateUtil.checkTimeQuantum();
             httpSession.setAttribute("time",timeQuannum);
@@ -177,7 +181,6 @@ public class UserController {
     @Log("提交注册")
     @PostMapping("/user/register")
     public String registerPost(User user, Model model) {
-        System.out.println("用户名" + user.getUserName());
         try {
             userMapper.selectIsName(user);
             model.addAttribute("error", "该账号已存在！");
@@ -188,7 +191,6 @@ public class UserController {
             user.setAddDate(date);
             user.setUpdateDate(date);
             userMapper.insert(user);
-            System.out.println("注册成功");
             model.addAttribute("error", "恭喜您，注册成功！");
             return "user/login";
         }
@@ -205,6 +207,16 @@ public class UserController {
     @GetMapping("/user/forget")
     public String forgetGet(Model model) {
         return "user/forget";
+    }
+
+
+    @Log("用户退出登录")
+    @GetMapping("/user/logout")
+    public String logout(HttpServletResponse response) {
+        Subject subject=SecurityUtils.getSubject();
+        subject.logout();
+        response.setStatus(302);
+        return "redirect:user/login";
     }
 
     /**

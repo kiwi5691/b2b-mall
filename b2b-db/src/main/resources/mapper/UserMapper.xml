@@ -10,7 +10,7 @@
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="headPicture" property="headPicture" jdbcType="VARCHAR"/>
         <result column="addDate" property="addDate" jdbcType="DATE"/>
-        <result column="updateDate" property="updateDate" jdbcType="DATE"/>
+        <result column="updateDate" property="updateDate" jdbcType="TIMESTAMP"/>
         <result column="state" property="state" jdbcType="TINYINT"/>
     </resultMap>
 
@@ -19,9 +19,20 @@
   </select>
 
     <select id="selectAllByName" resultMap="BaseResultMap" parameterType="java.lang.String">
-        SELECT * from tb_user  where userName = #{userName, jdbcType=VARCHAR} and state = 1
+        SELECT * from tb_user  where userName = #{userName, jdbcType=VARCHAR}
     </select>
 
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT * from tb_user  where userName = #{userName, jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectStatus" resultType="java.lang.Integer" parameterType="java.lang.String">
+        SELECT state from tb_user  where userName = #{userName, jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" >
+        SELECT * from tb_user
+    </select>
 
     <select id="selectIsName" resultType="java.lang.Integer" parameterType="java.lang.String">
         SELECT 1 from tb_user  where userName = #{userName, jdbcType=VARCHAR}
@@ -33,7 +44,7 @@
 
     <insert id="insert" parameterType="com.b2b.mall.db.model.User">
         INSERT INTO tb_user (id, userName, password, realName, business, email, headPicture, addDate, updateDate, state)
-        VALUES   (null, #{userName, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR}, null, null, #{email, jdbcType=VARCHAR}, null, #{addDate, jdbcType=DATE}, #{updateDate, jdbcType=DATE}, 1)
+        VALUES   (null, #{userName, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR}, null, null, #{email, jdbcType=VARCHAR}, null, #{addDate, jdbcType=DATE}, #{updateDate, jdbcType=TIMESTAMP}, 1)
     </insert>
 
     <update id="update" parameterType="com.b2b.mall.db.model.User">
@@ -42,7 +53,14 @@
         email = #{email, jdbcType=VARCHAR},
         realName = #{realName, jdbcType=VARCHAR},
         business = #{business, jdbcType=VARCHAR},
-        updateDate = #{updateDate, jdbcType=DATE}
+        updateDate = #{updateDate, jdbcType=TIMESTAMP}
         WHERE   userName = #{userName, jdbcType=VARCHAR}
     </update>
+
+    <update id="updateLust" parameterType="com.b2b.mall.db.model.User">
+        UPDATE tb_user SET updateDate = #{updateDate, jdbcType=TIMESTAMP}
+        WHERE userName = #{userName, jdbcType=VARCHAR}
+    </update>
+
+
 </mapper>

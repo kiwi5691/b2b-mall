@@ -4,6 +4,8 @@ package com.b2b.mall.db.mapper;
 import com.b2b.mall.db.model.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 
 @Mapper
 public interface UserMapper {
@@ -16,7 +18,15 @@ public interface UserMapper {
 
     int selectIsName(User user);
 
+    List<User> selectAll();
+
+    int updateLust(User user);
+
+    int selectStatus(String userName);
+
     String selectPasswordByName(User user);
 
     User selectAllByName(String userName);
+
+    User selectById(String userName);
 }

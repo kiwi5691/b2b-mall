@@ -10,15 +10,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import com.b2b.mall.common.service.AuthService;
 import com.b2b.mall.common.service.UserService;
+import com.b2b.mall.db.mapper.UserMapper;
 import com.b2b.mall.db.model.Permission;
 import com.b2b.mall.db.model.Role;
 import com.b2b.mall.db.model.User;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -38,6 +35,9 @@ import java.util.List;
  * 获取用户的角色和权限信息
  */
 public class ShiroRealm extends AuthorizingRealm {
+
+    @Autowired
+    private UserMapper userMapper;
 
     private Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
 
@@ -68,6 +68,10 @@ public class ShiroRealm extends AuthorizingRealm {
             Object credentials = user.getPassword();
             ByteSource credentialsSalt = ByteSource.Util.bytes(user.getUserName());
 
+            //判定管理员有没有锁
+         if(userMapper.selectStatus(user.getUserName())!=1){
+                throw new LockedAccountException("账号:"+user.getUserName()+" 已经被锁定 ");
+            }
             return new SimpleAuthenticationInfo(user, credentials, credentialsSalt, getName());
         }
         return null;

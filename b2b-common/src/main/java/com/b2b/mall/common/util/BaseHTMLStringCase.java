@@ -57,4 +57,13 @@ public class BaseHTMLStringCase {
             e.printStackTrace();
         }
     }
+
+    public static String lockCheck(String number){
+        if(number.equals("1")){
+            return "无";
+        }
+        else {
+            return "被冻结";
+        }
+    }
 }

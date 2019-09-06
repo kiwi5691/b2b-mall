@@ -60,6 +60,8 @@ public class AuthServiceImpl implements AuthService {
 	@Override
 	public void permissionEditPost(Model model, HttpServletRequest request, Permission permission, HttpSession httpSession) {
 
+
+		//TODO 添加Permission
 	}
 
 	@Override public int updatePerm(Permission permission) {
