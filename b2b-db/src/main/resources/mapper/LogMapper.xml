@@ -136,7 +136,7 @@
   </update>
   <!--  删除判断小于指定日期-->
   <delete id="delBeforeOpData" parameterType="java.util.Date" >
-    delete * from tb_log
+    delete  from tb_log
     where CREATE_TIME &lt;#{createTime,jdbcType=TIMESTAMP}
   </delete>
   <select id="selBeforeOpData" parameterType="java.util.Date" resultType="com.b2b.mall.db.model.LogWithBlobs">

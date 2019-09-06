@@ -5,10 +5,13 @@ import com.b2b.mall.admin.controller.user.UserController;
 import com.b2b.mall.common.service.AuthService;
 import com.b2b.mall.common.util.DateUtil;
 import com.b2b.mall.db.mapper.UserMapper;
+import com.b2b.mall.db.model.Item;
 import com.b2b.mall.db.model.Permission;
 import com.b2b.mall.db.model.Role;
 import com.b2b.mall.db.model.User;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,8 +22,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
@@ -75,6 +81,13 @@ public class ManageController {
         return "redirect:userManage";
     }
 
+    @Log("打开管理员管理")
+    @GetMapping("/user/managerManangement")
+    public String managerManangementGet(Model model){
+        //TODO 准备添加用户
+        return "manage/managerManangement";
+    }
+
     @Log("打开用户/权限查询")
     @GetMapping("/user/userSearch")
     public String userSearchGet(Model model) {
@@ -104,6 +117,24 @@ public class ManageController {
 //        permissionList.forEach(p->{p.setInsertTimeStr(DateUtil.getDateStr(p.getInsertTime()));p.setUpdateTimeStr(DateUtil.getDateStr(p.getUpdateTime()));});
         model.addAttribute("permissionList", permissionList);
         return "manage/userSearch";
+    }
+
+    @Log("打开权限修改")
+    @RequiresPermissions(value ="system")
+    @GetMapping("/user/userPermissionEdit")
+    public String userPermissionEditEditGet(Model model, Permission permission) {
+
+        authService.permissionEditGet(model,permission);
+        return "manage/userPermissionEdit";
+    }
+
+    @Log("提交修改商品")
+    @RequiresPermissions(value ="system")
+    @PostMapping("/user/userPermissionEdit")
+    public String userPermissionEditEditPosy(Model model, HttpServletRequest request, Permission permission, HttpSession httpSession) {
+
+        authService.permissionEditPost(model,request,permission,httpSession);
+        return "redirect:userSearch";
     }
 
 }

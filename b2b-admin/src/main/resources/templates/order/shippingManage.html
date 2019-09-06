@@ -92,10 +92,10 @@
                                         <th width="8%">收货人全名</th>
                                         <th width="8%">固定电话</th>
                                         <th width="8%">移动电话</th>
-                                        <td width="8%">省份</td>
+                                        <th width="8%">省份</th>
                                         <th width="8%">城市</th>
                                         <th width="8%">区/县</th>
-                                        <td width="8%">收货地址</td>
+                                        <th width="8%">收货地址</th>
                                         <th width="8%">邮政编码</th>
                                         <th width="8%">创建时间</th>
                                         <th width="8%">更新时间</th>
@@ -116,8 +116,12 @@
                                         <td th:text="${orderShipping.createdStr}">Onions</td>
                                         <td th:text="${orderShipping.updatedStr}">Onions</td>
                                         <td>
+<!--               TODO               改成发货               <a th:href="@{'userPermissionEdit?id='+${permission.id}}" title="修改"><i class="fa fa-edit text-navy"></i></a>-->
+
                                             <a href="#" th:onclick="'javascript:updateState('+${orderShipping.orderId}+',2);'" title="删除"><i class="fa fa-trash-o text-navy"></i></a>
+
                                         </td>
+
                                     </tr>
                                     </tbody>
                                     <tfoot>

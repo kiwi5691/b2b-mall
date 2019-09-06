@@ -24,14 +24,14 @@ public class LoggerScanJob extends QuartzJobBean {
 
     private final static Logger logger = LoggerFactory.getLogger(LoggerScanJob.class);
 
-    @Resource
+    @Autowired
     private JobService jobService;
 
     @Override
     protected void executeInternal(org.quartz.JobExecutionContext context) throws JobExecutionException {
         logger.info("自动删除登录/操作日志表数据任务");
      //   jobService.delBeforeLog();
-        //jobService.delBeforeOpLog();
+        jobService.delBeforeOpLog();
         logger.info("完成删除任务，下一个运行时间为一星期后");
 
     }

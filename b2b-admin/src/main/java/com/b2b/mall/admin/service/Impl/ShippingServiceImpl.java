@@ -43,8 +43,6 @@ public class ShippingServiceImpl implements ShippingService {
             orderShipping1.setUpdatedStr(DateUtil.getDateStr(orderShipping1.getUpdated()));
         }
         model.addAttribute("orderShippingList", orderShippingList);
-        String pageHTML = PageUtil.getPageContent("shippingManage_{pageCurrent}_{pageSize}_{pageCount}", pageCurrent, pageSize, pageCount);
-        model.addAttribute("pageHTML", pageHTML);
         model.addAttribute("orderShipping", orderShipping);
     }
 

@@ -2,7 +2,7 @@ package com.b2b.mall.db.model;
 
 import java.util.Date;
 
-public class Permission {
+public class    Permission {
     private Integer id;
 
     private String name;

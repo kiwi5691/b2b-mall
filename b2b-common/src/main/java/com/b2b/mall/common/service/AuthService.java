@@ -3,6 +3,12 @@ package com.b2b.mall.common.service;
 import com.b2b.mall.db.entity.PermissionVO;
 import com.b2b.mall.db.entity.RoleVO;
 import com.b2b.mall.db.model.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -13,6 +19,10 @@ public interface AuthService {
 	int addPermission(Permission permission);
 
 	List<Permission> permList();
+
+	void permissionEditGet(Model model, Permission permission);
+	void permissionEditPost(Model model, HttpServletRequest request, Permission permission, HttpSession httpSession);
+
 
 	int updatePerm(Permission permission);
 

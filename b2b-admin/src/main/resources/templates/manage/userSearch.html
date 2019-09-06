@@ -99,9 +99,8 @@
                                             <td th:text="${permission.code}">Onions</td>
                                             <td th:text="${permission.page}">Onions</td>
                                             <td>
-                                                <a th:href="@{'permission?id='+${permission.id}}" title="修改"><i class="fa fa-edit text-navy"></i></a>
+                                                <a th:href="@{'userPermissionEdit?id='+${permission.id}}" title="修改"><i class="fa fa-edit text-navy"></i></a>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a href="#" th:onclick="'javascript:updateState('+${permission.id}+',2,0);'" title="删除"><i class="fa fa-trash-o text-navy"></i></a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -116,6 +115,7 @@
         	<div class="footer" th:include="footer :: copyright"></div>
       	</div>
 	</div>
+
 	
     <!-- Mainly scripts -->
     <script th:src="@{/js/jquery-2.1.1.js}"></script>

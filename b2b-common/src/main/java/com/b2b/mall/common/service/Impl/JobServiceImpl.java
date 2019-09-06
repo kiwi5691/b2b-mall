@@ -59,6 +59,7 @@ public class JobServiceImpl implements JobService {
     @Override
     public void delBeforeOpLog() {
         try{
+            logMapper.selBeforeOpData(DateUtil.dateBeforeMoth());
             logMapper.delBeforeOpData(DateUtil.dateBeforeMoth());
 
         }catch (Exception e){

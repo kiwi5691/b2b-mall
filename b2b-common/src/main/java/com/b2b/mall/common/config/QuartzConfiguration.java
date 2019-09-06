@@ -24,7 +24,7 @@ public class QuartzConfiguration {
      *@reutn org.quartz.JobDetail
     */
     @Bean
-    public JobDetail weatherDataSyncJobJobDetail(){
+    public JobDetail DataSyncJobJobDetail(){
         return JobBuilder.newJob(LoggerScanJob.class).withIdentity("LoggerScanJob").storeDurably().build();
     }
 
@@ -40,7 +40,7 @@ public class QuartzConfiguration {
     public Trigger sampleJobTrigger(){
         SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
                 .withIntervalInSeconds(TIME).repeatForever();
-        return TriggerBuilder.newTrigger().forJob(weatherDataSyncJobJobDetail())
+        return TriggerBuilder.newTrigger().forJob(DataSyncJobJobDetail())
                 .withIdentity("LoggerScanJobTrigger").withSchedule(simpleScheduleBuilder).build();
     }
 }

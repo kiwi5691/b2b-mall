@@ -30,7 +30,7 @@ public class ShippingController {
         this.shippingService = shippingService;
     }
 
-    @Log("打开订单管理")
+    @Log("打开发货管理")
     @RequestMapping("/user/shippingManage_{pageCurrent}_{pageSize}_{pageCount}")
     @RequiresPermissions(value ="shippingManage")
     public String orderManage(OrderShipping orderShipping, @PathVariable Integer pageCurrent,
@@ -41,7 +41,8 @@ public class ShippingController {
         return "order/shippingManage";
     }
 
-    @Log("提交订单管理")
+    //TODO 修改删除和发货
+    @Log("提交发货管理")
     @ResponseBody
     @PostMapping("/user/shippingEditState")
     public ResObject<Object> shippingEditState(OrderShipping orderShipping){

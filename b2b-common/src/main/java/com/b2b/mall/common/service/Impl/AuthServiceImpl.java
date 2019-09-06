@@ -7,6 +7,7 @@ import com.b2b.mall.common.service.AuthService;
 import com.b2b.mall.db.mapper.PermissionMapper;
 import com.b2b.mall.db.mapper.RoleMapper;
 import com.b2b.mall.db.mapper.RolePermissionKeyMapper;
+import com.b2b.mall.db.model.ItemCategory;
 import com.b2b.mall.db.model.Permission;
 import com.b2b.mall.db.model.Role;
 import com.b2b.mall.db.model.RolePermissionKey;
@@ -18,7 +19,10 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
+import org.springframework.ui.Model;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -43,6 +47,19 @@ public class AuthServiceImpl implements AuthService {
 	@Override
 	public List<Permission> permList() {
 		return this.permissionMapper.findAll();
+	}
+
+	@Override
+	public void permissionEditGet(Model model, Permission permission) {
+		if(permission.getId() != 0){
+			Permission permission0 = permissionMapper.selectByPrimaryKey(permission.getId());
+			model.addAttribute("permission",permission0);
+		}
+	}
+
+	@Override
+	public void permissionEditPost(Model model, HttpServletRequest request, Permission permission, HttpSession httpSession) {
+
 	}
 
 	@Override public int updatePerm(Permission permission) {
