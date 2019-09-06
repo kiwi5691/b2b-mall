@@ -877,14 +877,14 @@ INSERT INTO `tb_job_log` VALUES (2475, 2, 'testTask', 'test1', 'kiwi', '0', NULL
 DROP TABLE IF EXISTS `tb_log`;
 CREATE TABLE `tb_log`  (
                         `ID` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '日志ID',
-                        `USERNAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作用户',
-                        `OPERATION` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '操作内容',
+                        `USERNAME` varchar(50)  NULL DEFAULT NULL COMMENT '操作用户',
+                        `OPERATION` text NULL COMMENT '操作内容',
                         `TIME` decimal(11, 0) NULL DEFAULT NULL COMMENT '耗时',
-                        `METHOD` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '操作方法',
-                        `PARAMS` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '方法参数',
-                        `IP` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作者IP',
+                        `METHOD` text NULL COMMENT '操作方法',
+                        `PARAMS` text NULL COMMENT '方法参数',
+                        `IP` varchar(64)  NULL DEFAULT NULL COMMENT '操作者IP',
                         `CREATE_TIME` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-                        `location` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作地点',
+                        `location` varchar(50) NULL DEFAULT NULL COMMENT '操作地点',
                         PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 990 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志表' ROW_FORMAT = Dynamic;
 

@@ -47,9 +47,10 @@ public class LoginLogServiceImpl implements ILoginLogService {
 
         loginLogs = loginLogMapper.list(loginLog);
 
-
         loginLogs.forEach(l -> l.setTimeStr(DateUtil.preciseDate(l.getLoginTime())));
 
+        String pageHTML = PageUtil.getPageContent("loginLog_{pageCurrent}_{pageSize}_{pageCount}?username=" + loginLog.getUsername() + "&id" + loginLog.getId() + "&timeStr" + loginLog.getTimeStr() + "&location" + loginLog.getLocation() + "&ip" + loginLog.getIp()+"&system"+loginLog.getSystem()+"%browser"+loginLog.getBrowser(), pageCurrent, pageSize, pageCount);
+        model.addAttribute("pageHTML", pageHTML);
         model.addAttribute("loginLogs", loginLogs);
         return loginLogs;
 

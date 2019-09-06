@@ -3,13 +3,9 @@ package com.b2b.mall.admin.controller.system;
 import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.common.service.ILoginLogService;
 import com.b2b.mall.common.service.OpLogService;
-import com.b2b.mall.db.model.Item;
 import com.b2b.mall.db.model.LogWithBlobs;
 import com.b2b.mall.db.model.LoginLog;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,11 +35,11 @@ public class SystemController {
     }
 
     @RequestMapping("/user/opLog_{pageCurrent}_{pageSize}_{pageCount}")
-    public String opLog(LogWithBlobs logWithBlobs, @PathVariable Integer pageCurrent,
+    public String opLog(LogWithBlobs opLogVO, @PathVariable Integer pageCurrent,
                         @PathVariable Integer pageSize,
                         @PathVariable Integer pageCount,
                         Model model) {
-        opLogService.findOpLogs(logWithBlobs,pageCurrent,pageSize,pageCount,model);
+        opLogService.findOpLogs(opLogVO,pageCurrent,pageSize,pageCount,model);
         return "log/opLog";
     }
 }

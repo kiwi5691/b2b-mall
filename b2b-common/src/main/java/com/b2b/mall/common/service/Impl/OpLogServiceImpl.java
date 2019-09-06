@@ -1,10 +1,12 @@
 package com.b2b.mall.common.service.Impl;
 
 import com.b2b.mall.common.service.OpLogService;
+import com.b2b.mall.common.util.BaseHTMLStringCase;
 import com.b2b.mall.common.util.DateUtil;
+import com.b2b.mall.common.util.PageUtil;
 import com.b2b.mall.db.mapper.LogMapper;
 import com.b2b.mall.db.model.LogWithBlobs;
-import com.b2b.mall.db.model.LoginLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -15,13 +17,14 @@ import java.util.List;
  * @auther kiwi
  * @Date 2019/9/5 16:38
  */
+@Slf4j
 @Service
 public class OpLogServiceImpl implements OpLogService {
 
     @Resource
     private LogMapper logMapper;
 
-    List<LogWithBlobs> logWithBlobes;
+    List<LogWithBlobs> logVOS ;
 
     @Override
     public List<LogWithBlobs> findOpLogs(LogWithBlobs logWithBlobs, Integer pageCurrent, Integer pageSize, Integer pageCount, Model model) {
@@ -39,20 +42,24 @@ public class OpLogServiceImpl implements OpLogService {
         logWithBlobs.setStart((pageCurrent - 1) * pageSize);
         logWithBlobs.setEnd(pageSize);
 
-        logWithBlobes = logMapper.list(logWithBlobs);
-     //   System.out.println(logWithBlobes.get(0).getMethod());
+        logVOS = logMapper.list(logWithBlobs);
 
-     //   logWithBlobes.forEach(l -> l.setTimeStr(DateUtil.preciseDate(l.getCreateTime())));
-        logWithBlobes.stream().filter(logWithBlobs1 -> {
-            if(logWithBlobs1.getUsername()==null) {
-                logWithBlobs1.setUsername(" 无");
-            }
-            else if (logWithBlobs1.getMethod()==null) {
-                logWithBlobs1.getOperation("无")
+        logVOS.forEach(logWithBlobs1 -> {
+            try {
+                BaseHTMLStringCase.isNull(logWithBlobs);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
 
-        model.addAttribute("logWithBlobes", logWithBlobes);
-        return logWithBlobes;
+        logVOS.forEach(logVO -> System.out.println(logVO.toString()+"\n"));
+
+        log.info("gettime +"+ logVOS.get(0).getCreateTime());
+        logVOS.forEach(l -> l.setTimeStr(DateUtil.preciseDate(l.getCreateTime())));
+
+        String pageHTML = PageUtil.getPageContent("opLog_{pageCurrent}_{pageSize}_{pageCount}?id=" + logWithBlobs.getId() + "&username" + logWithBlobs.getUsername() + "&operation" + logWithBlobs.getOperation() + "&time" + logWithBlobs.getTime() + "&method" + logWithBlobs.getMethod()+"&params"+logWithBlobs.getParams()+"%ip"+logWithBlobs.getIp()+"&timeStr"+logWithBlobs.getTimeStr()+"$location"+logWithBlobs.getLocation(), pageCurrent, pageSize, pageCount);
+        model.addAttribute("pageHTML", pageHTML);
+        model.addAttribute("logVOS", logVOS);
+        return logVOS;
     }
 }

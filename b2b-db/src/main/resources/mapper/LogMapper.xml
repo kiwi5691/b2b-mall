@@ -1,30 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.b2b.mall.db.mapper.LogMapper">
-  <resultMap id="BaseResultMap" type="com.b2b.mall.db.model.Log">
+  <resultMap id="BaseResultMap" type="com.b2b.mall.db.model.LogWithBlobs">
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="USERNAME" jdbcType="VARCHAR" property="username" />
     <result column="TIME" jdbcType="DECIMAL" property="time" />
     <result column="IP" jdbcType="VARCHAR" property="ip" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="OPERATION" jdbcType="VARCHAR" property="operation" />
+    <result column="METHOD" jdbcType="VARCHAR" property="method" />
+    <result column="PARAMS" jdbcType="VARCHAR" property="params" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.b2b.mall.db.model.LogWithBlobs">
-    <result column="OPERATION" jdbcType="LONGVARCHAR" property="operation" />
-    <result column="METHOD" jdbcType="LONGVARCHAR" property="method" />
-    <result column="PARAMS" jdbcType="LONGVARCHAR" property="params" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ID, USERNAME, TIME, IP, CREATE_TIME, location
-  </sql>
-  <sql id="Blob_Column_List">
-    OPERATION, METHOD, PARAMS
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select *
     from tb_log
     where ID = #{id,jdbcType=BIGINT}
   </select>
@@ -145,15 +134,6 @@
       PARAMS = #{params,jdbcType=LONGVARCHAR}
     where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.b2b.mall.db.model.Log">
-    update tb_log
-    set USERNAME = #{username,jdbcType=VARCHAR},
-      TIME = #{time,jdbcType=DECIMAL},
-      IP = #{ip,jdbcType=VARCHAR},
-      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      location = #{location,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=BIGINT}
-  </update>
   <!--  删除判断小于指定日期-->
   <delete id="delBeforeOpData" parameterType="java.util.Date" >
     delete * from tb_log
@@ -166,7 +146,7 @@
   <select id="count" resultType="java.lang.Integer" >
     SELECT count(*) from tb_log ORDER BY CREATE_TIME
   </select>
-  <select id="list" resultType="com.b2b.mall.db.model.LogWithBlobs" parameterType="com.b2b.mall.db.model.LogWithBlobs">
+  <select id="list" resultMap="BaseResultMap" parameterType="com.b2b.mall.db.model.LogWithBlobs">
     SELECT * FROM tb_log
     ORDER BY CREATE_TIME desc
     limit #{start, jdbcType=INTEGER},#{end, jdbcType=INTEGER}

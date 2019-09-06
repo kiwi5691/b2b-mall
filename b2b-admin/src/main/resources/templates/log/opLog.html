@@ -70,15 +70,16 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="logWithBlobs : ${logWithBlobes}">
-                                        <td th:text="${logWithBlobs.id}">Onions</td>
-                                        <td th:text="${logWithBlobs.username}">Onions</td>
-                                        <td th:text="${logWithBlobs.time}">Onions</td>
-                                        <td th:text="${logWithBlobs.method}">Onions</td>
-                                        <td th:text="${logWithBlobs.params}">Onions</td>
-                                        <td th:text="${logWithBlobs.ip}">Onions</td>
-                                        <td th:text="${logWithBlobs.timeStr}">Onions</td>
-                                        <td th:text="${logWithBlobs.location}">Onions</td>
+                                    <tr  th:each="logVO : ${logVOS}">
+                                        <td th:text="${logVO.id}">Onions</td>
+                                        <td th:text="${logVO.username}">Onions</td>
+                                        <td th:text="${logVO.operation}">Onions</td>
+                                        <td th:text="${logVO.time}">Onions</td>
+                                        <td style="  height: auto;  word-wrap:break-word;  word-break:break-all; overflow: hidden" th:text="${logVO.method}">Onions</td>
+                                        <td style="overflow: hidden;" th:text="${logVO.params}">Onions</td>
+                                        <td th:text="${logVO.ip}">Onions</td>
+                                        <td th:text="${logVO.timeStr}">Onions</td>
+                                        <td th:text="${logVO.location}">Onions</td>
                                     </tr>
                                     </tbody>
                                     <tfoot>

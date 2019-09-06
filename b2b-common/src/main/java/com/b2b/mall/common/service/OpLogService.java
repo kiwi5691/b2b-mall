@@ -1,7 +1,6 @@
 package com.b2b.mall.common.service;
 
 import com.b2b.mall.db.model.LogWithBlobs;
-import com.b2b.mall.db.model.LoginLog;
 import org.springframework.ui.Model;
 
 import java.util.List;
