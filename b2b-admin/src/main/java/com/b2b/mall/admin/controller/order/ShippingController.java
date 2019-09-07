@@ -10,10 +10,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,11 +38,18 @@ public class ShippingController {
         return "order/shippingManage";
     }
 
-    //TODO 修改删除和发货
-    @Log("提交发货管理")
-    @ResponseBody
-    @PostMapping("/user/shippingEditState")
-    public ResObject<Object> shippingEditState(OrderShipping orderShipping){
-        return shippingService.shippingEditState(orderShipping);
+    @Log("打开发货")
+    @GetMapping("/user/sendOff")
+    public String sendOff(Model model, OrderShipping orderShipping) {
+        shippingService.sendOffGet(model,orderShipping);
+        return "order/sendOff";
+    }
+
+    @Log("提交发货")
+    @PostMapping("/user/sendOff")
+    public String sendOffPost(Model model,OrderShipping orderShipping,String delieryCompes,String sendOffId){
+
+        shippingService.sendOffPost(model, orderShipping, delieryCompes, sendOffId);
+        return "redirect:shippingManage_0_0_0";
     }
 }

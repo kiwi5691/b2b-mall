@@ -61,7 +61,6 @@ public class OrderController {
     @Log("提交订单详细")
     @PostMapping("/user/orderDetails")
     public String orderDetailsPost(Model model, @RequestParam MultipartFile[] imageFile, HttpSession httpSession) {
-        //根据时间和随机数生成id
         return null;
     }
 

@@ -4,6 +4,7 @@ package com.b2b.mall.common.service.Impl;
 import com.b2b.mall.common.service.UserService;
 import com.b2b.mall.common.util.BaseHTMLStringCase;
 import com.b2b.mall.common.util.DateUtil;
+import com.b2b.mall.common.util.MD5Util;
 import com.b2b.mall.db.entity.PermissionVO;
 import com.b2b.mall.db.entity.RoleVO;
 import com.b2b.mall.common.service.AuthService;
@@ -86,7 +87,9 @@ public class AuthServiceImpl implements AuthService {
 	public void userManagePost(Model model, User user, HttpSession httpSession) {
 		Date date = new Date();
 		user.setUpdateDate(date);
-		int i = userMapper.update(user);
+		String pwd=user.getPassword();
+		user.setPassword(MD5Util.encrypt(user.getUserName(), pwd));
+		userMapper.update(user);
 		httpSession.setAttribute("user",user);
 	}
 
@@ -224,7 +227,6 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public List<Role> getRoles() {
-		//TODO 根据部门和权限等级限制角色显示
 		return this.roleMapper.getRoles();
 	}
 

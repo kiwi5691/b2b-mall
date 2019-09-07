@@ -3,6 +3,7 @@ package com.b2b.mall.admin.service.Impl;
 import com.b2b.mall.admin.service.OrderService;
 import com.b2b.mall.common.util.DateUtil;
 import com.b2b.mall.common.util.ExcelUtil;
+import com.b2b.mall.common.util.OrderUtils;
 import com.b2b.mall.common.util.PageUtil;
 import com.b2b.mall.db.mapper.OrderItemMapper;
 import com.b2b.mall.db.mapper.OrderMapper;
@@ -67,9 +68,9 @@ public class OrderServiceImpl implements OrderService {
                 order1.setItemTitle(orderItem.getTitle());
                 order1.setTotalFee(orderItem.getTotalFee());
                 order1.setNum(orderItem.getNum());
-                order1.setStatusStr(getStatusStrById(order1.getStatus()));
+                order1.setStatusStr(OrderUtils.getStatusStrById(order1.getStatus()));
                 order1.setDateStr1(DateUtil.getDateStr(order1.getCreateTime()));
-                order1.setPaymentTypeStr(getPaymentTypeById(order1.getPaymentType()));
+                order1.setPaymentTypeStr(OrderUtils.getPaymentTypeById(order1.getPaymentType()));
             }
         }
         model.addAttribute("orderList", orderList);
@@ -121,15 +122,15 @@ public class OrderServiceImpl implements OrderService {
             order1.setItemTitle(orderItem.getTitle());
             order1.setTotalFee(orderItem.getTotalFee());
             order1.setNum(orderItem.getNum());
-            order1.setStatusStr(getStatusStrById(order1.getStatus()));
+            order1.setStatusStr(OrderUtils.getStatusStrById(order1.getStatus()));
             order1.setItemId(orderItem.getItemId());
-            order1.setBuyerRateStr(getbuyerRateStrById(order1.getBuyerRate()));
+            order1.setBuyerRateStr(OrderUtils.getbuyerRateStrById(order1.getBuyerRate()));
             order1.setDateStr1(DateUtil.getDateStr(order1.getCreateTime()));
             order1.setDateStr2(DateUtil.getDateStr(order1.getUpdateTime()));
             order1.setDateStr3(DateUtil.getDateStr(order1.getPaymentTime()));
             order1.setDateStr4(DateUtil.getDateStr(order1.getConsignTime()));
             order1.setDateStr5(DateUtil.getDateStr(order1.getEndTime()));
-            order1.setPaymentTypeStr(getPaymentTypeById(order1.getPaymentType()));
+            order1.setPaymentTypeStr(OrderUtils.getPaymentTypeById(order1.getPaymentType()));
 
             model.addAttribute("order", order1);
         }
@@ -164,10 +165,10 @@ public class OrderServiceImpl implements OrderService {
                 order1.setItemTitle(orderItem.getTitle());
                 order1.setTotalFee(orderItem.getTotalFee());
                 order1.setNum(orderItem.getNum());
-                order1.setStatusStr(getStatusStrById(order1.getStatus()));
+                order1.setStatusStr(OrderUtils.getStatusStrById(order1.getStatus()));
                 order1.setDateStr1(DateUtil.getDateStr(order1.getCreateTime()));
-                order1.setPaymentTypeStr(getPaymentTypeById(order1.getPaymentType()));
-                order1.setRefundStatusStr(getRefundStatusStr(order1.getRefundStatus()));
+                order1.setPaymentTypeStr(OrderUtils.getPaymentTypeById(order1.getPaymentType()));
+                order1.setRefundStatusStr(OrderUtils.getRefundStatusStr(order1.getRefundStatus()));
             }
         }
         model.addAttribute("orderList", orderList);
@@ -185,12 +186,12 @@ public class OrderServiceImpl implements OrderService {
             order1.setItemTitle(orderItem.getTitle());
             order1.setTotalFee(orderItem.getTotalFee());
             order1.setNum(orderItem.getNum());
-            order1.setStatusStr(getStatusStrById(order1.getStatus()));
+            order1.setStatusStr(OrderUtils.getStatusStrById(order1.getStatus()));
             order1.setItemId(orderItem.getItemId());
-            order1.setBuyerRateStr(getbuyerRateStrById(order1.getBuyerRate()));
+            order1.setBuyerRateStr(OrderUtils.getbuyerRateStrById(order1.getBuyerRate()));
             order1.setDateStr1(DateUtil.getDateStr(order1.getCreateTime()));
             order1.setDateStr3(DateUtil.getDateStr(order1.getPaymentTime()));
-            order1.setPaymentTypeStr(getPaymentTypeById(order1.getPaymentType()));
+            order1.setPaymentTypeStr(OrderUtils.getPaymentTypeById(order1.getPaymentType()));
             order1.setRefundStatus(null);
             model.addAttribute("order", order1);
         }
@@ -208,54 +209,5 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
-    private String getRefundStatusStr(int i) {
-        switch (i) {
-            case 1:
-                return "申请退款";
-            case 2:
-                return "退款失败";
-            case 3:
-                return "退款成功";
-        }
-        return null;
-    }
 
-    private String getbuyerRateStrById(int i) {
-        switch (i) {
-            case 0:
-                return "否";
-            case 1:
-                return "是";
-        }
-        return null;
-    }
-
-
-    private String getStatusStrById(int i) {
-        switch (i) {
-            case 1:
-                return "未付款";
-            case 2:
-                return "已付款";
-            case 3:
-                return "未发货";
-            case 4:
-                return "已发货";
-            case 5:
-                return "交易成功";
-            case 6:
-                return "交易关闭";
-        }
-        return null;
-    }
-
-    private String getPaymentTypeById(int i) {
-        switch (i) {
-            case 1:
-                return "在线支付";
-            case 2:
-                return "货到付款";
-        }
-        return null;
-    }
 }

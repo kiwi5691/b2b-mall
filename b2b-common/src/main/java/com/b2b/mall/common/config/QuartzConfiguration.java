@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @Auther:kiwi
  * @Date: 2019/6/15 14:16
- * TODO 定时扫描日志数据表，超过500自动删除一半
  */
 @Configuration
 public class QuartzConfiguration {

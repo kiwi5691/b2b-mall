@@ -11,5 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 public interface ShippingService {
     void orderManage(OrderShipping orderShipping,Integer pageCurrent, Integer pageSize, Integer pageCount, Model model);
-    ResObject<Object> shippingEditState(OrderShipping orderShipping);
+    void sendOffGet(Model model, OrderShipping orderShipping);
+    void sendOffPost(Model model,OrderShipping orderShipping,String delieryCompes,String sendOffId);
 }

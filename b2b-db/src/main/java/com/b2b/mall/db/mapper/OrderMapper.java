@@ -34,5 +34,6 @@ public interface OrderMapper {
 
     Integer updateByPrimaryKey(Order record);
 
-    Integer selectByUnprocessedOrder();
+    Integer updateByShippingState(Order record);
+
 }

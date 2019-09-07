@@ -34,13 +34,6 @@ public class LogServiceImpl implements ILogService {
     @Resource
     private LogMapper logMapper;
 
-    @Override
-    @Transactional
-    public void deleteLogs(String[] logIds) {
-//        List<String> list = Arrays.asList(logIds);
-//        baseMapper.deleteBatchIds(list);
-    }
-
 
     @Override
     public void saveLog(ProceedingJoinPoint point, LogWithBlobs log) throws JsonProcessingException {

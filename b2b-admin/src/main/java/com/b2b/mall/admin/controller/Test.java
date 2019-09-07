@@ -41,4 +41,9 @@ private UserRoleKeyMapper userRoleKeyMapper;
         return String.valueOf(userMapper.selectRoleIdByBiz(user.getId()));
     }
 
+    //TODO 商城前台非付款的 不能转移到发货管理，付款成功后生成order_shiping表
+    //TODO  还有退款的。
+
+    //TODO 前台拍下。生成order。order_item表
+
 }

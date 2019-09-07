@@ -7,6 +7,7 @@ import com.b2b.mall.db.mapper.LoginLogMapper;
 import com.b2b.mall.db.model.LogWithBlobs;
 import com.b2b.mall.db.model.LoginLog;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.sql.SQLException;
@@ -34,6 +35,7 @@ public class JobServiceImpl implements JobService {
      @param  * @param
      *@reutn void
     */
+    @Transactional
     @Override
     public void delBeforeLog() {
        try{
@@ -45,6 +47,7 @@ public class JobServiceImpl implements JobService {
        }
     }
 
+    @Transactional
     @Override
     public List<?> selBeforeLog() {
         List<LoginLog> loginLogs = loginLogMapper.selBeforeData(DateUtil.dateBeforeMoth());
@@ -56,6 +59,7 @@ public class JobServiceImpl implements JobService {
         return loginLogs;
     }
 
+    @Transactional
     @Override
     public void delBeforeOpLog() {
         try{

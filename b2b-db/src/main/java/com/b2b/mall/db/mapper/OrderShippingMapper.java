@@ -9,6 +9,8 @@ import java.util.List;
 @Mapper
 public interface OrderShippingMapper {
 
+    int count();
+
     int deleteByPrimaryKey(String orderId);
 
     int insert(OrderShipping record);

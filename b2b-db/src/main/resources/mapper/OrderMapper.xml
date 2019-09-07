@@ -46,6 +46,14 @@
         set refundStatus = #{refundStatus,jdbcType=INTEGER}
         where order_id = #{orderId,jdbcType=VARCHAR}
     </update>
+    <update id="updateByShippingState" parameterType="com.b2b.mall.db.model.Order">
+        update tb_order
+        set status =  #{status,jdbcType=INTEGER},
+        consign_time = #{consignTime,jdbcType=TIMESTAMP},
+         shipping_name = #{shippingName,jdbcType=VARCHAR},
+         shipping_code = #{shippingCode,jdbcType=VARCHAR}
+        where order_id = #{orderId,jdbcType=VARCHAR}
+    </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select order_id, payment, payment_type, post_fee, status, create_time, update_time,
         payment_time, consign_time, end_time, close_time, shipping_name, shipping_code, user_id,
@@ -53,10 +61,7 @@
         from tb_order
         where order_id = #{orderId,jdbcType=VARCHAR}
     </select>
-    <select id="selectByUnprocessedOrder"  resultType="java.lang.Integer">
-        select count(*) from tb_order where status =3
-    </select>
-    <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select order_id, payment, payment_type, post_fee, status, create_time, update_time,
         payment_time, consign_time, end_time, close_time, shipping_name, shipping_code, user_id,
         buyer_message, buyer_nick, buyer_rate

@@ -728,7 +728,7 @@ CREATE TABLE `tb_order` (
   KEY `create_time` (`create_time`) USING BTREE,
   KEY `buyer_nick` (`buyer_nick`) USING BTREE,
   KEY `status` (`status`) USING BTREE,
-  KEY `paymentb_type` (`paymentb_type`) USING BTREE
+  KEY `payment_type` (`payment_type`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT = '订单表';
 
 -- ----------------------------

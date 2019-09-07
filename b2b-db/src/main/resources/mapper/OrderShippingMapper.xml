@@ -18,6 +18,9 @@
     delete from tb_order_shipping
     where order_id = #{orderId,jdbcType=VARCHAR}
   </delete>
+    <select id="count"  resultType="java.lang.Integer">
+        select count(*) from tb_order_shipping
+    </select>
     <insert id="insert" parameterType="com.b2b.mall.db.model.OrderShipping">
     insert into tb_order_shipping (order_id, receiver_name, receiver_phone, 
       receiver_mobile, receiver_state, receiver_city, 
@@ -43,9 +46,7 @@
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select order_id, receiver_name, receiver_phone, receiver_mobile, receiver_state, 
-    receiver_city, receiver_district, receiver_address, receiver_zip, created, updated
-    from tb_order_shipping
+    select *  from tb_order_shipping
     where order_id = #{orderId,jdbcType=VARCHAR}
   </select>
     <select id="selectAll" resultMap="BaseResultMap">

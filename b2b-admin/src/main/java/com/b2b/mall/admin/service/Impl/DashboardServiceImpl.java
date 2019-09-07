@@ -6,6 +6,7 @@ import com.b2b.mall.common.redis.KeyPrefix.DashboardKey;
 import com.b2b.mall.common.redis.RedisManager;
 import com.b2b.mall.common.util.RunnableThreadWebCount;
 import com.b2b.mall.db.mapper.OrderMapper;
+import com.b2b.mall.db.mapper.OrderShippingMapper;
 import com.b2b.mall.db.model.Order;
 import com.b2b.mall.db.model.Stats;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class DashboardServiceImpl implements DashboardService {
     @Resource
     private OrderMapper orderMapper;
 
+    @Resource
+    private OrderShippingMapper orderShippingMapper;
     @Resource
     private RedisManager redisManager;
 
@@ -136,7 +139,7 @@ public class DashboardServiceImpl implements DashboardService {
             data3.add(orderSum);
         }
 
-        httpSession.setAttribute("order", orderMapper.selectByUnprocessedOrder());
+        httpSession.setAttribute("order", orderShippingMapper.count());
         model.addAttribute("data2", data2);
         model.addAttribute("data3", data3);
 

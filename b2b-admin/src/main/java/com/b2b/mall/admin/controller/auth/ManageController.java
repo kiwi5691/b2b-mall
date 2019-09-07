@@ -37,15 +37,10 @@ import java.util.List;
 @Controller
 public class ManageController {
 
-
-
     @Resource
     private UserService userService;
-
     @Resource
     private AuthService authService;
-
-
 
     @Log("打开个人资料修改")
     @GetMapping("/user/userManage")

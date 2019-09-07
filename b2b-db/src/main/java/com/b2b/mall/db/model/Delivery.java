@@ -2,8 +2,10 @@ package com.b2b.mall.db.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class Delivery {
+public class Delivery implements Serializable {
 
     private Integer id;
 

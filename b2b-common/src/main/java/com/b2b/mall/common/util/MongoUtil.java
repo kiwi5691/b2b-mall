@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class MongoUtil {
 
-    String dbName = "jesper";
+    String dbName = "kiwi";
     String collectionName = "myimage";
 
     private static class MongoConnectionHolder {
@@ -102,7 +102,6 @@ public class MongoUtil {
      * @param ids
 
      * @MethodName    : deleteFileByIds
-     * @Description    : TODO
      */
     public void batchDeleteFileByIds(String[] ids) {
         try {
@@ -155,7 +154,6 @@ public class MongoUtil {
      *
      * @return
      * @MethodName    : getAllFile
-     * @Description    : TODO
      */
     public List<GridFSDBFile> getAllFile() {
         List<GridFSDBFile> gridFSDBFileList = null;
