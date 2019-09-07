@@ -12,6 +12,7 @@ public interface UserMapper {
 
     User selectByNameAndPwd(User user);
 
+
     int insert(User user);
 
     int update(User user);
@@ -27,6 +28,8 @@ public interface UserMapper {
     String selectPasswordByName(User user);
 
     User selectAllByName(String userName);
+
+    Integer selectRoleIdByBiz(Integer integer);
 
     User selectById(String userName);
 }

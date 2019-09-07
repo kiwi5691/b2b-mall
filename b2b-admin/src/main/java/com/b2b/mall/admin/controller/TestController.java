@@ -20,27 +20,7 @@ import java.util.List;
  */
 @RestController
 public class TestController {
-    @Autowired
-    private JobService logService;
 
-    @Autowired
-    private ILoginLogService loginLogService;
 
-    @Log("打开登录日志")
-    @RequestMapping("/loginLog")
-    public List<?> loginLog(LoginLog loginLog,Model model) {
-        return loginLogService.findLoginLogs(loginLog,0,0,0,model);
-    }
 
-    @RequestMapping("/test")
-    public List<?> testlogin(){
-
-        return logService.selBeforeLog();
-    }
-
-    @RequestMapping("/testOp")
-    public List<?> testop(){
-
-        return logService.selBeforeOpLog();
-    }
 }

@@ -18,6 +18,13 @@
       SELECT * from tb_user  where userName = #{userName, jdbcType=VARCHAR} and password = #{password, jdbcType=VARCHAR} and state = 1
   </select>
 
+
+    <select id="selectRoleIdByBiz" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select r.id from tb_role r
+        left join  tb_user t on t.id = #{userId,jdbcType=INTEGER}
+        where  t.business = r.role_name
+    </select>
+
     <select id="selectAllByName" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT * from tb_user  where userName = #{userName, jdbcType=VARCHAR}
     </select>
@@ -44,7 +51,7 @@
 
     <insert id="insert" parameterType="com.b2b.mall.db.model.User">
         INSERT INTO tb_user (id, userName, password, realName, business, email, headPicture, addDate, updateDate, state)
-        VALUES   (null, #{userName, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR}, null, null, #{email, jdbcType=VARCHAR}, null, #{addDate, jdbcType=DATE}, #{updateDate, jdbcType=TIMESTAMP}, 1)
+        VALUES   (null, #{userName, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR}, #{realName, jdbcType=VARCHAR}, #{business, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR}, null, #{addDate, jdbcType=DATE}, #{updateDate, jdbcType=TIMESTAMP}, 1)
     </insert>
 
     <update id="update" parameterType="com.b2b.mall.db.model.User">

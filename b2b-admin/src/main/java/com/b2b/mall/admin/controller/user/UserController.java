@@ -3,6 +3,7 @@ package com.b2b.mall.admin.controller.user;
 import com.b2b.mall.admin.annotation.Log;
 import com.b2b.mall.common.service.AuthService;
 import com.b2b.mall.common.service.ILoginLogService;
+import com.b2b.mall.common.service.UserService;
 import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.*;
 import com.b2b.mall.db.model.*;
@@ -36,6 +37,8 @@ public class UserController {
 
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
+    @Resource
+    private UserService userService;
     @Resource
     private UserMapper userMapper;
 
@@ -182,16 +185,11 @@ public class UserController {
     @PostMapping("/user/register")
     public String registerPost(User user, Model model) {
         try {
+//TODO 修改邮件，修改bussi 防止null报错
             userMapper.selectIsName(user);
             model.addAttribute("error", "该账号已存在！");
         } catch (Exception e) {
-            String pwd=user.getPassword();
-            user.setPassword(MD5Util.encrypt(user.getUserName(), pwd));
-            Date date = new Date();
-            user.setAddDate(date);
-            user.setUpdateDate(date);
-            userMapper.insert(user);
-            model.addAttribute("error", "恭喜您，注册成功！");
+           userService.register(model,user);
             return "user/login";
         }
         return "user/register";

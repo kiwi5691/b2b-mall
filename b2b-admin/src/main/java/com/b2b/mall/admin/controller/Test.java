@@ -1,8 +1,15 @@
 package com.b2b.mall.admin.controller;
 
+import com.b2b.mall.db.mapper.UserMapper;
+import com.b2b.mall.db.mapper.UserRoleKeyMapper;
 import com.b2b.mall.db.model.LogWithBlobs;
+import com.b2b.mall.db.model.User;
+import com.b2b.mall.db.model.UserRoleKey;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -15,21 +22,23 @@ import java.util.List;
 @RestController
 public class Test {
 
+@Autowired
+private UserMapper userMapper;
+@Autowired
+private UserRoleKeyMapper userRoleKeyMapper;
 
-    List<LogWithBlobs> logWithBlobes;
+    @RequestMapping("/test")
+    public String TestfindOpLogs(User user){
 
-    @GetMapping("/test")
-    public String TestfindOpLogs(){
+        user.setId(23);
+        log.info("id is"+userMapper.selectRoleIdByBiz(user.getId()));
 
-//        LogWithBlobs logWithBlobs = new LogWithBlobs();
-//        logWithBlobs.setStart(5);
-//        logWithBlobs.setEnd(5);
-//
-//        logWithBlobes = logMapper.list(logWithBlobs);
-//
-//
-//        logWithBlobes.forEach(l->System.out.println(l.toString()));
-        return "ficl";
+        UserRoleKey userRoleKey=new UserRoleKey();
+        userRoleKey.setRoleId(userMapper.selectRoleIdByBiz(user.getId()));
+        userRoleKey.setUserId(user.getId());
+        userRoleKeyMapper.insert(userRoleKey);
+
+        return String.valueOf(userMapper.selectRoleIdByBiz(user.getId()));
     }
 
 }

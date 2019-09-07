@@ -13,4 +13,5 @@ import javax.servlet.http.HttpSession;
 public interface UserService {
     User selectAllByName(String userName);
     User userManagePost(Model model, HttpServletRequest request, User user, HttpSession httpSession);
+    int register(Model model,User user);
 }

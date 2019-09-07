@@ -10,10 +10,8 @@ public interface UserRoleKeyMapper {
     int insert(UserRoleKey record);
 
     int insertSelective(UserRoleKey record);
-    /**
-     * 根据用户获取用户角色中间表数据
-     * @param userId
-     * @return
-     */
+
+    int updateUserId(UserRoleKey record);
+
     List<UserRoleKey> findByUserId(int userId);
 }

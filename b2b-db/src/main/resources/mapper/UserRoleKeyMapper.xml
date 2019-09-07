@@ -14,6 +14,11 @@
     insert into tb_user_role (user_id, role_id)
     values (#{userId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER})
   </insert>
+
+
+  <update id="updateUserId" parameterType="com.b2b.mall.db.model.UserRoleKey">
+    update  tb_user_role set role_id= #{roleId,jdbcType=INTEGER} where user_Id=  #{userId,jdbcType=INTEGER}
+  </update>
   <insert id="insertSelective" parameterType="com.b2b.mall.db.model.UserRoleKey">
     insert into tb_user_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
