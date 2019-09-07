@@ -19,6 +19,10 @@
     <link th:href="@{/css/plugins/summernote/summernote.css}" rel="stylesheet" />
     <link th:href="@{/css/plugins/summernote/summernote-bs3.css}" rel="stylesheet" />
 
+
+    <!-- Sweet Alert -->
+    <link th:href="@{/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
+
 </head>
 
 <body>
@@ -103,7 +107,7 @@
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
-                                        <button id="submitButton" class="btn btn-primary" type="button">&nbsp;&nbsp;&nbsp;&nbsp;提&nbsp;&nbsp;&nbsp;&nbsp;交&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                                        <button  class="btn btn-primary" style="pointer-events: none; " type="text">不给修改</button>
                                     </div>
                                 </div>
                             </form>
@@ -113,8 +117,8 @@
             </div>
 
         </div>
-        <div class="footer" th:include="footer :: copyright"></div>
-    </div>
+<div class="footer" th:include="footer :: copyright"></div>
+</div>
 </div>
 
 <!-- Mainly scripts -->
@@ -143,5 +147,20 @@
 
 
 </body>
+<!-- Sweet alert -->
+<script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}"></script>
 
+
+<script th:inline="javascript">
+    var error = [[${error}]];
+    $(document).ready(function () {
+        if(error!=null){
+            swal({
+                title : "温馨提示",
+                text : error
+            });
+        }
+    });
+
+</script>
 </html>

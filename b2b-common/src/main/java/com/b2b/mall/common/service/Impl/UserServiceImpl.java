@@ -1,6 +1,7 @@
 package com.b2b.mall.common.service.Impl;
 
 import com.b2b.mall.common.service.UserService;
+import com.b2b.mall.common.util.BaseHTMLStringCase;
 import com.b2b.mall.common.util.MD5Util;
 import com.b2b.mall.db.mapper.UserMapper;
 import com.b2b.mall.db.mapper.UserRoleKeyMapper;
@@ -34,11 +35,22 @@ public class UserServiceImpl  implements UserService {
     }
 
     @Override
-    public User userManagePost(Model model, HttpServletRequest request, User user, HttpSession httpSession) {
+    public void userManagePost(Model model, User user) {
 
+        log.info(user.toString());
 
-        return null;
-        //TODO 添加pOST改值
+        user.setState(BaseHTMLStringCase.lockCheckToInt(user.getStateStr()));
+        log.info("temp state"+user.getStateStr()+"temp int"+user.getState());
+        userMapper.update(user);
+        Integer roleId=0;
+        //插入rolekey表
+        roleId =userMapper.selectRoleIdByBiz(userMapper.selectById(user.getUserName()).getId());
+        log.info("roId is"+roleId);
+
+        UserRoleKey userRoleKey=new UserRoleKey();
+        userRoleKey.setRoleId(roleId);
+        userRoleKey.setUserId(userMapper.selectById(user.getUserName()).getId());
+        userRoleKeyMapper.updateUserId(userRoleKey);
     }
 
     @Override

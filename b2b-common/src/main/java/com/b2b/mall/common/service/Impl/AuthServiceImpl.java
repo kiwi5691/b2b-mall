@@ -1,16 +1,19 @@
 package com.b2b.mall.common.service.Impl;
 
 
+import com.b2b.mall.common.service.UserService;
+import com.b2b.mall.common.util.BaseHTMLStringCase;
+import com.b2b.mall.common.util.DateUtil;
 import com.b2b.mall.db.entity.PermissionVO;
 import com.b2b.mall.db.entity.RoleVO;
 import com.b2b.mall.common.service.AuthService;
 import com.b2b.mall.db.mapper.PermissionMapper;
 import com.b2b.mall.db.mapper.RoleMapper;
 import com.b2b.mall.db.mapper.RolePermissionKeyMapper;
-import com.b2b.mall.db.model.ItemCategory;
-import com.b2b.mall.db.model.Permission;
-import com.b2b.mall.db.model.Role;
-import com.b2b.mall.db.model.RolePermissionKey;
+import com.b2b.mall.db.mapper.UserMapper;
+import com.b2b.mall.db.model.*;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +24,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.ui.Model;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,8 +42,20 @@ public class AuthServiceImpl implements AuthService {
 	private PermissionMapper permissionMapper;
 	@Autowired
 	private RoleMapper roleMapper;
+
+
+	@Autowired
+	private HttpSession httpSession;
+
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private UserMapper userMapper;
+
 	@Autowired
 	private RolePermissionKeyMapper rolePermissionMapper;
+
 	@Override
 	public int addPermission(Permission permission) {
 		return this.permissionMapper.insert(permission);
@@ -58,21 +75,80 @@ public class AuthServiceImpl implements AuthService {
 	}
 
 	@Override
-	public void permissionEditPost(Model model, HttpServletRequest request, Permission permission, HttpSession httpSession) {
-
-
-		//TODO 添加Permission
+	public void userManageGet(Model model) {
+		Subject subject = SecurityUtils.getSubject();
+		User user = (User) subject.getPrincipal();
+		User user1 = userMapper.selectByNameAndPwd(user);
+		model.addAttribute("user", user1);
 	}
 
-	@Override public int updatePerm(Permission permission) {
-		return this.permissionMapper.updateByPrimaryKeySelective(permission);
+	@Override
+	public void userManagePost(Model model, User user, HttpSession httpSession) {
+		Date date = new Date();
+		user.setUpdateDate(date);
+		int i = userMapper.update(user);
+		httpSession.setAttribute("user",user);
 	}
 
-	@Override public Permission getPermission(int id) {
+	@Override
+	public void managerManangementGet(Model model) {
+		List<User> userList = null;
+		userList = userMapper.selectAll();
+		userList.forEach(user -> {
+			user.setAddDateStr(DateUtil.preciseDate(user.getAddDate()));
+			user.setUpDateStr(DateUtil.preciseDate(user.getUpdateDate()));
+			user.setStateStr(BaseHTMLStringCase.lockCheck(String.valueOf(user.getState())));
+		});
+		model.addAttribute("userList",userList);
+	}
+
+
+	@Override
+	public void updatePerm(Permission permission) {
+		 this.permissionMapper.updateByPrimaryKeySelective(permission);
+	}
+
+	@Override
+	public void managerEdit(Model model, User user) {
+
+		User user1=null;
+		user1=userMapper.selectById(user.getUserName());
+		user1.setAddDateStr(DateUtil.preciseDate(user1.getAddDate()));
+		user1.setUpDateStr(DateUtil.preciseDate(user1.getUpdateDate()));
+		user1.setStateStr(BaseHTMLStringCase.lockCheck(String.valueOf(user1.getState())));
+		model.addAttribute("user",user1);
+
+	}
+
+	@Override
+	public void userSearchGet(Model model) {
+
+		List<Permission> permissionList = null;
+		Subject subject = SecurityUtils.getSubject();
+		User user = (User) subject.getPrincipal();
+
+		logger.info("id is"+user.getId());
+		List<Role> roles = this.getRoleByUser(user.getId());
+
+		if (null != roles && roles.size() > 0) {
+			for (Role role : roles) {
+				logger.info("role is"+ role.getCode());
+				httpSession.setAttribute("role", role.getRoleName());
+				permissionList = this.findAllPermsByRoleId(role
+						.getId());
+			}
+		}
+
+		model.addAttribute("permissionList", permissionList);
+	}
+
+	@Override
+	public Permission getPermission(int id) {
 		return this.permissionMapper.selectByPrimaryKey(id);
 	}
 
-	@Override public String delPermission(int id) {
+	@Override
+	public String delPermission(int id) {
 		//查看该权限是否有子节点，如果有，先删除子节点
 		List<Permission> childPerm = this.permissionMapper.findChildPerm(id);
 		if(null != childPerm && childPerm.size()>0){

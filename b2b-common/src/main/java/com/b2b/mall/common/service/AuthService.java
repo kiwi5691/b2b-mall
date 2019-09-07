@@ -21,10 +21,19 @@ public interface AuthService {
 	List<Permission> permList();
 
 	void permissionEditGet(Model model, Permission permission);
-	void permissionEditPost(Model model, HttpServletRequest request, Permission permission, HttpSession httpSession);
 
 
-	int updatePerm(Permission permission);
+	void userManageGet(Model model);
+
+	void userManagePost(Model model, User user, HttpSession httpSession);
+
+	void managerManangementGet(Model model);
+
+	void updatePerm(Permission permission);
+
+	void managerEdit(Model model,User user);
+
+	void userSearchGet(Model model);
 
 	Permission getPermission(int id);
 

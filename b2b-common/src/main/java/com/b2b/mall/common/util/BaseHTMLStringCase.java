@@ -58,6 +58,15 @@ public class BaseHTMLStringCase {
         }
     }
 
+
+    public static Integer lockCheckToInt(String number){
+        if(number.trim().equals("被冻结")){
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
     public static String lockCheck(String number){
         if(number.equals("1")){
             return "无";

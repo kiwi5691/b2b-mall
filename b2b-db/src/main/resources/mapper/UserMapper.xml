@@ -14,6 +14,18 @@
         <result column="state" property="state" jdbcType="TINYINT"/>
     </resultMap>
 
+    <parameterMap  id="BaseParamtMap" type="com.b2b.mall.db.model.User">
+        <parameter resultMap="userName" property="userName" jdbcType="VARCHAR"/>
+        <parameter resultMap="password" property="password" jdbcType="VARCHAR"/>
+        <parameter resultMap="realName" property="realName" jdbcType="VARCHAR"/>
+        <parameter resultMap="business" property="business" jdbcType="VARCHAR"/>
+        <parameter resultMap="email" property="email" jdbcType="VARCHAR"/>
+        <parameter resultMap="headPicture" property="headPicture" jdbcType="VARCHAR"/>
+        <parameter resultMap="addDate" property="addDate" jdbcType="DATE"/>
+        <parameter resultMap="updateDate" property="updateDate" jdbcType="TIMESTAMP"/>
+        <parameter resultMap="state" property="state" jdbcType="TINYINT"/>
+    </parameterMap>
+
     <select id="selectByNameAndPwd" resultMap="BaseResultMap" parameterType="java.lang.String">
       SELECT * from tb_user  where userName = #{userName, jdbcType=VARCHAR} and password = #{password, jdbcType=VARCHAR} and state = 1
   </select>
@@ -54,13 +66,26 @@
         VALUES   (null, #{userName, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR}, #{realName, jdbcType=VARCHAR}, #{business, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR}, null, #{addDate, jdbcType=DATE}, #{updateDate, jdbcType=TIMESTAMP}, 1)
     </insert>
 
-    <update id="update" parameterType="com.b2b.mall.db.model.User">
+    <update id="update" parameterMap="BaseParamtMap">
         UPDATE tb_user SET
+        <if test="password != null" >
         password = #{password, jdbcType=VARCHAR},
+        </if>
+        <if test="email != null" >
         email = #{email, jdbcType=VARCHAR},
+        </if>
+        <if test="realName != null" >
         realName = #{realName, jdbcType=VARCHAR},
+        </if>
+        <if test="business != null" >
         business = #{business, jdbcType=VARCHAR},
+        </if>
+        <if test="updateDate != null" >
         updateDate = #{updateDate, jdbcType=TIMESTAMP}
+        </if>
+        <if test="state != null" >
+            state = #{state, jdbcType=TINYINT}
+        </if>
         WHERE   userName = #{userName, jdbcType=VARCHAR}
     </update>
 
