@@ -17,6 +17,8 @@ public interface UserMapper {
 
     int update(User user);
 
+    int updateSatueLocked(Integer integer);
+
     int selectIsName(User user);
 
     List<User> selectAll();
@@ -32,4 +34,6 @@ public interface UserMapper {
     Integer selectRoleIdByBiz(Integer integer);
 
     User selectById(String userName);
+
+    User selectByPrimaryKey(Integer id);
 }

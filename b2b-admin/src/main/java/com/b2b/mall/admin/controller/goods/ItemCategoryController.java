@@ -33,7 +33,6 @@ public class ItemCategoryController {
         this.itemCategoryService = itemCategoryService;
     }
 
-    @Log("打开商品分类")
     @RequestMapping("/user/itemCategoryManage_{pageCurrent}_{pageSize}_{pageCount}")
     public String itemCategoryManage(ItemCategory itemCategory,
                                      @PathVariable Integer pageCurrent,

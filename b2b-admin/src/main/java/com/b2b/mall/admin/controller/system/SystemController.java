@@ -24,7 +24,6 @@ public class SystemController {
 
     @Autowired
     private OpLogService opLogService;
-    @Log("打开登录日志")
     @RequestMapping("/user/loginLog_{pageCurrent}_{pageSize}_{pageCount}")
     public String loginLog(LoginLog loginLog, @PathVariable Integer pageCurrent,
                            @PathVariable Integer pageSize,

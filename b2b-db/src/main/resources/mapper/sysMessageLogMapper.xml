@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.b2b.mall.db.mapper.sysMessageLogMapper">
+  <resultMap id="BaseResultMap" type="com.b2b.mall.db.model.sysMessageLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rec_id" jdbcType="VARCHAR" property="recId" />
+    <result column="send_id" jdbcType="VARCHAR" property="sendId" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="message_id" jdbcType="INTEGER" property="messageId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.b2b.mall.db.model.sysMessageLog">
+    <result column="group_id" jdbcType="VARCHAR" property="groupId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, rec_id, send_id, email, message_id, status
+  </sql>
+  <sql id="Blob_Column_List">
+    group_id
+  </sql>
+  <select id="getRecvId" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_sys_messagelog
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_sys_messagelog
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_sys_messagelog
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.b2b.mall.db.model.sysMessageLog">
+    insert into tb_sys_messagelog (id, rec_id, send_id, 
+      email, message_id, status, 
+      group_id)
+    values (#{id,jdbcType=BIGINT}, #{recId,jdbcType=VARCHAR}, #{sendId,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{messageId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{groupId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.b2b.mall.db.model.sysMessageLog">
+    insert into tb_sys_messagelog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="recId != null">
+        rec_id,
+      </if>
+      <if test="sendId != null">
+        send_id,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="messageId != null">
+        message_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="recId != null">
+        #{recId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null">
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="messageId != null">
+        #{messageId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.b2b.mall.db.model.sysMessageLog">
+    update tb_sys_messagelog
+    <set>
+      <if test="recId != null">
+        rec_id = #{recId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null">
+        send_id = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="messageId != null">
+        message_id = #{messageId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.b2b.mall.db.model.sysMessageLog">
+    update tb_sys_messagelog
+    set rec_id = #{recId,jdbcType=VARCHAR},
+      send_id = #{sendId,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      message_id = #{messageId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      group_id = #{groupId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.b2b.mall.db.model.sysMessageLog">
+    update tb_sys_messagelog
+    set rec_id = #{recId,jdbcType=VARCHAR},
+      send_id = #{sendId,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      message_id = #{messageId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

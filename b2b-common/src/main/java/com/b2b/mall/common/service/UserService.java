@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * @Auther:kiwi
@@ -13,5 +14,6 @@ import javax.servlet.http.HttpSession;
 public interface UserService {
     User selectAllByName(String userName);
     void userManagePost(Model model, User user);
-    int register(Model model,User user);
+    int register(Model model,User user) throws IOException;
+    void checkCode(String code);
 }

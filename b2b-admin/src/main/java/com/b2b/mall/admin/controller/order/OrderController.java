@@ -75,7 +75,6 @@ public class OrderController {
      * @param model
      * @return
      */
-    @Log("打开退款管理")
     @RequestMapping("/user/orderRefund_{pageCurrent}_{pageSize}_{pageCount}")
     public String refundManage(Order order, @PathVariable Integer pageCurrent,
                                @PathVariable Integer pageSize,

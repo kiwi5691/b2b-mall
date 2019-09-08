@@ -28,7 +28,6 @@ public class StockManage {
         this.stockService = stockService;
     }
 
-    @Log("打开库存管理")
     @RequestMapping("/user/stockManage_{pageCurrent}_{pageSize}_{pageCount}")
     public String stockManage(Item item, @PathVariable Integer pageCurrent,
                               @PathVariable Integer pageSize,

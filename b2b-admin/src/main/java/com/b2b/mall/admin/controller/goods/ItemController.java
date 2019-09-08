@@ -48,7 +48,6 @@ public class ItemController {
 
 
 
-    @Log("打开商品管理")
     @RequestMapping("/user/itemManage_{pageCurrent}_{pageSize}_{pageCount}")
     public String itemManage(Item item, @PathVariable Integer pageCurrent,
                              @PathVariable Integer pageSize,
@@ -66,7 +65,6 @@ public class ItemController {
 
     String imageName = null;
 
-    @Log("打开修改商品")
     @GetMapping("/user/itemEdit")
     public String itemEditGet(Model model, Item item) {
         itemService.itemEditGet(model,item);

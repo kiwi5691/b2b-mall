@@ -40,6 +40,7 @@ public class ShippingController {
 
     @Log("打开发货")
     @GetMapping("/user/sendOff")
+    @RequiresPermissions(value ="shippingManage")
     public String sendOff(Model model, OrderShipping orderShipping) {
         shippingService.sendOffGet(model,orderShipping);
         return "order/sendOff";
@@ -47,6 +48,7 @@ public class ShippingController {
 
     @Log("提交发货")
     @PostMapping("/user/sendOff")
+    @RequiresPermissions(value ="shippingManage")
     public String sendOffPost(Model model,OrderShipping orderShipping,String delieryCompes,String sendOffId){
 
         shippingService.sendOffPost(model, orderShipping, delieryCompes, sendOffId);

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.b2b.mall.db.mapper.sysMessageMapper">
+  <resultMap id="BaseResultMap" type="com.b2b.mall.db.model.sysMessage">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="msg_type_id" jdbcType="VARCHAR" property="msgTypeId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="msg_type" jdbcType="INTEGER" property="msgType" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="post_time" jdbcType="TIMESTAMP" property="postTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+</resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.b2b.mall.db.model.sysMessage">
+    <result column="message_text" jdbcType="VARCHAR" property="messageText" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, msg_type_id, title, type, msg_type, start_time, post_time, end_time
+  </sql>
+  <sql id="Blob_Column_List">
+    message_text
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_sys_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="checkCode" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_sys_message
+    where message_text = #{message_text,jdbcType=VARCHAR}
+  </select>
+  <select id="getIdByMessageId" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select id  from tb_sys_message
+    where msg_type_id = #{msg_type_id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_sys_message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.b2b.mall.db.model.sysMessage">
+    insert into tb_sys_message (id, msg_type_id, title, 
+      type, msg_type, start_time, 
+      post_time, end_time, message_text
+      )
+    values (#{id,jdbcType=INTEGER}, #{msgTypeId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{msgType,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{postTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{messageText,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.b2b.mall.db.model.sysMessage">
+    insert into tb_sys_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="msgTypeId != null">
+        msg_type_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="msgType != null">
+        msg_type,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="postTime != null">
+        post_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="messageText != null">
+        message_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="msgTypeId != null">
+        #{msgTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="msgType != null">
+        #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postTime != null">
+        #{postTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageText != null">
+        #{messageText,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.b2b.mall.db.model.sysMessage">
+    update tb_sys_message
+    <set>
+      <if test="msgTypeId != null">
+        msg_type_id = #{msgTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="msgType != null">
+        msg_type = #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postTime != null">
+        post_time = #{postTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageText != null">
+        message_text = #{messageText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.b2b.mall.db.model.sysMessage">
+    update tb_sys_message
+    set msg_type_id = #{msgTypeId,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      msg_type = #{msgType,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      post_time = #{postTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      message_text = #{messageText,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.b2b.mall.db.model.sysMessage">
+    update tb_sys_message
+    set msg_type_id = #{msgTypeId,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      msg_type = #{msgType,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      post_time = #{postTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -30,7 +30,6 @@ public class ReItemController {
         this.reltemService = reltemService;
     }
 
-    @Log("打开回收管理")
     @RequestMapping("/user/recoverManage_{pageCurrent}_{pageSize}_{pageCount}")
     public String itemManage(ReItem reItem, @PathVariable Integer pageCurrent,
                              @PathVariable Integer pageSize,

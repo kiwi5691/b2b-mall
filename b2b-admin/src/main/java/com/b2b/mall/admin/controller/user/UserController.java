@@ -1,6 +1,7 @@
 package com.b2b.mall.admin.controller.user;
 
 import com.b2b.mall.admin.annotation.Log;
+import com.b2b.mall.common.jms.EmailService;
 import com.b2b.mall.common.service.AuthService;
 import com.b2b.mall.common.service.ILoginLogService;
 import com.b2b.mall.common.service.UserService;
@@ -22,10 +23,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -37,6 +40,8 @@ public class UserController {
 
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
+    @Resource
+    private EmailService emailService;
     @Resource
     private UserService userService;
     @Resource
@@ -175,17 +180,13 @@ public class UserController {
         return "user/register";
     }
 
-    /**
-     * 注册
-     *
-     * @param model
-     * @return
-     */
+
+
+
     @Log("提交注册")
     @PostMapping("/user/register")
-    public String registerPost(User user, Model model) {
+    public String registerPost(User user, Model model) throws IOException {
         try {
-//TODO 修改邮件，修改bussi 防止null报错
             userMapper.selectIsName(user);
             model.addAttribute("error", "该账号已存在！");
         } catch (Exception e) {
@@ -195,13 +196,14 @@ public class UserController {
         return "user/register";
     }
 
-    /**
-     * 登录跳转
-     *
-     * @param model
-     * @return
-     */
-    @Log("打开忘记密码")
+
+
+    @RequestMapping(value = "/checkCode")
+    public String checkCode(String code){
+        userService.checkCode(code);
+        return "redirect:user/login";
+    }
+
     @GetMapping("/user/forget")
     public String forgetGet(Model model) {
         return "user/forget";

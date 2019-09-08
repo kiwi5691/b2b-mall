@@ -30,8 +30,8 @@ public class UUIDUtils {
         }
 
 
-     //根据日期生词订单号
-     public static synchronized String getOrderId(){
+     //根据日期生成id
+     public static synchronized String getIdByDate(){
          Calendar rightNow = Calendar.getInstance();
          StringBuffer sb = new StringBuffer();
          dateFormat.format(rightNow.getTime(), sb, HELPER_POSITION);

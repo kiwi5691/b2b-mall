@@ -45,6 +45,11 @@
         SELECT * from tb_user  where userName = #{userName, jdbcType=VARCHAR}
     </select>
 
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT * from tb_user  where id = #{id, jdbcType=INTEGER}
+    </select>
+
     <select id="selectStatus" resultType="java.lang.Integer" parameterType="java.lang.String">
         SELECT state from tb_user  where userName = #{userName, jdbcType=VARCHAR}
     </select>
@@ -66,6 +71,9 @@
         VALUES   (null, #{userName, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR}, #{realName, jdbcType=VARCHAR}, #{business, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR}, null, #{addDate, jdbcType=DATE}, #{updateDate, jdbcType=TIMESTAMP}, 1)
     </insert>
 
+    <update id="updateSatueLocked" parameterType="java.lang.Integer">
+        UPDATE tb_user SET state = 1 where id = #{id,jdbcType=INTEGER}
+    </update>
     <update id="update" parameterMap="BaseParamtMap">
         UPDATE tb_user SET
         <if test="password != null" >

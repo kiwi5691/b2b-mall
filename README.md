@@ -16,7 +16,7 @@
 #### 项目特点
 - 友好的代码结构及注释，便于阅读及二次开发
 - 实现商城前后台，通过Json和模板进行数据交互
-- 引入RabbitMQ消息队列，用于邮件发送（TODO）
+- 引入ActiveMQ消息队列，用于邮件发送（TODO）
 - 引入redis连接池，高效的的获取实时数据
 - 引入了jExcelApi，导出ExcelA报表
 - 引入了shiro框架，友好的实现权限-角色
@@ -28,8 +28,7 @@
 - 安装Redis服务 (3.0+)
 - 安装 MySQL (5.6+)
 - 安装 mongodb （4.0+）
-- 安装 RabbitMQ （3.7.4）
-- 安装 Erlang (20.3) （安装RabbitMQ还需要Erlang）
+- 安装 ActivetMQ （5.15.9） 其版本和JDK对应
 - 安装 Nginx
 - 安装IDE （IDEA）
 #### 启动顺序

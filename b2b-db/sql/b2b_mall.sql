@@ -1096,6 +1096,40 @@ INSERT INTO `tb_user` VALUES ('6', 'admin', 'admin', '小花', '运营岗', '181
 INSERT INTO `tb_user` VALUES ('7', 'big', 'big', '111111aaa', '111', '1773232392@qq.com', null, '2018-03-30', '2018-04-04', '1');
 INSERT INTO `tb_user` VALUES ('1', 'kiwi', 'kiwi', 'kiwi','超级无敌管理员', '805344479@qq.com', null, '2019-06-14', '2019-06-14', '1');
 
+-- ----------------------------
+-- Table structure for tb_sys_messagelog
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_sys_messagelog`;
+CREATE TABLE `tb_sys_messagelog` (
+  `id` bigint(20) NOT NULL  COMMENT '编号',
+  `rec_id` varchar(45) NOT NULL COMMENT '接受者编号，如为0，则接受者为所有人',
+  `send_id` varchar(255) NOT NULL DEFAULT '0' COMMENT '发送者编号，0：默认为系统',
+  `email` varchar(255) DEFAULT NULL COMMENT '邮箱，无则为空',
+  `group_id` text DEFAULT NULL COMMENT '用户组Id',
+  `message_id` int(20)  DEFAULT NULL COMMENT '消息的编号[foreign key]',
+  `status` int(5) DEFAULT NULL COMMENT '消息的查看状态，0：未读，1：已查看，2：删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT = '消息记录表';
+
+
+-- ----------------------------
+-- Table structure for tb_sys_message
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_sys_message`;
+CREATE TABLE `tb_sys_message` (
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '消息的编号',
+  `msg_type_id` varchar(45) NOT NULL COMMENT '文档Id',
+  `title` varchar(255)  COMMENT '消息标题',
+  `message_text` text DEFAULT NULL COMMENT '消息内容',
+  `type` int(5) DEFAULT NULL COMMENT '消息类型， type类型有[默认]0：Private(私信)、1：Public(公共消息)、2：Global(系统消息)，-1：未知消息',
+  `msg_type` int(5) DEFAULT NULL COMMENT '消息分类，0：注册/忘记密码，1：审核，2：消息，-1：未知分类',
+  `start_time` TIMESTAMP DEFAULT NULL COMMENT '消息生效日期',
+  `post_time` TIMESTAMP DEFAULT NULL COMMENT '消息发送时间',
+  `end_time` TIMESTAMP DEFAULT NULL COMMENT '消息失效日期',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT = '消息内容';
+
+
 
 -- ----------------------------
 -- Table structure for tb_region

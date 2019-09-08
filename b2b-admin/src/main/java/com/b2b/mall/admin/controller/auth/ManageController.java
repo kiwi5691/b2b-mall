@@ -42,7 +42,6 @@ public class ManageController {
     @Resource
     private AuthService authService;
 
-    @Log("打开个人资料修改")
     @GetMapping("/user/userManage")
     public String userManageGet(Model model) {
 
@@ -101,7 +100,6 @@ public class ManageController {
     @PostMapping("/user/userPermissionEdit")
     public String userPermissionEditEditPost(Model model) {
 
-        model.addAttribute("error","不给你修改，反正我readonly了");
         return "redirect:userSearch";
     }
 
