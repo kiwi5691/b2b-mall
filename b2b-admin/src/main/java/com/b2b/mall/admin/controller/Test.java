@@ -1,7 +1,8 @@
 package com.b2b.mall.admin.controller;
 
-import com.b2b.mall.common.jms.EmailService;
+import com.b2b.mall.common.jms.ActiveMQService;
 import com.b2b.mall.common.util.EmailTemplate;
+import com.b2b.mall.common.util.EmailUtil;
 import com.b2b.mall.common.util.UUIDUtils;
 import com.b2b.mall.db.mapper.UserMapper;
 import com.b2b.mall.db.mapper.UserRoleKeyMapper;
@@ -26,17 +27,21 @@ import java.util.List;
 @RestController
 public class Test {
 
+
+
     @Autowired
-    private EmailService emailService;
+    private ActiveMQService activeMQService;
 
     @RequestMapping("/test")
-    public String TestfindOpLogs(User user) throws IOException {
+    public void TestfindOpLogs(User user) throws IOException, InterruptedException {
 
-
-        String temp = UUIDUtils.getIdByDate();
-        log.info("String id is "+ temp);
-        log.info("int is "+Long.parseLong(temp));
-        return "发送邮件";
+//        activeMQService.sendEmail("805344479@qq.com","fuck",EmailTemplate.registerTemplate("11","123"));
+        while(true){
+            Integer l =0;
+            Thread.sleep(1000);
+            activeMQService.textQueue("fuckfuck"+l);
+            l++;
+        }
     }
 
     //TODO 商城前台非付款的 不能转移到发货管理，付款成功后生成order_shiping表

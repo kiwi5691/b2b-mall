@@ -1,11 +1,8 @@
 package com.b2b.mall.common.service.Impl;
 
-import com.b2b.mall.common.jms.EmailService;
+import com.b2b.mall.common.jms.ActiveMQService;
 import com.b2b.mall.common.service.UserService;
-import com.b2b.mall.common.util.BaseHTMLStringCase;
-import com.b2b.mall.common.util.EmailTemplate;
-import com.b2b.mall.common.util.MD5Util;
-import com.b2b.mall.common.util.UUIDUtils;
+import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.UserMapper;
 import com.b2b.mall.db.mapper.UserRoleKeyMapper;
 import com.b2b.mall.db.mapper.sysMessageLogMapper;
@@ -44,9 +41,6 @@ public class UserServiceImpl  implements UserService {
     @Value("${com.mailUrl}")
     private String sendUrl;
 
-    @Resource
-    private EmailService emailService;
-
 
     @Resource
     private sysMessageLogMapper sysMessageLogMapper;
@@ -55,6 +49,12 @@ public class UserServiceImpl  implements UserService {
 
     @Resource
     private UserRoleKeyMapper userRoleKeyMapper;
+
+    @Resource
+    private ActiveMQService activeMQService;
+
+    @Autowired
+    private EmailUtil emailUtil;
 
     @Override
     public User selectAllByName(String userName) {
@@ -132,7 +132,7 @@ public class UserServiceImpl  implements UserService {
         sysMessageLog.setStatus(0);
         sysMessageLogMapper.insert(sysMessageLog);
 
-        emailService.sendEmail(sysMessageLog.getEmail(),"欢迎注册", EmailTemplate.registerTemplate(sendUrl,sysMessage.getMessageText()));
+        activeMQService.sendEmail(sysMessageLog.getEmail(),"欢迎注册", EmailTemplate.registerTemplate(sendUrl,sysMessage.getMessageText()));
         log.info("发送邮件");
 
         model.addAttribute("error", "请访问邮件，点击其中的链接");

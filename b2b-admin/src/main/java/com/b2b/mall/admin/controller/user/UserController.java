@@ -1,7 +1,6 @@
 package com.b2b.mall.admin.controller.user;
 
 import com.b2b.mall.admin.annotation.Log;
-import com.b2b.mall.common.jms.EmailService;
 import com.b2b.mall.common.service.AuthService;
 import com.b2b.mall.common.service.ILoginLogService;
 import com.b2b.mall.common.service.UserService;
@@ -40,8 +39,6 @@ public class UserController {
 
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @Resource
-    private EmailService emailService;
     @Resource
     private UserService userService;
     @Resource
