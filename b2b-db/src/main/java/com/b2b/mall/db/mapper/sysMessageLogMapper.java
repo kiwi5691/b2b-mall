@@ -2,6 +2,8 @@ package com.b2b.mall.db.mapper;
 
 import com.b2b.mall.db.model.sysMessageLog;
 
+import java.util.List;
+
 public interface sysMessageLogMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -11,7 +13,10 @@ public interface sysMessageLogMapper {
 
     sysMessageLog selectByPrimaryKey(Long id);
 
+    List<sysMessageLog> list();
+
     sysMessageLog getRecvId(Long id);
+
 
     int updateByPrimaryKeySelective(sysMessageLog record);
 

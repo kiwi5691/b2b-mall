@@ -40,9 +40,6 @@ public class EmailUtil {
 
     public void sendEmail(String to, String subject, String content) throws Exception {
 
-        log.info("host is" +host);
-        log.info("pwd is" +pwd);
-        log.info("send is" +sender);
         Properties props = new Properties();
 
         props.setProperty("mail.transport.protocol", "smtp");
@@ -74,9 +71,6 @@ public class EmailUtil {
             msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
             // 设置邮件标题
 
-//            helper = new MimeMessageHelper(message,true);
-//
-//            helper.setText(content,true);
             msg.setSubject(subject, "utf-8");
             msg.setContent(content,"text/html;charset=utf-8");
             // 设置显示的发件时间

@@ -26,6 +26,14 @@
     from tb_sys_messagelog
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="list" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_sys_messagelog
+    ORDER BY id desc
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />

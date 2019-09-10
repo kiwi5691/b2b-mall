@@ -54,6 +54,33 @@
       #{postTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{messageText,jdbcType=VARCHAR}
       )
   </insert>
+  <select id="count" resultType="java.lang.Integer" >
+    SELECT count(*) from tb_sys_message ORDER BY startTime
+  </select>
+  <resultMap id="BaseMessageVoMap" type="com.b2b.mall.db.entity.MessageVo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="msg_type_id" jdbcType="VARCHAR" property="msgTypeId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="message_text" jdbcType="VARCHAR" property="messageText" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="msg_type" jdbcType="INTEGER" property="msgType" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="post_time" jdbcType="TIMESTAMP" property="postTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="rec_id" jdbcType="VARCHAR" property="recId" />
+    <result column="send_id" jdbcType="VARCHAR" property="sendId" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="group_id" jdbcType="VARCHAR" property="groupId" />
+  </resultMap>
+<!--  TODO 测试-->
+  <select id="list" resultMap="BaseMessageVoMap" parameterType="com.b2b.mall.db.entity.MessageVo">
+    SELECT id,msg_type_id,title,message_text,type,msg_type,start_time,post_time,end_time,rec_id,send_id,email,status,group_id
+    FROM tb_sys_message
+    JOIN tb_sys_messagelog ON  tb_sys_message.msg_type_id = CAST(tb_sys_messagelog.id as varchar(45))
+    ORDER BY startTime desc
+    limit #{start, jdbcType=INTEGER},#{end, jdbcType=INTEGER}
+  </select>
   <insert id="insertSelective" parameterType="com.b2b.mall.db.model.sysMessage">
     insert into tb_sys_message
     <trim prefix="(" suffix=")" suffixOverrides=",">

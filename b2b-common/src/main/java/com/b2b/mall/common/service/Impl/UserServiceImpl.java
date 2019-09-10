@@ -92,7 +92,6 @@ public class UserServiceImpl  implements UserService {
         user.setUpdateDate(date);
         user.setBusiness("客维员");
         //先冻结住
-        user.setState(0);
         userMapper.insert(user);
         //插入rolekey表
         roleId =userMapper.selectRoleIdByBiz(userMapper.selectById(user.getUserName()).getId());
@@ -122,7 +121,6 @@ public class UserServiceImpl  implements UserService {
         //结束构造
        //开始构造
         Long sysId =Long.parseLong(sysMessage.getMsgTypeId());
-        log.info("id is"+sysId);
         sysMessageLog.setId(sysId);
         sysMessageLog.setMessageId(sysMessageMapper.getIdByMessageId(sysMessage.getMsgTypeId()));
         sysMessageLog.setEmail(user.getEmail());

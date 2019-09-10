@@ -1129,7 +1129,7 @@ CREATE TABLE `tb_sys_message` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT = '消息内容';
 
-
+ALTER TABLE `tb_sys_message` ADD UNIQUE(`msg_type_id`);
 
 -- ----------------------------
 -- Table structure for tb_region

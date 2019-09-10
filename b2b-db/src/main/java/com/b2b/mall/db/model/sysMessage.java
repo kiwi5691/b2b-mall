@@ -2,7 +2,7 @@ package com.b2b.mall.db.model;
 
 import java.util.Date;
 
-public class sysMessage {
+public class sysMessage  extends BaseObject{
     private Integer id;
 
     private String msgTypeId;
@@ -20,6 +20,20 @@ public class sysMessage {
     private Date endTime;
 
     private String messageText;
+
+    public sysMessage(){}
+    public
+    sysMessage(Integer id, String msgTypeId, String title, Integer type, Integer msgType, Date startTime, Date postTime, Date endTime, String messageText) {
+        this.id = id;
+        this.msgTypeId = msgTypeId;
+        this.title = title;
+        this.type = type;
+        this.msgType = msgType;
+        this.startTime = startTime;
+        this.postTime = postTime;
+        this.endTime = endTime;
+        this.messageText = messageText;
+    }
 
     public Integer getId() {
         return id;
