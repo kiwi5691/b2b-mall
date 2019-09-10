@@ -1,6 +1,7 @@
 package com.b2b.mall.admin.service.Impl;
 
 import com.b2b.mall.admin.service.ItemService;
+import com.b2b.mall.common.redis.RedisManager;
 import com.b2b.mall.common.util.*;
 import com.b2b.mall.db.mapper.ItemCategoryMapper;
 import com.b2b.mall.db.mapper.ItemMapper;
@@ -51,6 +52,9 @@ public class ItemServiceImpl implements ItemService {
     @Resource
     private  ResourceLoader resourceLoader;
 
+    @Autowired
+    private RedisManager redisManager;
+
     public static final String ROOT = "src/main/resources/static/img/item/";
 
     MongoUtil mongoUtil = new MongoUtil();
@@ -81,7 +85,16 @@ public class ItemServiceImpl implements ItemService {
         ItemCategory itemCategory = new ItemCategory();
         itemCategory.setStart(0);
         itemCategory.setEnd(Integer.MAX_VALUE);
-        List<ItemCategory> itemCategoryList = itemCategoryMapper.list(itemCategory);
+
+        List<ItemCategory> itemCategoryList = null;
+
+         itemCategoryList=(List<ItemCategory>)redisManager.getList("itemCategoryList");
+
+         if(itemCategoryList==null){
+             itemCategoryList=itemCategoryMapper.list(itemCategory);
+             redisManager.setList("itemCategoryList",itemCategoryList);
+         }
+
         Integer minPrice = item.getMinPrice();
         Integer maxPrice = item.getMaxPrice();
         model.addAttribute("itemCategoryList", itemCategoryList);

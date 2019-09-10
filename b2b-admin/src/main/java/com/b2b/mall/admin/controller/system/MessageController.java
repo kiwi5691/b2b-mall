@@ -25,7 +25,7 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    @GetMapping("/user/loginLog_{pageCurrent}_{pageSize}_{pageCount}")
+    @GetMapping("/user/messageQueue_{pageCurrent}_{pageSize}_{pageCount}")
     public String getMessage(MessageVo messageVo, @PathVariable Integer pageCurrent,
                              @PathVariable Integer pageSize,
                              @PathVariable Integer pageCount,

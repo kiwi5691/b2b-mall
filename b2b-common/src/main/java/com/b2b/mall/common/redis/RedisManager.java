@@ -2,6 +2,7 @@ package com.b2b.mall.common.redis;
 
 import com.alibaba.fastjson.JSON;
 import com.b2b.mall.common.redis.KeyPrefix.KeyPrefix;
+import com.b2b.mall.common.util.SerializeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,38 @@ public class RedisManager {
 
     @Autowired
     JedisPool jedisPool;
+
+
+
+    public void setList(String key ,List<?> list){
+        Jedis jedis = jedisPool.getResource();
+        try {
+            if(list == null || list.size() == 0){
+                jedis.set(key.getBytes(), "".getBytes());
+            }else{//如果list为空,则设置一个空
+                jedis.set(key.getBytes(), SerializeUtil.serializeList(list));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            jedis.close();
+        }
+    }
+
+    /**
+     * 获取List集合
+     * @param key
+     * @return
+     */
+    public List<?> getList(String key){
+        Jedis jedis = jedisPool.getResource();
+        if(jedis == null || !jedis.exists(key)){
+            return null;
+        }
+        byte[] data = jedis.get(key.getBytes());
+        jedis.close();
+        return SerializeUtil.unserializeList(data);
+    }
 
     /**
      * 从redis连接池获取redis实例

@@ -75,4 +75,58 @@ public class BaseHTMLStringCase {
             return "被冻结";
         }
     }
+    public static String recIdStrTo(String number){
+        if(number.trim().equals("0")){
+            return "系统";
+        }
+        else {
+            return number;
+        }
+    }
+
+    public static String typeStrTo(String number){
+        if(number.trim().equals("0")){
+            return "私信";
+        }
+        else if(number.trim().equals("1")){
+            return "公共消息";
+        }
+        else if(number.trim().equals("2")){
+            return "系统消息";
+        }
+        else {
+            return "未知消息";
+        }
+    }
+
+    public static String MsgtypeStrTo(String number){
+        if(number.trim().equals("0")){
+            return "注册/改密";
+        }
+        else if(number.trim().equals("1")){
+            return "审核";
+        }
+        else if(number.trim().equals("2")){
+            return "消息";
+        }
+        else {
+            return "未知分类";
+        }
+    }
+
+
+    public static String statusStrTo(String number){
+        if(number.trim().equals("0")){
+            return "未读";
+        }
+        else if(number.trim().equals("1")){
+            return "已查看";
+        }
+        else if(number.trim().equals("2")){
+            return "删除";
+        }
+        else {
+            return "未知";
+        }
+    }
 }

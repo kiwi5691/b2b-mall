@@ -44,4 +44,9 @@ public class MessageVo  extends BaseObject {
     private String postTimeStr;
 
     private String endTimeStr;
+    private String statusStr;
+    private String msgTypeStr;
+    private String recIdStr;
+    private String typeStr;
+
 }
