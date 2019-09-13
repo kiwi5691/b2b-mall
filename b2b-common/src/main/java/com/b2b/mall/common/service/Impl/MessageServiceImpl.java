@@ -50,14 +50,14 @@ public class MessageServiceImpl implements MessageService {
         messageVo.setStart((pageCurrent - 1) * pageSize);
         messageVo.setEnd(pageSize);
 
-        messageVos = null;
-
-        messageVos=(List<MessageVo>)redisManager.getList("messageVos");
-
-        if(messageVos==null){
+//        messageVos = null;
+//
+//        messageVos=(List<MessageVo>)redisManager.getList("messageVos");
+//
+//        if(messageVos==null){
             messageVos= sysMessageMapper.list(messageVo);
-            redisManager.setList("messageVos",messageVos);
-        }
+//            redisManager.setList("messageVos",messageVos);
+//        }
         messageVos.forEach(l -> {
             l.setEndTimeStr(DateUtil.preciseDate(l.getEndTime()));
             l.setPostTimeStr(DateUtil.preciseDate(l.getPostTime()));

@@ -23,16 +23,22 @@
 
     <modules>
         <module>b2b-db</module>
-        <module>b2b-admin</module>
         <module>b2b-common</module>
+        <module>b2b-admin</module>
         <module>b2b-frontend</module>
+        <module>b2b-dubbo-admin</module>
+        <module>b2b-mall-sso</module>
     </modules>
 
 
     <dependencyManagement>
         <dependencies>
 
-
+<!--            <dependency>-->
+<!--                <groupId>io.dubbo.springboot</groupId>-->
+<!--                <artifactId>spring-boot-starter-dubbo</artifactId>-->
+<!--                <version>${dubbo-spring-boot}</version>-->
+<!--            </dependency>-->
             <!-- Spring Boot Mybatis 依赖 -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
