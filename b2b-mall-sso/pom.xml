@@ -25,7 +25,7 @@
 
         <dependency>
             <groupId>b2b-mall</groupId>
-            <artifactId>b2b-dubbo-admin</artifactId>
+            <artifactId>b2b-dubbo-sso</artifactId>
             <version>1.0</version>
         </dependency>
 

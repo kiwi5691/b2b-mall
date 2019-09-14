@@ -26,8 +26,9 @@
         <module>b2b-common</module>
         <module>b2b-admin</module>
         <module>b2b-frontend</module>
-        <module>b2b-dubbo-admin</module>
+        <module>b2b-dubbo-sso</module>
         <module>b2b-mall-sso</module>
+        <module>b2b-mall-dubbo-admin</module>
     </modules>
 
 

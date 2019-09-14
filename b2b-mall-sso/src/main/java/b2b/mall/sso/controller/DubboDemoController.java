@@ -1,9 +1,7 @@
 package b2b.mall.sso.controller;
 
-import com.b2b.dubbo.service.IDubboDemoService;
+import com.b2b.dubbo.sso.service.IDubboDemoService;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
