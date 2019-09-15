@@ -1092,9 +1092,31 @@ CREATE TABLE `tb_user` (
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES ('6', 'admin', 'admin', '小花', '运营岗', '1818181818', null, '2018-03-19', '2018-03-19', '1');
-INSERT INTO `tb_user` VALUES ('7', 'big', 'big', '111111aaa', '111', '1773232392@qq.com', null, '2018-03-30', '2018-04-04', '1');
-INSERT INTO `tb_user` VALUES ('1', 'kiwi', 'kiwi', 'kiwi','超级无敌管理员', '805344479@qq.com', null, '2019-06-14', '2019-06-14', '1');
+INSERT INTO `tb_user` VALUES ('6', 'admin', 'admin', 'df655ad8d3229f3269fad2a8bab59b6c', '经理', '1818181818', null, '2018-03-19', '2018-03-19', '1');
+INSERT INTO `tb_user` VALUES ('7', 'fuck', 'fuck', '4141ebafcdd095b97a1b6abcc51a7cba', '客维员', '1773232392@qq.com', null, '2018-03-30', '2018-04-04', '1');
+INSERT INTO `tb_user` VALUES ('1', 'kiwi', 'kiwi', '25a890430960b94a7342dd963fff663b','超级无敌管理员', '805344479@qq.com', null, '2019-06-14', '2019-06-14', '1');
+
+
+
+-- ----------------------------
+-- Table structure for tb_mall_user
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_mall_user`;
+CREATE TABLE `tb_mall_user` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL COMMENT '用户名',
+  `password` varchar(32) NOT NULL COMMENT '密码，加密存储',
+  `phone` varchar(20) DEFAULT NULL COMMENT '注册手机号',
+  `email` varchar(50) DEFAULT NULL COMMENT '注册邮箱',
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`) USING BTREE,
+  UNIQUE KEY `phone` (`phone`) USING BTREE,
+  UNIQUE KEY `email` (`email`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='商城用户表';
+
+
 
 -- ----------------------------
 -- Table structure for tb_sys_messagelog

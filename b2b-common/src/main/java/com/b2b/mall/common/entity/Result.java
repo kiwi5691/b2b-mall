@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 淘淘商城自定义响应结构
  */
-public class E3Result implements Serializable{
+public class Result implements Serializable{
 
     // 定义jackson对象
     private static final ObjectMapper MAPPER = new ObjectMapper();
@@ -23,33 +23,38 @@ public class E3Result implements Serializable{
     // 响应中的数据
     private Object data;
 
-    public static E3Result build(Integer status, String msg, Object data) {
-        return new E3Result(status, msg, data);
+    public static Result build(Integer status, String msg, Object data) {
+        return new Result(status, msg, data);
     }
 
-    public static E3Result ok(Object data) {
-        return new E3Result(data);
+    public static Result ok(Object data) {
+        return new Result(data);
     }
 
-    public static E3Result ok() {
-        return new E3Result(null);
+    public static Result ok() {
+        return new Result(null);
     }
 
-    public E3Result() {
+
+    public static Result fail() {
+        return new Result(400,null,null);
+    }
+
+    public Result() {
 
     }
 
-    public static E3Result build(Integer status, String msg) {
-        return new E3Result(status, msg, null);
+    public static Result build(Integer status, String msg) {
+        return new Result(status, msg, null);
     }
 
-    public E3Result(Integer status, String msg, Object data) {
+    public Result(Integer status, String msg, Object data) {
         this.status = status;
         this.msg = msg;
         this.data = data;
     }
 
-    public E3Result(Object data) {
+    public Result(Object data) {
         this.status = 200;
         this.msg = "OK";
         this.data = data;
@@ -90,10 +95,10 @@ public class E3Result implements Serializable{
      * @param clazz TaotaoResult中的object类型
      * @return
      */
-    public static E3Result formatToPojo(String jsonData, Class<?> clazz) {
+    public static Result formatToPojo(String jsonData, Class<?> clazz) {
         try {
             if (clazz == null) {
-                return MAPPER.readValue(jsonData, E3Result.class);
+                return MAPPER.readValue(jsonData, Result.class);
             }
             JsonNode jsonNode = MAPPER.readTree(jsonData);
             JsonNode data = jsonNode.get("data");
@@ -117,9 +122,9 @@ public class E3Result implements Serializable{
      * @param json
      * @return
      */
-    public static E3Result format(String json) {
+    public static Result format(String json) {
         try {
-            return MAPPER.readValue(json, E3Result.class);
+            return MAPPER.readValue(json, Result.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -133,7 +138,7 @@ public class E3Result implements Serializable{
      * @param clazz 集合中的类型
      * @return
      */
-    public static E3Result formatToList(String jsonData, Class<?> clazz) {
+    public static Result formatToList(String jsonData, Class<?> clazz) {
         try {
             JsonNode jsonNode = MAPPER.readTree(jsonData);
             JsonNode data = jsonNode.get("data");

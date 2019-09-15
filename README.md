@@ -3,6 +3,8 @@
 
 #### 项目介绍
 
+基于dubbo的分布式
+
 - b2b_admin: 是商城后台；
 - b2b_common: 是常用工具类；
 - b2b_db: 是存放初始数据库语句，dao，model

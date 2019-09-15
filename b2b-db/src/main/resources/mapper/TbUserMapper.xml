@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.b2b.mall.db.mapper.TbUserMapper">
+  <resultMap id="BaseResultMap" type="com.b2b.mall.db.model.TbUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, password, phone, email, created, updated
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_mall_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+<!--  <select id="selectUserByNameAndPwd" parameterType="com.b2b.mall.db.model.TbUser" resultMap="BaseResultMap">-->
+<!--    select-->
+<!--    <include refid="Base_Column_List" />-->
+<!--    from tb_mall_user-->
+<!--    WHERE username = #{username,jdbcType=VARCHAR} AND password = #{password,jdbcType=VARCHAR}-->
+<!--  </select>-->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_mall_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <select id="selectByKey" resultMap="BaseResultMap" parameterType="java.util.Map">
+    SELECT * FROM tb_mall_user
+    <choose>
+      <!-- test语句必须外面是单引号，里面是双引号，否则失效 -->
+      <when test='type=="1"'>
+        WHERE username = #{param}
+      </when>
+      <when test='type=="2"'>
+        WHERE phone = #{param}
+      </when>
+      <when test='type=="3"'>
+        WHERE email = #{param}
+      </when>
+      <otherwise>
+        WHERE 1=1
+      </otherwise>
+    </choose>
+  </select>
+
+  <select id="selectUserByNameOrPwd" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT * FROM tb_mall_user
+    <where>
+      <if test="username != null">
+        username = #{username}
+      </if>
+      <if test="password != null">
+        AND password = #{password}
+      </if>
+    </where>
+  </select>
+
+  <insert id="insert" parameterType="com.b2b.mall.db.model.TbUser">
+    insert into tb_mall_user (id, username, password, 
+      phone, email, created, 
+      updated)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{updated,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.b2b.mall.db.model.TbUser">
+    insert into tb_mall_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="updated != null">
+        updated,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.b2b.mall.db.model.TbUser">
+    update tb_mall_user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null">
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.b2b.mall.db.model.TbUser">
+    update tb_mall_user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

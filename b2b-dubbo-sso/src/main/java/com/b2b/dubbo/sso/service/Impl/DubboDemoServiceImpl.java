@@ -1,7 +1,9 @@
-package com.b2b.dubbo.sso.service;
+package com.b2b.dubbo.sso.service.Impl;
 
 
+import com.b2b.dubbo.sso.service.IDubboDemoService;
 import org.apache.dubbo.config.annotation.Service;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**

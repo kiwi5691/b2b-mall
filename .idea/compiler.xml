@@ -6,13 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="b2b-db" />
         <module name="b2b-mall-dubbo-admin" />
         <module name="b2b-admin" />
-        <module name="b2b-common" />
         <module name="b2b-dubbo-sso" />
         <module name="b2b-frontend" />
         <module name="b2b-mall-sso" />
-        <module name="b2b-db" />
+        <module name="b2b-common" />
       </profile>
     </annotationProcessing>
   </component>
