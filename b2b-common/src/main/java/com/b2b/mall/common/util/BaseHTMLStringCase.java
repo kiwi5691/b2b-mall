@@ -129,4 +129,13 @@ public class BaseHTMLStringCase {
             return "未知";
         }
     }
+
+    public static Boolean isParent(Integer integer){
+        if(integer==1){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

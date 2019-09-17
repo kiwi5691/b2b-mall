@@ -62,6 +62,11 @@
           updated = now()
           WHERE  id =  id = #{id, jdbcType=INTEGER}
     </update>
+    <select id="getItemCatByParentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT *
+        FROM tb_item_cat
+        WHERE parent_id = #{parentId, jdbcType=INTEGER}
+    </select>
     <delete id="delete" parameterType="java.lang.Integer">
         DELETE FROM tb_category WHERE id = #{id, jdbcType=INTEGER}
     </delete>

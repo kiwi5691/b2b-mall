@@ -27,4 +27,6 @@ public interface ItemCategoryMapper {
 
     int updateStatus(ItemCategory itemCategory);
 
+    List<ItemCategory> getItemCatByParentId(Integer parentId);
+
 }

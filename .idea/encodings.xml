@@ -5,6 +5,10 @@
     <file url="file://$PROJECT_DIR$/b2b-admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/b2b-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/b2b-db" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/b2b-dubbo-cart" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/b2b-dubbo-frontend" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/b2b-dubbo-item" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/b2b-dubbo-order" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/b2b-dubbo-sso" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/b2b-frontend" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/b2b-mall-dubbo-admin" charset="UTF-8" />

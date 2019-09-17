@@ -16,12 +16,15 @@ public interface ItemMapper {
 
     List<Item> listS(Item item);
 
+    List<Item> getItemList();
+
     int count(Item item);
 
     int insert(Item item);
 
     int update(Item item);
 
+    Item selectByPrimaryKey(Integer id);
 
     List<Item> selectAll();
 }

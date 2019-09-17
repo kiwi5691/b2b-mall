@@ -10,8 +10,12 @@
         <module name="b2b-mall-dubbo-admin" />
         <module name="b2b-admin" />
         <module name="b2b-dubbo-sso" />
+        <module name="b2b-dubbo-order" />
+        <module name="b2b-dubbo-frontend" />
         <module name="b2b-frontend" />
+        <module name="b2b-dubbo-item" />
         <module name="b2b-mall-sso" />
+        <module name="b2b-dubbo-cart" />
         <module name="b2b-common" />
       </profile>
     </annotationProcessing>
@@ -21,6 +25,10 @@
       <module name="b2b-admin" options="-parameters" />
       <module name="b2b-common" options="-parameters" />
       <module name="b2b-db" options="-parameters" />
+      <module name="b2b-dubbo-cart" options="-parameters" />
+      <module name="b2b-dubbo-frontend" options="-parameters" />
+      <module name="b2b-dubbo-item" options="-parameters" />
+      <module name="b2b-dubbo-order" options="-parameters" />
       <module name="b2b-dubbo-sso" options="-parameters" />
       <module name="b2b-frontend" options="-parameters" />
       <module name="b2b-mall-dubbo-admin" options="-parameters" />

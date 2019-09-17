@@ -54,6 +54,10 @@
         </if>
         limit #{start, jdbcType=INTEGER},#{end, jdbcType=INTEGER}
     </select>
+    <select id="getItemList" resultMap="BaseResultMap">
+        select *
+        from tb_item
+    </select>
     <select id="count" resultType="java.lang.Integer" parameterType="com.b2b.mall.db.model.Item">
         SELECT count(*) from tb_item i LEFT JOIN tb_category t ON i.cid = t.id WHERE i.status = 1
         <if test="title != null">
@@ -84,6 +88,12 @@
          #{updated, jdbcType=TIMESTAMP}
           )
     </insert>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select *
+        from tb_item
+        where id = #{id,jdbcType=BIGINT}
+    </select>
 
     <update id="update" parameterType="com.b2b.mall.db.model.Item">
         UPDATE tb_item SET

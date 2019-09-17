@@ -29,6 +29,10 @@
         <module>b2b-dubbo-sso</module>
         <module>b2b-mall-sso</module>
         <module>b2b-mall-dubbo-admin</module>
+        <module>b2b-dubbo-frontend</module>
+        <module>b2b-dubbo-cart</module>
+        <module>b2b-dubbo-order</module>
+        <module>b2b-dubbo-item</module>
     </modules>
 
 
