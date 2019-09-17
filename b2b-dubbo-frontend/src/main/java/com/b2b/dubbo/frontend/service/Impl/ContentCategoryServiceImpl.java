@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Service(version = "${Dubbo_Version}")
 public class ContentCategoryServiceImpl implements ContentCategoryService {
 
     @Autowired

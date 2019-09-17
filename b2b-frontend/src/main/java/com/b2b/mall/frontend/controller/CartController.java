@@ -1,7 +1,10 @@
 package com.b2b.mall.frontend.controller;
 
 import com.b2b.dubbo.cart.service.CartService;
+import com.b2b.dubbo.item.service.ItemService;
+import com.b2b.mall.common.entity.Result;
 import com.b2b.mall.common.util.CookieUtils;
+import com.b2b.mall.common.util.JsonUtils;
 import com.b2b.mall.db.model.Item;
 import com.b2b.mall.db.model.TbUser;
 import org.apache.commons.lang3.StringUtils;
@@ -41,7 +44,7 @@ public class CartController {
      * @return
      */
     @RequestMapping("/add/{itemId}.html")
-    public String addCartItem(@PathVariable Long itemId, @RequestParam(defaultValue = "1") Integer num,
+    public String addCartItem(@PathVariable Integer itemId, @RequestParam(defaultValue = "1") Integer num,
                               HttpServletRequest request, HttpServletResponse response) {
         // 登录添加至redis
         TbUser user = (TbUser) request.getAttribute("user");
@@ -96,7 +99,7 @@ public class CartController {
         //判断json是否为null
         if (StringUtils.isNotBlank(json)) {
             //把json转换成商品列表返回
-            List<Item> list = JsonUtils.jsonToList(json, TbItem.class);
+            List<Item> list = JsonUtils.jsonToList(json, Item.class);
             return list;
         }
         return new ArrayList<>();
@@ -105,7 +108,7 @@ public class CartController {
     @RequestMapping("/cart.html")
     public String showCartList(HttpServletRequest request, HttpServletResponse response) {
         //取Cookie购物车商品列表
-        List<TbItem> cartList = getCartListFromCookie(request);
+        List<Item> cartList = getCartListFromCookie(request);
         // 登录添加至redis
         TbUser user = (TbUser) request.getAttribute("user");
         if (user != null) {
@@ -130,8 +133,8 @@ public class CartController {
      */
     @RequestMapping("/update/num/{itemId}/{num}.action")
     @ResponseBody
-    public E3Result updateNum(@PathVariable Long itemId, @PathVariable Integer num,
-                              HttpServletRequest request, HttpServletResponse response) {
+    public Result updateNum(@PathVariable Integer itemId, @PathVariable Integer num,
+                            HttpServletRequest request, HttpServletResponse response) {
         TbUser user = (TbUser) request.getAttribute("user");
         if (user != null) {
             return cartService.updateCartNum(user.getId(), itemId, num);
@@ -139,9 +142,9 @@ public class CartController {
         // 未登录
         // 1、接收两个参数
         // 2、从cookie中取商品列表
-        List<TbItem> cartList = getCartListFromCookie(request);
+        List<Item> cartList = getCartListFromCookie(request);
         // 3、遍历商品列表找到对应商品
-        for (TbItem tbItem : cartList) {
+        for (Item tbItem : cartList) {
             if (tbItem.getId() == itemId.longValue()) {
                 // 4、更新商品数量
                 tbItem.setNum(num);
@@ -150,11 +153,11 @@ public class CartController {
         // 5、把商品列表写入cookie。
         CookieUtils.setCookie(request, response, E3_CART, JsonUtils.objectToJson(cartList), CART_EXPIRE, true);
         // 6、响应e3Result。Json数据。
-        return E3Result.ok();
+        return Result.ok();
     }
 
     @RequestMapping("/delete/{itemId}.html")
-    public String deleteCartItem(@PathVariable Long itemId, HttpServletRequest request,
+    public String deleteCartItem(@PathVariable Integer itemId, HttpServletRequest request,
                                  HttpServletResponse response) {
         TbUser user = (TbUser) request.getAttribute("user");
         if (user != null) {
@@ -164,9 +167,9 @@ public class CartController {
         // 未登录
         // 1、从url中取商品id
         // 2、从cookie中取购物车商品列表
-        List<TbItem> cartList = getCartListFromCookie(request);
+        List<Item> cartList = getCartListFromCookie(request);
         // 3、遍历列表找到对应的商品
-        for (TbItem tbItem : cartList) {
+        for (Item tbItem : cartList) {
             if (tbItem.getId() == itemId.longValue()) {
                 // 4、删除商品。
                 cartList.remove(tbItem);

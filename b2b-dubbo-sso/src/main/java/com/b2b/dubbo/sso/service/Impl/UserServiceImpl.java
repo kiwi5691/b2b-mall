@@ -14,7 +14,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-@Service(version = "${dubbo.version}")
+@Service(version = "${Dubbo_Version}")
 public class UserServiceImpl implements UserService {
 
     @Autowired

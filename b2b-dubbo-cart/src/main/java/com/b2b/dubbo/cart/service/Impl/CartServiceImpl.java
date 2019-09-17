@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 购物车处理服务
  */
-@Service
+@Service(version = "${Dubbo_Version}")
 public class CartServiceImpl implements CartService {
 
     @Autowired
@@ -27,7 +27,7 @@ public class CartServiceImpl implements CartService {
     private String REDIS_CART_PRE;
 
     @Override
-    public Result addCart(Long userId, Long itemId, int num) {
+    public Result addCart(Long userId, Integer itemId, int num) {
         Boolean hasItem = redisTemplate.opsForHash().hasKey(REDIS_CART_PRE + ":" + userId, itemId+"");
         if (hasItem) {
             // 商品存在，数量相加
@@ -67,7 +67,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Result updateCartNum(Long userId, Long itemId, int num) {
+    public Result updateCartNum(Long userId, Integer itemId, int num) {
         Item tbItem = (Item) redisTemplate.opsForHash().get(REDIS_CART_PRE + ":" + userId, itemId+"");
         tbItem.setNum(tbItem.getNum() + num);
         redisTemplate.opsForHash().put(REDIS_CART_PRE + ":" + userId, itemId+"", tbItem);
@@ -75,7 +75,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Result deleteCartItem(Long userId, Long itemId) {
+    public Result deleteCartItem(Long userId, Integer itemId) {
         redisTemplate.opsForHash().delete(REDIS_CART_PRE + ":" + userId, itemId+"");
         return Result.ok();
     }

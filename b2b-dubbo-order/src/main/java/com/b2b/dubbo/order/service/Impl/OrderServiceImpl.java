@@ -16,7 +16,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Service(version = "${Dubbo_Version}")
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired

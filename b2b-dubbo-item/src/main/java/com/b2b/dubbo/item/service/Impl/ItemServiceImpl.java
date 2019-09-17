@@ -1,6 +1,6 @@
-package com.b2b.dubbo.sso.service.Impl;
+package com.b2b.dubbo.item.service.Impl;
 
-import com.b2b.dubbo.sso.service.ItemService;
+import com.b2b.dubbo.item.service.ItemService;
 import com.b2b.mall.db.entity.ContentDTO;
 import com.b2b.mall.db.mapper.ItemDescMapper;
 import com.b2b.mall.db.mapper.ItemMapper;
@@ -8,18 +8,16 @@ import com.b2b.mall.db.model.Item;
 import com.b2b.mall.db.model.ItemDesc;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.apache.activemq.command.ActiveMQTopic;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.jms.core.JmsMessagingTemplate;
 
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Service
+@Service(version = "${Dubbo_Version}")
 public class ItemServiceImpl implements ItemService {
 
     @Autowired

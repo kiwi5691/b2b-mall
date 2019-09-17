@@ -1,4 +1,4 @@
-package com.b2b.dubbo.sso.config;
+package com.b2b.dubbo.item.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;

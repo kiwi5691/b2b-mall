@@ -1,0 +1,10 @@
+dubbo:
+  application:
+    name: dubbo-frontend
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  scan:
+    base-packages: com.b2b.dubbo.frontend.service
+  protocol:
+    name: dubbo
+    port: '20884' #默认port:20880，项目多模块时候就导致端口冲突。''是重点哦

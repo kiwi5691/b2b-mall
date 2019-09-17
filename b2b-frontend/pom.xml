@@ -46,6 +46,12 @@
 
         <dependency>
             <groupId>b2b-mall</groupId>
+            <artifactId>b2b-dubbo-item</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>b2b-mall</groupId>
             <artifactId>b2b-dubbo-order</artifactId>
             <version>1.0</version>
         </dependency>

@@ -1,4 +1,4 @@
-package com.b2b.dubbo.sso.service;
+package com.b2b.dubbo.item.service;
 
 import com.b2b.mall.common.entity.Result;
 import com.b2b.mall.db.entity.BaseUIDTO;

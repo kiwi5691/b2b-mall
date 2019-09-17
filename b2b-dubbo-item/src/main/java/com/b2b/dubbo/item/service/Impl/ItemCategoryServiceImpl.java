@@ -1,6 +1,6 @@
-package com.b2b.dubbo.sso.service.Impl;
+package com.b2b.dubbo.item.service.Impl;
 
-import com.b2b.dubbo.sso.service.ItemCategoryService;
+import com.b2b.dubbo.item.service.ItemCategoryService;
 import com.b2b.mall.common.util.BaseHTMLStringCase;
 import com.b2b.mall.db.entity.BaseUIDTO;
 import com.b2b.mall.db.mapper.ItemCategoryMapper;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service(version = "${Dubbo_Version}")
 public class ItemCategoryServiceImpl implements ItemCategoryService {
 
     @Autowired
