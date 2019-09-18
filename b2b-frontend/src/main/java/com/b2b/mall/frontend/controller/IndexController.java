@@ -16,7 +16,7 @@ public class IndexController {
     @Value("${CONTENT_BANNER_ID}")
     private Long CONTENT_BANNER_ID;
 
-    @Reference
+    @Reference(version = "${dubbo.version}")
     private ContentService contentService;
 
     @RequestMapping({"/index", "/", "index.html"})

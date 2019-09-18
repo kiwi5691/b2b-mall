@@ -11,9 +11,11 @@ import com.b2b.mall.db.model.ItemCategory;
 import com.b2b.mall.db.model.ReItem;
 import com.b2b.mall.db.model.ResObject;
 import com.mongodb.gridfs.GridFSDBFile;
+import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
@@ -51,6 +53,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Resource
     private  ResourceLoader resourceLoader;
+
+    @Autowired
+    private JmsMessagingTemplate jmsMessagingTemplate;
 
     @Autowired
     private RedisManager redisManager;
@@ -205,9 +210,10 @@ public class ItemServiceImpl implements ItemService {
         if (item.getId() != 0) {
             itemMapper.update(item);
         } else {
-
             item.setId(rannum);
             itemMapper.insert(item);
+//            ActiveMQTopic itemAddTopic = new ActiveMQTopic("itemAddTopic");
+//            jmsMessagingTemplate.convertAndSend(itemAddTopic, item.getId());
         }
 
     }

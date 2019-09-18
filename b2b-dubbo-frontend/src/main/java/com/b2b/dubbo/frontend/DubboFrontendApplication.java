@@ -11,10 +11,10 @@ import java.util.concurrent.CountDownLatch;
 @EnableDubbo
 @SpringBootApplication(scanBasePackages = {"com.b2b.mall.db", "com.b2b.dubbo.frontend"})
 @MapperScan("com.b2b.mall.db.mapper")
-public class FrontendServiceApplicationStarter {
+public class DubboFrontendApplication {
     public static void main(String[] args) throws InterruptedException {
         new SpringApplicationBuilder()
-                .sources(FrontendServiceApplicationStarter.class)
+                .sources(DubboFrontendApplication.class)
                 .web(WebApplicationType.NONE)
                 .run(args);
         CountDownLatch countDownLatch = new CountDownLatch(1);

@@ -30,9 +30,9 @@ public class CartController {
     @Value("${CART_EXPIRE}")
     private Integer CART_EXPIRE;
 
-    @Reference
+    @Reference(version = "${dubbo.version}")
     private ItemService itemService;
-    @Reference
+    @Reference(version = "${dubbo.version}")
     private CartService cartService;
 
     /**

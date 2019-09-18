@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @EnableDubbo
 @SpringBootApplication(scanBasePackages = {"b2b.mall.sso"})
-public class Application {
+public class SSOApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(SSOApplication.class, args);
     }
 
 }

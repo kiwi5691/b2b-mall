@@ -1,14 +1,13 @@
 # b2b-mall
-基于Springboot的B2B商城
+基于dubbo的分布式商城
 
 #### 项目介绍
 
-基于dubbo的分布式
 
-- b2b_admin: 是商城后台；
-- b2b_common: 是常用工具类；
+- b2b_admin: 是商城后台
+- b2b_common: 是常用工具类
 - b2b_db: 是存放初始数据库语句，dao，model
-- b2b_frontend: 是商城前台（TODO）
+- b2b_frontend: 是前台页面
 
 
 #### 技术架构
