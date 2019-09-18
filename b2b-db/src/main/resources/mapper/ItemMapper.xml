@@ -92,7 +92,7 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select *
         from tb_item
-        where id = #{id,jdbcType=BIGINT}
+        where id = #{id, jdbcType=INTEGER}
     </select>
 
     <update id="update" parameterType="com.b2b.mall.db.model.Item">

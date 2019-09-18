@@ -13,7 +13,7 @@ public interface ItemDescMapper {
 
     int updateByPrimaryKeySelective(ItemDesc record);
 
-    ItemDesc selectItemDescByPrimaryKey(Integer itemId);
+    ItemDesc selectItemDescByPrimaryKey(Long itemId);
 
     int updateByPrimaryKeyWithBLOBs(ItemDesc record);
 

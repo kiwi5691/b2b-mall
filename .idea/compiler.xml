@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="b2b-mall-sso" />
         <module name="b2b-mall-dubbo-admin" />
         <module name="b2b-admin" />
         <module name="b2b-dubbo-sso" />
@@ -16,7 +17,7 @@
         <module name="b2b-db" />
         <module name="b2b-dubbo-cart" />
         <module name="b2b-common" />
-        <module name="b2b-mall-sso" />
+        <module name="b2b-dubbo-search" />
       </profile>
     </annotationProcessing>
   </component>
@@ -29,6 +30,7 @@
       <module name="b2b-dubbo-frontend" options="-parameters" />
       <module name="b2b-dubbo-item" options="-parameters" />
       <module name="b2b-dubbo-order" options="-parameters" />
+      <module name="b2b-dubbo-search" options="-parameters" />
       <module name="b2b-dubbo-sso" options="-parameters" />
       <module name="b2b-frontend" options="-parameters" />
       <module name="b2b-mall-dubbo-admin" options="-parameters" />

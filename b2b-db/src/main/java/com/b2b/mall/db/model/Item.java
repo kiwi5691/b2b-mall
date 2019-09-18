@@ -2,10 +2,11 @@ package com.b2b.mall.db.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class Item extends BaseObject{
+public class Item extends BaseObject implements Serializable {
     private int id;
     private String title;
     private String sellPoint;

@@ -9,5 +9,5 @@ import com.b2b.mall.db.model.ItemDesc;
 public interface ItemService {
     Item getItemById(Integer itemId);
     ContentDTO getItemList(int page, int rows);
-    ItemDesc getItemDescById(Integer itemId);
+    ItemDesc getItemDescById(Long itemId);
 }

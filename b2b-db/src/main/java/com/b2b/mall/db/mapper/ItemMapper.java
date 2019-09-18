@@ -8,6 +8,8 @@ import java.util.List;
 @Mapper
 public interface ItemMapper {
 
+
+
     Item findById(Item item);
 
     void delete(Item item);

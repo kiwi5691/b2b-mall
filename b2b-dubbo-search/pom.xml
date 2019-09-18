@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>b2b-mall</artifactId>
+        <groupId>b2b-mall</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>b2b-dubbo-search</artifactId>
+
+    <dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.dubbo</groupId>
+        <artifactId>dubbo-spring-boot-starter</artifactId>
+        <version>2.7.1</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.dubbo</groupId>
+        <artifactId>dubbo</artifactId>
+        <version>2.7.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.dubbo</groupId>
+        <artifactId>dubbo-dependencies-zookeeper</artifactId>
+        <version>2.7.1</version>
+        <exclusions>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+            </exclusion>
+        </exclusions>
+        <type>pom</type>
+    </dependency>
+
+
+        <!--solr组件-->
+    <dependency>
+         <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-solr</artifactId>
+    </dependency>
+        <!--activemq-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
+        </dependency>
+        <!--  启用JMS 的池化, 就一定要加上这个 jar-->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-pool</artifactId>
+        </dependency>
+    <dependency>
+        <groupId>b2b-mall</groupId>
+        <artifactId>b2b-db</artifactId>
+        <version>1.0</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>b2b-mall</groupId>
+        <artifactId>b2b-common</artifactId>
+        <version>1.0</version>
+        <scope>compile</scope>
+    </dependency>
+</dependencies>
+</project>

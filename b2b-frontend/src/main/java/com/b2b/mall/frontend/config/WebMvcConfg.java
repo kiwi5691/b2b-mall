@@ -1,5 +1,6 @@
 package com.b2b.mall.frontend.config;
 
+import com.b2b.mall.frontend.interceptor.CartInterceptor;
 import com.b2b.mall.frontend.interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -12,12 +13,16 @@ public class WebMvcConfg implements WebMvcConfigurer {
     @Autowired(required = true)
     private LoginInterceptor loginInterceptor;
 
+    @Autowired(required = true)
+    private CartInterceptor cartInterceptor;
+
     /**
      * 添加自定义登录拦截器
      * @param registry
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/order");
+        registry.addInterceptor(cartInterceptor).addPathPatterns("/order");
     }
 }

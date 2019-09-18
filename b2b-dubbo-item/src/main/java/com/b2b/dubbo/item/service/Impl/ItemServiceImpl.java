@@ -68,7 +68,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ItemDesc getItemDescById(Integer itemId) {
+    public ItemDesc getItemDescById(Long itemId) {
         // 查询缓存
         try {
             ItemDesc itemDesc = (ItemDesc) redisTemplate.opsForValue().get(ITEM_INFO_KEY + ":" + itemId + ":" + ITEM_INFO_DESC_KEY);

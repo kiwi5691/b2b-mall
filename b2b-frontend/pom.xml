@@ -73,6 +73,11 @@
             <artifactId>b2b-dubbo-sso</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>b2b-mall</groupId>
+            <artifactId>b2b-dubbo-search</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
 

@@ -1,0 +1,24 @@
+dubbo:
+  application:
+    name: dubbo-item
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  scan:
+    base-packages: com.b2b.dubbo.search.service
+  protocol:
+    name: dubbo
+    port: '20886' #默认port:20880，项目多模块时候就导致端口冲突。''是重点哦
+
+spring:
+  data:
+    solr:
+      host: http://localhost:8983/solr/collection1
+  activemq:
+    user: admin
+    password: admin
+    broker-url: tcp://localhost:61616
+    pool:
+      enabled: true
+      max-connections: 50
+    packages:
+      trust-all: false

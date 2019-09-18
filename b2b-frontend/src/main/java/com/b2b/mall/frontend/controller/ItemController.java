@@ -23,7 +23,8 @@ public class ItemController {
 		//把TbItem转换成Item对象
 		ItemVo item = new ItemVo(tbItem);
 		//根据商品id查询商品描述
-		ItemDesc itemDesc = itemService.getItemDescById(itemId);
+		Long itemIdLong = itemId.longValue();
+		ItemDesc itemDesc = itemService.getItemDescById(itemIdLong);
 		//把数据传递给页面
 		model.addAttribute("item", item);
 		model.addAttribute("itemDesc", itemDesc);
