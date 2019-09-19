@@ -23,6 +23,7 @@
 - 引入了shiro框架，友好的实现权限-角色
 - 引入了quartz，实现任务化日志删除
 - 引入了aspect写入登录/操作日志到数据库
+- 内置了dubbo的服务与发现系统，无需再次clone其系统
 #### 项目环境
 - 安装 JDK（1.8+）
 - 安装 Maven (3.3.0+)
@@ -31,6 +32,7 @@
 - 安装 mongodb （4.0+）
 - 安装 ActivetMQ （5.15.9） 其版本和JDK对应
 - 安装 Nginx
+- 安装zookeeper（建议使用docker安装）
 - 安装IDE （IDEA）
 #### 启动顺序
 b2b_db ->  b2b_common -> b2b_admin -> b2b_frontend 

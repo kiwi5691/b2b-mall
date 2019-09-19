@@ -8,14 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/page")
 public class PageController {
 
-    @RequestMapping("/register")
-    public String showRegister() {
-        return "register";
+
+    @RequestMapping("/my-account")
+    public String showMyAccount() {
+        return "my-account";
     }
 
-    @RequestMapping("/login")
-    public String showLogin(String redirect, Model model) {
-        model.addAttribute("redirect", redirect);
-        return "login";
-    }
 }

@@ -1,8 +1,3 @@
-/*
-	Author zhaoyinfan
-	2013-08-09
-	注册公用js库
-*/
 var timeout = 120;
 var ctDown = function (id) {
 	--timeout;

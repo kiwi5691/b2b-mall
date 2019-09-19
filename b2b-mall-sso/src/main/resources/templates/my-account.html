@@ -1,0 +1,1386 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"><!--<![endif]-->
+<head>
+	<!-- Basic Page Needs -->
+	<meta charset="UTF-8">
+	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+	<title>My Account</title>
+
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Boostrap style -->
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+
+	<!-- Theme style -->
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/shortcodes.css">
+
+	<!-- Reponsive -->
+	<link rel="stylesheet" type="text/css" href="/css/responsive.css">
+
+
+	<script type="text/javascript" src="/js/jquery-1.5.1.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/js/passport.common.js?v20140531"></script>
+	<script type="text/javascript" src="/js/jquery.alerts.js"></script>
+	<!--mainStart-->
+	<link rel="stylesheet" type="text/css" href="/css/reg.css?v20140432"/>
+	<script type="text/javascript" src="/js/allMail.js?v20140430"></script>
+	<script type="text/javascript" src="/js/reg.js?v20150122"></script>
+</head>
+<body class="header_sticky">
+	<div class="boxed">
+
+
+		<section id="header" class="header">
+			<div class="header-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4">
+							<ul class="flat-support">
+								<li>
+									<a href="#" title="">基于dubbo</a>
+								</li>
+							</ul><!-- /.flat-support -->
+						</div><!-- /.col-md-4 -->
+						<div class="col-md-4">
+							<ul class="flat-infomation">
+								<li class="phone">
+									商城前台
+								</li>
+							</ul><!-- /.flat-infomation -->
+						</div><!-- /.col-md-4 -->
+						<div class="col-md-4">
+							<ul class="flat-unstyled">
+								<li class="account">
+									<a href="#" title="">我的账户<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+									<ul class="unstyled">
+										<li>
+											<a href="shop-cart.html" title="">购物车</a>
+										</li>
+										<li>
+											<a href="my-account.html" title="">登录</a>
+										</li>
+										<li>
+											<a href="shop-checkout.html" title="">下单</a>
+										</li>
+									</ul>
+								</li>
+							</ul><!-- /.flat-unstyled -->
+						</div><!-- /.col-md-4 -->
+					</div><!-- /.row -->
+				</div><!-- /.container -->
+			</div><!-- /.header-top -->
+			<div class="header-middle">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3">
+							<div id="logo" class="logo">
+								<a href="index.html" title="">
+									<img src="/images/logos/logo.png" alt="">
+								</a>
+							</div><!-- /#logo -->
+						</div><!-- /.col-md-3 -->
+						<div class="col-md-6">
+							<div class="top-search">
+								<form action="#" method="get" class="form-search" accept-charset="utf-8">
+									<div class="box-search">
+										<input type="text" name="search" placeholder="Search what you looking for ?">
+										<span class="btn-search">
+											<button type="submit" class="waves-effect"><img src="/images/icons/search.png" alt=""></button>
+										</span>
+									</div><!-- /.box-search -->
+								</form><!-- /.form-search -->
+							</div><!-- /.top-search -->
+						</div><!-- /.col-md-6 -->
+						<div class="col-md-3">
+							<div class="box-cart">
+								<div class="inner-box">
+									<ul class="menu-compare-wishlist">
+										<li class="compare">
+											<a href="#" title="">
+												<img src="/images/icons/compare.png" alt="">
+											</a>
+										</li>
+										<li class="wishlist">
+											<a href="wishlist.html" title="">
+												<img src="/images/icons/wishlist.png" alt="">
+											</a>
+										</li>
+									</ul><!-- /.menu-compare-wishlist -->
+								</div><!-- /.inner-box -->
+								<div class="inner-box">
+									<a href="#" title="">
+										<div class="icon-cart">
+											<img src="/images/icons/cart.png" alt="">
+											<span>4</span>
+										</div>
+										<div class="price">
+											$0.00
+										</div>
+									</a>
+									<div class="dropdown-box">
+										<ul>
+											<li>
+												<div class="img-product">
+													<img src="/images/product/other/img-cart-1.jpg" alt="">
+												</div>
+												<div class="info-product">
+													<div class="name">
+														Samsung - Galaxy S6 4G LTE <br />with 32GB Memory Cell Phone
+													</div>
+													<div class="price">
+														<span>1 x</span>
+														<span>$250.00</span>
+													</div>
+												</div>
+												<div class="clearfix"></div>
+												<span class="delete">x</span>
+											</li>
+											<li>
+												<div class="img-product">
+													<img src="/images/product/other/img-cart-2.jpg" alt="">
+												</div>
+												<div class="info-product">
+													<div class="name">
+														Sennheiser - Over-the-Ear Headphone System - Black
+													</div>
+													<div class="price">
+														<span>1 x</span>
+														<span>$250.00</span>
+													</div>
+												</div>
+												<div class="clearfix"></div>
+												<span class="delete">x</span>
+											</li>
+										</ul>
+										<div class="total">
+											<span>Subtotal:</span>
+											<span class="price">$1,999.00</span>
+										</div>
+										<div class="btn-cart">
+											<a href="shop-cart.html" class="view-cart" title="">View Cart</a>
+											<a href="shop-checkout.html" class="check-out" title="">Checkout</a>
+										</div>
+									</div>
+								</div><!-- /.inner-box -->
+							</div><!-- /.box-cart -->
+						</div><!-- /.col-md-3 -->
+					</div><!-- /.row -->
+				</div><!-- /.container -->
+			</div><!-- /.header-middle -->
+			<div class="header-bottom">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 col-2">
+							<div id="mega-menu">
+								<div class="btn-mega"><span></span>分类</div>
+								<ul class="menu">
+									<li>
+										<a href="#" title="" class="dropdown">
+											<span class="menu-img">
+												<img src="/images/icons/menu/01.png" alt="">
+											</span>
+											<span class="menu-title">
+												Laptops & Mac
+											</span>
+										</a>
+										<div class="drop-menu">
+											<div class="one-third">
+												<div class="cat-title">
+													Laptop And Mac
+												</div>
+												<ul>
+													<li>
+														<a href="#" title="">Networking & Internet Devices</a>
+													</li>
+													<li>
+														<a href="#" title="">Laptops, Desktops & Monitors</a>
+													</li>
+													<li>
+														<a href="#" title="">Hard Drives & Memory Cards</a>
+													</li>
+													<li>
+														<a href="#" title="">Computer Accessories</a>
+													</li>
+													<li>
+														<a href="#" title="">Software</a>
+													</li>
+												</ul>
+												<div class="show">
+													<a href="#" title="">Shop All</a>
+												</div>
+											</div>
+											<div class="one-third">
+												<div class="cat-title">
+													Audio & Video
+												</div>
+												<ul>
+													<li>
+														<a href="#" title="">Headphones & Speakers</a>
+													</li>
+													<li>
+														<a href="#" title="">Home Entertainment Systems</a>
+													</li>
+													<li>
+														<a href="#" title="">MP3 & Media Players</a>
+													</li>
+													<li>
+														<a href="#" title="">Software</a>
+													</li>
+												</ul>
+												<div class="show">
+													<a href="#" title="">Shop All</a>
+												</div>
+											</div>
+											<div class="one-third">
+												<ul class="banner">
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																Headphones
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-01.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																TV & Audio
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-02.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																Computers
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-03.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+												</ul>	
+											</div>
+										</div>
+									</li>
+									<li>
+										<a href="#" title="" class="dropdown">
+											<span class="menu-img">
+												<img src="/images/icons/menu/02.png" alt="">
+											</span>
+											<span class="menu-title">
+												Mobile & Tablet
+											</span>
+										</a>
+										<div class="drop-menu">
+											<div class="one-third">
+												<div class="cat-title">
+													Laptop And Computer
+												</div>
+												<ul>
+													<li>
+														<a href="#" title="">Networking & Internet Devices</a>
+													</li>
+													<li>
+														<a href="#" title="">Laptops, Desktops & Monitors</a>
+													</li>
+													<li>
+														<a href="#" title="">Hard Drives & Memory Cards</a>
+													</li>
+													<li>
+														<a href="#" title="">Printers & Ink</a>
+													</li>
+													<li>
+														<a href="#" title="">Networking & Internet Devices</a>
+													</li>
+													<li>
+														<a href="#" title="">Computer Accessories</a>
+													</li>
+													<li>
+														<a href="#" title="">Software</a>
+													</li>
+												</ul>
+												<div class="show">
+													<a href="#" title="">Shop All</a>
+												</div>
+											</div>
+											<div class="one-third">
+												<div class="cat-title">
+													Audio & Video
+												</div>
+												<ul>
+													<li>
+														<a href="#" title="">Headphones & Speakers</a>
+													</li>
+													<li>
+														<a href="#" title="">Home Entertainment Systems</a>
+													</li>
+													<li>
+														<a href="#" title="">MP3 & Media Players</a>
+													</li>
+												</ul>
+												<div class="show">
+													<a href="#" title="">Shop All</a>
+												</div>
+											</div>
+											<div class="one-third">
+												<ul class="banner">
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																Headphones
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-01.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																TV & Audio
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-02.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																Computers
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-03.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+												</ul>	
+											</div>
+										</div>
+									</li>
+									<li>
+										<a href="#" title="" class="dropdown">
+											<span class="menu-img">
+												<img src="/images/icons/menu/03.png" alt="">
+											</span>
+											<span class="menu-title">
+												Home Devices
+											</span>
+										</a>
+										<div class="drop-menu">
+											<div class="one-third">
+												<div class="cat-title">
+													Home Devices
+												</div>
+												<ul>
+													<li>
+														<a href="#" title="">Internet Devices</a>
+													</li>
+													<li>
+														<a href="#" title="">Desktops & Monitors</a>
+													</li>
+													<li>
+														<a href="#" title="">Hard Drives & Memory Cards</a>
+													</li>
+													<li>
+														<a href="#" title="">Networking</a>
+													</li>
+													<li>
+														<a href="#" title="">Software</a>
+													</li>
+												</ul>
+												<div class="show">
+													<a href="#" title="">Shop All</a>
+												</div>
+											</div>
+											<div class="one-third">
+												<div class="cat-title">
+													Audio
+												</div>
+												<ul>
+													<li>
+														<a href="#" title="">Home Entertainment Systems</a>
+													</li>
+													<li>
+														<a href="#" title="">MP3 & Media Players</a>
+													</li>
+													<li>
+														<a href="#" title="">Software</a>
+													</li>
+												</ul>
+												<div class="show">
+													<a href="#" title="">Shop All</a>
+												</div>
+											</div>
+											<div class="one-third">
+												<ul class="banner">
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																Headphones
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-01.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																TV & Audio
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-02.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																Computers
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-03.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+												</ul>	
+											</div>
+										</div>
+									</li>
+									<li>
+										<a href="#" title="">
+											<span class="menu-img">
+												<img src="/images/icons/menu/04.png" alt="">
+											</span>
+											<span class="menu-title">
+												Software
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" title="">
+											<span class="menu-img">
+												<img src="/images/icons/menu/05.png" alt="">
+											</span>
+											<span class="menu-title">
+												TV & Audio
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" title="">
+											<span class="menu-img">
+												<img src="/images/icons/menu/06.png" alt="">
+											</span>
+											<span class="menu-title">
+												Sports & Fitness
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" title="" class="dropdown">
+											<span class="menu-img">
+												<img src="/images/icons/menu/07.png" alt="">
+											</span>
+											<span class="menu-title">
+												Games & Toys
+											</span>
+										</a>
+										<div class="drop-menu">
+											<div class="one-third">
+												<div class="cat-title">
+													Games & Toys
+												</div>
+												<ul>
+													<li>
+														<a href="#" title="">Internet Devices</a>
+													</li>
+													<li>
+														<a href="#" title="">Desktops & Monitors</a>
+													</li>
+													<li>
+														<a href="#" title="">Hard Drives & Memory Cards</a>
+													</li>
+													<li>
+														<a href="#" title="">Networking</a>
+													</li>
+													<li>
+														<a href="#" title="">Software</a>
+													</li>
+												</ul>
+												<div class="show">
+													<a href="#" title="">Shop All</a>
+												</div>
+											</div>
+											<div class="one-third">
+												<div class="cat-title">
+													Audio
+												</div>
+												<ul>
+													<li>
+														<a href="#" title="">Home Entertainment Systems</a>
+													</li>
+													<li>
+														<a href="#" title="">MP3 & Media Players</a>
+													</li>
+													<li>
+														<a href="#" title="">Software</a>
+													</li>
+												</ul>
+												<div class="show">
+													<a href="#" title="">Shop All</a>
+												</div>
+											</div>
+											<div class="one-third">
+												<ul class="banner">
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																Headphones
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-01.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																TV & Audio
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-02.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																Computers
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-03.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+												</ul>	
+											</div>
+										</div>
+									</li>
+									<li>
+										<a href="#" title="">
+											<span class="menu-img">
+												<img src="/images/icons/menu/08.png" alt="">
+											</span>
+											<span class="menu-title">
+												Video Cameras
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" title="" class="dropdown">
+											<span class="menu-img">
+												<img src="/images/icons/menu/09.png" alt="">
+											</span>
+											<span class="menu-title">
+												Accessories
+											</span>
+										</a>
+										<div class="drop-menu">
+											<div class="one-third">
+												<div class="cat-title">
+													Accessories
+												</div>
+												<ul>
+													<li>
+														<a href="#" title="">Internet Devices</a>
+													</li>
+													<li>
+														<a href="#" title="">Desktops & Monitors</a>
+													</li>
+													<li>
+														<a href="#" title="">Hard Drives & Memory Cards</a>
+													</li>
+													<li>
+														<a href="#" title="">Networking</a>
+													</li>
+													<li>
+														<a href="#" title="">Software</a>
+													</li>
+												</ul>
+												<div class="show">
+													<a href="#" title="">Shop All</a>
+												</div>
+											</div>
+											<div class="one-third">
+												<div class="cat-title">
+													Audio
+												</div>
+												<ul>
+													<li>
+														<a href="#" title="">Home Entertainment Systems</a>
+													</li>
+													<li>
+														<a href="#" title="">MP3 & Media Players</a>
+													</li>
+													<li>
+														<a href="#" title="">Software</a>
+													</li>
+												</ul>
+												<div class="show">
+													<a href="#" title="">Shop All</a>
+												</div>
+											</div>
+											<div class="one-third">
+												<ul class="banner">
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																Headphones
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-01.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																TV & Audio
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-02.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																Computers
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-03.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+												</ul>	
+											</div>
+										</div>
+									</li>
+									<li>
+										<a href="#" title="" class="dropdown">
+											<span class="menu-img">
+												<img src="/images/icons/menu/10.png" alt="">
+											</span>
+											<span class="menu-title">
+												Security
+											</span>
+										</a>
+										<div class="drop-menu">
+											<div class="one-third">
+												<div class="cat-title">
+													Security
+												</div>
+												<ul>
+													<li>
+														<a href="#" title="">Internet Devices</a>
+													</li>
+													<li>
+														<a href="#" title="">Desktops & Monitors</a>
+													</li>
+													<li>
+														<a href="#" title="">Hard Drives & Memory Cards</a>
+													</li>
+													<li>
+														<a href="#" title="">Networking</a>
+													</li>
+													<li>
+														<a href="#" title="">Software</a>
+													</li>
+												</ul>
+												<div class="show">
+													<a href="#" title="">Shop All</a>
+												</div>
+											</div>
+											<div class="one-third">
+												<div class="cat-title">
+													Audio
+												</div>
+												<ul>
+													<li>
+														<a href="#" title="">Home Entertainment Systems</a>
+													</li>
+													<li>
+														<a href="#" title="">MP3 & Media Players</a>
+													</li>
+													<li>
+														<a href="#" title="">Software</a>
+													</li>
+													<li>
+														<a href="#" title="">Hard Drives & Memory Cards</a>
+													</li>
+													<li>
+														<a href="#" title="">Networking</a>
+													</li>
+												</ul>
+												<div class="show">
+													<a href="#" title="">Shop All</a>
+												</div>
+											</div>
+											<div class="one-third">
+												<ul class="banner">
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																Headphones
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-01.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																TV & Audio
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-02.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+													<li>
+														<div class="banner-text">
+															<div class="banner-title">
+																Computers
+															</div>
+															<div class="more-link">
+																<a href="#" title="">Shop Now <img src="/images/icons/right-2.png" alt=""></a>
+															</div>
+														</div>
+														<div class="banner-img">
+															<img src="/images/banner_boxes/menu-03.png" alt="">
+														</div>
+														<div class="clearfix"></div>
+													</li>
+												</ul>	
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div><!-- /.col-md-3 col-2 -->
+						<div class="col-md-9 col-10">
+							<div class="nav-wrap">
+								<div id="mainnav" class="mainnav">
+									<ul class="menu">
+										<li class="column-1">
+											<a href="index.html" title="">Home</a>
+											<ul class="submenu">
+												<li>
+													<a href="index.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 01</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 02</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 03</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 04</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 05</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 06</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 07</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 08</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 09</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 10</a>
+												</li>
+											</ul>
+										</li>
+										<li class="column-1">
+											<a href="shop.html" title="">Shop</a>
+											<ul class="submenu">
+												<li>
+													<a href="shop.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop left sidebar</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop right sidebar</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop list view</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop full width</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop 03 column</a>
+												</li>
+												<li>
+													<a href="shop-cart.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop cart</a>
+												</li>
+												<li>
+													<a href="shop-checkout.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop checkout</a>
+												</li>
+											</ul>
+										</li>
+										<li class="column-1">
+											<a href="#" title="">Features</a>
+											<ul class="submenu">
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Theater Systems</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Receivers & Amplifiers</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Speakers</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>CD Players & Turntables</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>High-Resolution Audio</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>4K Ultra HD TVs</a>
+												</li>
+											</ul>
+										</li>
+										<li class="has-mega-menu">
+											<a href="#" title="">Electronic</a>
+											<div class="submenu">
+												<div class="row">
+													<div class="col-lg-3 col-md-12">
+														<h3 class="cat-title">Accessories</h3>
+														<ul class="submenu-child">
+															<li>
+																<a href="#" title="">Electronics</a>
+															</li>
+															<li>
+																<a href="#" title="">Furniture</a>
+															</li>
+															<li>
+																<a href="#" title="">Accessories</a>
+															</li>
+															<li>
+																<a href="#" title="">Divided</a>
+															</li>
+															<li>
+																<a href="#" title="">Everyday Fashion</a>
+															</li>
+															<li>
+																<a href="#" title="">Modern Classic</a>
+															</li>
+															<li>
+																<a href="#" title="">Party</a>
+															</li>
+														</ul>
+														<div class="show">
+															<a href="#" title="">Shop All</a>
+														</div>
+													</div>
+													<div class="col-lg-3 col-md-12">
+														<h3 class="cat-title">Laptop And Computer</h3>
+														<ul class="submenu-child">
+															<li>
+																<a href="#" title="">Networking & Internet Devices</a>
+															</li>
+															<li>
+																<a href="#" title="">Laptops, Desktops & Monitors</a>
+															</li>
+															<li>
+																<a href="#" title="">Hard Drives & Memory Cards</a>
+															</li>
+															<li>
+																<a href="#" title="">Printers & Ink</a>
+															</li>
+															<li>
+																<a href="#" title="">Networking & Internet Devices</a>
+															</li>
+															<li>
+																<a href="#" title="">Computer Accessories</a>
+															</li>
+															<li>
+																<a href="#" title="">Software</a>
+															</li>
+														</ul>
+														<div class="show">
+															<a href="#" title="">Shop All</a>
+														</div>
+													</div>
+													<div class="col-lg-4 col-md-12">
+														<h3 class="cat-title">Audio & Video</h3>
+														<ul class="submenu-child">
+															<li>
+																<a href="#" title="">Headphones & Speakers</a>
+															</li>
+															<li>
+																<a href="#" title="">Home Entertainment Systems</a>
+															</li>
+															<li>
+																<a href="#" title="">MP3 & Media Players</a>
+															</li>
+														</ul>
+														<div class="show">
+															<a href="#" title="">Shop All</a>
+														</div>
+													</div>
+													<div class="col-lg-2 col-md-12">
+														<h3 class="cat-title">Home Audio</h3>
+														<ul class="submenu-child">
+															<li>
+																<a href="#" title="">Home Theater Systems</a>
+															</li>
+															<li>
+																<a href="#" title="">Receivers & Amplifiers</a>
+															</li>
+															<li>
+																<a href="#" title="">Speakers</a>
+															</li>
+															<li>
+																<a href="#" title="">CD Players & Turntables</a>
+															</li>
+															<li>
+																<a href="#" title="">High-Resolution Audio</a>
+															</li>
+															<li>
+																<a href="#" title="">4K Ultra HD TVs</a>
+															</li>
+														</ul>
+														<div class="show">
+															<a href="#" title="">Shop All</a>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="banner-box">
+															<div class="inner-box">
+																<a href="#" title="">
+																	<img src="/images/banner_boxes/submenu-01.png" alt="">
+																</a>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="banner-box">
+															<div class="inner-box">
+																<a href="#" title="">
+																	<img src="/images/banner_boxes/submenu-02.png" alt="">
+																</a>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li class="column-1">
+											<a href="#" title="">Pages</a>
+											<ul class="submenu">
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>About</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>404 Page</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Brands Page</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Categories 01</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Categories 02</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Element</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>FAQ</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Order Tracking</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Terms & Conditions</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product 01</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product 02</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product 03</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product 04</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product 05</a>
+												</li>
+											</ul>
+										</li>
+										<li class="column-1">
+											<a href="#" title="">Blog</a>
+											<ul class="submenu">
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Blog left sidebar</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Blog right sidebar</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Blog list</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Blog 02 column</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Blog full width</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Blog single</a>
+												</li>
+											</ul>
+										</li>
+										<li class="column-1">
+											<a href="#" title="">Contact</a>
+											<ul class="submenu">
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Contact 01</a>
+												</li>
+												<li>
+													<a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Contact 02</a>
+												</li>
+											</ul>
+										</li>
+									</ul><!-- /.menu -->
+								</div><!-- /.mainnav -->
+							</div><!-- /.nav-wrap -->
+							<div class="today-deal">
+								<a href="#" title="">TODAY DEALS</a>
+							</div><!-- /.today-deal -->
+							<div class="btn-menu">
+	                            <span></span>
+	                        </div><!-- //mobile menu button -->
+						</div><!-- /.col-md-9 -->
+					</div><!-- /.row -->
+				</div><!-- /.container -->
+			</div><!-- /.header-bottom -->
+		</section><!-- /#header -->
+
+		<section class="flat-breadcrumb">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="breadcrumbs">
+							<li class="trail-item">
+								<a href="#" title="">主页</a>
+								<span><img src="/images/icons/arrow-right.png" alt=""></span>
+							</li>
+							<li class="trail-item">
+								<a href="#" title="">账户</a>
+								<span><img src="/images/icons/arrow-right.png" alt=""></span>
+							</li>
+							<li class="trail-end">
+								<a href="#" title="">登录</a>
+							</li>
+						</ul><!-- /.breacrumbs -->
+					</div><!-- /.col-md-12 -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</section><!-- /.flat-breadcrumb -->
+
+		<section class="flat-account background">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-login">
+							<div class="title">
+								<h3>登录</h3>
+							</div>
+							<form id="logForm_mod" name="logForm_mod" method="post">
+								<div class="form-box">
+									<label for="logName">手机/验证邮箱/用户名</label>
+									<input id="logName" name="username" class="regInput" type="text" />
+									<span class="regInput" id="userlogMamErr"></span>
+								</div><!-- /.form-box -->
+								<div class="form-box">
+									<label for="logPwd">请输入密码</label>
+									<input id="logPwd" name="password" class="regInput" autocomplete="off" type="password"/>
+									<span class="regInput" id="passwordlogErr"></span>
+								</div><!-- /.form-box -->
+								<div class="form-box checkbox">
+									<input type="checkbox" id="welcome" >
+									<label for="welcome">欢迎登录</label>
+								</div><!-- /.form-box -->
+							</form><!-- /#form-login -->
+							<button  href="javascript:void(0);"  class="button-rl" id="log_per_data" onclick="LOGIN.log()">立即登录</button>
+							<a href="#" title="">Lost your password?</a>
+						</div><!-- /.form-login -->
+					</div><!-- /.col-md-6 -->
+					<div class="col-md-6">
+						<div class="form-register">
+							<div class="title">
+								<h3>注册</h3>
+							</div>
+							<form id="regForm_mod" name="regForm_mod" method="post">
+								<div class="form-box">
+									<label for="regName">账户名：</label>
+									<input id="regName" name="username" class="regInput" type="text" onkeyup="mail_div(event);"
+									onfocus="showtip('regName','userMamErr',8);" onblur="ckmem();" autocomplete="off"
+									maxlength="80"/>
+									<span class="regInput" id="userMamErr"></span>
+									</div><!-- /.form-box -->
+								<div class="form-box">
+									<label for="pwd">登录密码：</label>
+									<input id="pwd" name="password" class="regInput" autocomplete="off" type="password"
+										   onfocus="showPwdtip('password','passwordErr',2);" onkeyup="ckpwd(0,1);" onblur="ckpwd(0,0);"/>
+									<span class="regInput" id="passwordErr"></span>
+								</div><!-- /.form-box -->
+								<div class="form-box">
+									<label for="pwdRepeat">确认密码：</label>
+									<input id="pwdRepeat" name="password2" autocomplete="off" class="regInput" type="password"
+										   onfocus="showtip('password2','password2Err',3);" onblur="ckpwd2();"/>
+									<span class="regInput" id="password2Err"></span>
+								</div><!-- /.form-box -->
+								<div class="form-box">
+									<label for="pwdRepeat">验证手机：</label>
+									<input id="phone" name="phone" autocomplete="off" class="regInput" type="text" maxlength="11"
+										   onfocus="showtip('phone','phoneErr',1);" onblur="$('#phoneErr').html('')"/>
+									<span class="regInput" id="phoneErr"></span>
+								</div><!-- /.form-box -->
+								<div class="form-box checkbox">
+									<input type="checkbox" id="agree" checked name="agree">
+									<label for="agree">同意注册</label>
+								</div><!-- /.form-box -->
+							</form>
+
+							<button  href="javascript:void(0);"  class="button-rl" id="reg_per_data" onclick="REGISTER.reg()">立即注册</button><!-- /#form-register -->
+						</div><!-- /.form-register -->
+					</div><!-- /.col-md-6 -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</section><!-- /.flat-account -->
+
+
+		<section class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<p class="copyright">欢迎访问我的博客.<a target="_blank" href="http://kiwi1.cn">kiwi1.cn</a></p>
+						<p class="btn-scroll">
+							<a href="#" title="">
+								<img src="/images/icons/top.png" alt="">
+							</a>
+						</p>
+					</div><!-- /.col-md-12 -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</section><!-- /.footer-bottom -->
+
+	</div><!-- /.boxed -->
+
+		<!-- Javascript -->
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/tether.min.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/waypoints.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.circlechart.js"></script>
+		<script type="text/javascript" src="/js/easing.js"></script>
+		<script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+		<script type="text/javascript" src="/js/owl.carousel.js"></script>
+		<script type="text/javascript" src="/js/smoothscroll.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui.js"></script>
+		<script type="text/javascript" src="/js/jquery.mCustomScrollbar.js"></script>
+	   	<script type="text/javascript" src="/js/gmap3.min.js"></script>
+	   	<script type="text/javascript" src="/js/waves.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.countdown.js"></script>
+
+		<script type="text/javascript" src="/js/main.js"></script>
+
+	<script type="text/javascript">
+		var REGISTER = {
+			param: {
+				surl: "http://localhost:8087/page/my-account"
+			},
+			inputcheck: function () {
+				var flag = true;
+				//不能为空检查
+				if ($("#regName").val() == "") {
+					showError("regName", "userMamErr", defaultArr[8]);
+					flag = false;
+				}
+				if ($("#pwd").val() == "") {
+					showError("pwd", "passwordErr", pwdArr[0]);
+					flag = false;
+				}
+				if ($("#phone").val() == "") {
+					showError("phone", "phoneErr", memArr[0]);
+					flag = false;
+				}
+				//密码检查
+				if ($("#pwd").val() != $("#pwdRepeat").val()) {
+					showError("pwdRepeat", "password2Err", pwd2Arr[1]);
+					flag = false;
+				}
+				return flag;
+			},
+			doSubmit: function () {
+				$.post("/user/register", $("#regForm_mod").serialize(), function (data) {
+					if (data.status == 200) {
+						jAlert('用户注册成功，请登录！', "提示", function () {
+							REGISTER.login();
+						});
+					} else {
+						jAlert("注册失败！", "提示"+ data.msg, "失败");
+					}
+				});
+			},
+			login: function () {
+				location.href = this.param.surl;
+				return false;
+			},
+			reg: function () {
+				if (this.inputcheck()) {
+					this.doSubmit();
+				}
+			}
+		};
+	</script>
+
+	<script type="text/javascript" >
+		var LOGIN = {
+			param: {
+				hurl: "http://localhost:8088/index"
+			},
+			checkInput: function () {
+				var flag = true;
+				if ($("#logName").val() == "") {
+					showError("logName", "userlogMamErr", defaultArr[8]);
+					flag = false;
+				}
+				if ($("#logPwd").val() == "") {
+					showError("logPwd", "passwordlogErr", pwdArr[0]);
+					flag = false;
+				}
+				return flag;
+			},
+			doLogin: function () {
+				$.post("/user/login", $("#logForm_mod").serialize(), function (data) {
+					if (data.status == 200) {
+						jAlert('登录成功！', "提示", function () {
+							LOGIN.index();
+						});
+
+
+					} else {
+						jAlert("登录失败，原因是：" + data.msg, "失败");
+					}
+				});
+			},
+            index: function () {
+                location.href = LOGIN.param.hurl;
+                return false;
+            },
+		log: function () {
+			if (this.checkInput()) {
+				this.doLogin();
+			}
+		}
+	};
+	</script>
+</body>	
+</html>
