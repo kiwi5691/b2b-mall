@@ -2,6 +2,7 @@ package com.b2b.dubbo.search.dao;
 
 import com.b2b.mall.db.entity.SearchItem;
 import com.b2b.mall.db.entity.SearchResult;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
+@Slf4j
 public class SearchDao {
 
     @Autowired
@@ -35,23 +37,27 @@ public class SearchDao {
         //取高亮后的结果
         Map<String, Map<String, List<String>>> highlighting = queryResponse.getHighlighting();
         for (SolrDocument solrDocument : solrDocumentList) {
-            //取商品信息
+//            取商品信息
             SearchItem searchItem = new SearchItem();
-            searchItem.setCategory_name((String) solrDocument.get("item_category_name"));
-            searchItem.setId((String) solrDocument.get("id"));
-            searchItem.setImage((String) solrDocument.get("item_image"));
-            searchItem.setPrice((long) solrDocument.get("item_price"));
-            searchItem.setSell_point((String) solrDocument.get("item_sell_point"));
+
+            searchItem.setCategory_name(String.valueOf(solrDocument.getFieldValue("item_category_name")));
+            searchItem.setId(String.valueOf(solrDocument.get("id")));
+            searchItem.setImage(String.valueOf(solrDocument.get("item_image")));
+            Long price =Long.parseLong(String.valueOf(solrDocument.get("item_price")));
+            searchItem.setPrice(price);
+            searchItem.setSell_point(String.valueOf(solrDocument.get("item_sell_point")));
             //取高亮结果
             List<String> list = highlighting.get(solrDocument.get("id")).get("item_title");
             String itemTitle = "";
             if (list != null && list.size() > 0) {
                 itemTitle = list.get(0);
             } else {
-                itemTitle = (String) solrDocument.get("item_title");
+                itemTitle = String.valueOf( solrDocument.get("item_title"));
             }
             searchItem.setTitle(itemTitle);
             //添加到商品列表
+
+            System.out.println(searchItem.toString());
             itemList.add(searchItem);
         }
         //把列表添加到返回结果对象中

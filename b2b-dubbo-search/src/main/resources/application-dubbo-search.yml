@@ -7,18 +7,20 @@ dubbo:
     base-packages: com.b2b.dubbo.search.service
   protocol:
     name: dubbo
-    port: '20886' #默认port:20880，项目多模块时候就导致端口冲突。''是重点哦
+    port: '20886'
 
 spring:
   data:
     solr:
       host: http://localhost:8983/solr/collection1
   activemq:
+    broker-url: tcp://localhost:61616
     user: admin
     password: admin
-    broker-url: tcp://localhost:61616
-    pool:
-      enabled: true
-      max-connections: 50
     packages:
-      trust-all: false
+      trusted: true
+      trust-all: true
+    pool:
+      enabled: false
+      max-connections: 50
+      idle-timeout: 30000
