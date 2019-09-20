@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml"   lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+<head>
+	<!-- Basic Page Needs -->
+	<meta charset="UTF-8">
+	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+	<title>购物车</title>
+
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Boostrap style -->
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+
+	<!-- Theme style -->
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+	<!-- Reponsive -->
+	<link rel="stylesheet" type="text/css" href="/css/responsive.css">
+	 
+</head>
+<body class="header_sticky">
+	<div class="boxed">
+
+		<section id="header" class="header">
+
+			<div th:replace="./module/header::header"></div>
+			<div th:replace="./module/category::category"></div>
+			
+		</section><!-- /#header -->
+
+		<section class="flat-breadcrumb">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="breadcrumbs">
+							<li class="trail-item">
+								<a href="#" title="">主页</a>
+								<span><img src="/images/icons/arrow-right.png" alt=""></span>
+							</li>
+							<li class="trail-item">
+								<a href="#" title="">商城</a>
+								<span><img src="/images/icons/arrow-right.png" alt=""></span>
+							</li>
+							<li class="trail-end">
+								<a href="#" title="">购物车</a>
+							</li>
+						</ul><!-- /.breacrumbs -->
+					</div><!-- /.col-md-12 -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</section><!-- /.flat-breadcrumb -->
+
+		<section class="flat-shop-cart">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="flat-row-title style1">
+							<h3>Shopping Cart</h3>
+						</div>
+						<div class="table-cart">
+							<table>
+								<thead>
+									<tr>
+										<th>Product</th>
+										<th>Quantity</th>
+										<th>Total</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<div class="img-product">
+												<img src="/images/product/other/12.jpg" alt="">
+											</div>
+											<div class="name-product">
+												Apple iPad Mini <br />G2356
+											</div>
+											<div class="price">
+												$1,250.00
+											</div>
+											<div class="clearfix"></div>
+										</td>
+										<td>
+											<div class="quanlity">
+												<span class="btn-down"></span>
+												<input type="number" name="number" value="5" min="1" max="100" placeholder="Quanlity">
+												<span class="btn-up"></span>
+											</div>
+										</td>
+										<td>
+											<div class="total">
+												$6,250.00
+											</div>
+										</td>
+										<td>
+											<a href="#" title="">
+												<img src="/images/icons/delete.png" alt="">
+											</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="img-product">
+												<img src="/images/product/other/11.jpg" alt="">
+											</div>
+											<div class="name-product">
+												Beats Pill+ Portable<br />Speaker
+											</div>
+											<div class="price">
+												$1,250.00
+											</div>
+											<div class="clearfix"></div>
+										</td>
+										<td>
+											<div class="quanlity">
+												<span class="btn-down"></span>
+												<input type="number" name="number" value="5" min="1" max="100" placeholder="Quanlity">
+												<span class="btn-up"></span>
+											</div>
+										</td>
+										<td>
+											<div class="total">
+												$6,250.00
+											</div>
+										</td>
+										<td>
+											<span>
+												<img src="/images/icons/delete.png" alt="">
+											</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>							
+						</div><!-- /.table-cart -->
+					</div><!-- /.col-lg-8 -->
+					<div class="col-lg-4">
+						<div class="cart-totals">
+							<h3>购物车总计</h3>
+							<form action="#" method="get" accept-charset="utf-8">
+								<table>
+									<tbody>
+										<tr>
+											<td>商品总计</td>
+											<td class="subtotal">$2,589.00</td>
+										</tr>
+										<tr>
+											<td>运费</td>
+											<td class="btn-radio">
+												<div class="radio-info">
+													<input type="radio" id="flat-rate" checked name="radio-flat-rate">
+													<label for="flat-rate">价格：<span>0.00</span></label>
+												</div>
+												<div class="radio-info">
+													<input type="radio" id="free-shipping" name="radio-flat-rate">
+													<label for="free-shipping">包邮！</label>
+												</div>										
+											</td><!-- /.btn-radio -->
+										</tr>
+										<tr>
+											<td>Total</td>
+											<td class="price-total">$1,591.00</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="btn-cart-totals">
+									<a href="#" class="update" title="">继续购物</a>
+									<a href="#" class="checkout" title="">取结算</a>
+								</div><!-- /.btn-cart-totals -->
+							</form><!-- /form -->
+						</div><!-- /.cart-totals -->
+					</div><!-- /.col-lg-4 -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</section><!-- /.flat-shop-cart -->
+
+
+
+		<div th:replace="./module/footer::footer"></div>
+
+
+	</div><!-- /.boxed -->
+
+		<!-- Javascript -->
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/tether.min.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/waypoints.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.circlechart.js"></script>
+		<script type="text/javascript" src="/js/easing.js"></script>
+		<script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+		<script type="text/javascript" src="/js/owl.carousel.js"></script>
+		<script type="text/javascript" src="/js/smoothscroll.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui.js"></script>
+		<script type="text/javascript" src="/js/jquery.mCustomScrollbar.js"></script>
+	   	<script type="text/javascript" src="/js/gmap3.min.js"></script>
+	   	<script type="text/javascript" src="/js/waves.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.countdown.js"></script>
+
+		<script type="text/javascript" src="/js/main.js"></script>
+
+</body>	
+</html>

@@ -22,7 +22,8 @@ public class SearchServiceImpl implements SearchService {
         //创建一个SolrQuery对象
         SolrQuery query = new SolrQuery();
         //设置查询条件
-        query.setQuery(keyWord);
+        String queryKey="item_title:"+keyWord;
+        query.setQuery(queryKey);
         //设置分页条件
         query.setStart((page - 1) * rows);
         //设置rows

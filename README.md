@@ -6,9 +6,27 @@
 
 - b2b_admin: 是商城后台
 - b2b_common: 是常用工具类
-- b2b_db: 是存放初始数据库语句，dao，model
+- b2b_db: 是数据库的各种操作
 - b2b_frontend: 是前台页面
 
+### dubbo服务
+|服务|模块|
+|----|----|
+|b2b-dubbo-sso|单点登录|
+|b2b-dubbo-search|搜索|
+|b2b-dubbo-order|订单|
+|b2b-dubbo-cart|购物车|
+|b2b-dubbo-frontend|前台页面|
+|b2b-dubbo-item|商品|
+
+## web应用
+
+|web|模块|地址|
+|----|----|----|
+|b2b-admin|管理员页面|http://localhost:8081|
+|b2b-frontend|商城页面|http://localhost:8088|
+|b2b-mall-sso|登录页面|http://localhost:8087|
+|b2b-mall-dubbo-admin|dubbo服务与发现页面|http://localhost:7001|
 
 #### 技术架构
 - 后端采用的技术：   Shiro,Druid,Redis,Jedis,Jackson,JavaMail,AOP,Quartz

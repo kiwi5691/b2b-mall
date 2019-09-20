@@ -1,0 +1,381 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml"   lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+<head>
+	<!-- Basic Page Needs -->
+	<meta charset="UTF-8">
+	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+	<title>搜索</title>
+
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Boostrap style -->
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+
+	<!-- Theme style -->
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+	<!-- Reponsive -->
+	<link rel="stylesheet" type="text/css" href="/css/responsive.css">
+
+</head>
+<body class="header_sticky">
+	<div class="boxed">
+
+		
+		<section id="header" class="header">
+
+			<div th:replace="./module/header::header"></div>
+			<div th:replace="./module/category::category"></div>
+					
+		</section><!-- /#header -->
+
+
+		<section class="flat-breadcrumb">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="breadcrumbs">
+							<li class="trail-item">
+								<a href="#" title="">主页</a>
+								<span><img src="/images/icons/arrow-right.png" alt=""></span>
+							</li>
+							<li class="trail-item">
+								<a href="#" title="">商城</a>
+								<span><img src="/images/icons/arrow-right.png" alt=""></span>
+							</li>
+							<li class="trail-end">
+								<a href="#" title="">搜索</a>
+							</li>
+						</ul><!-- /.breacrumbs -->
+					</div><!-- /.col-md-12 -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</section><!-- /.flat-breadcrumb -->
+
+		<main id="shop">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-4">
+						<div class="sidebar ">
+							<div class="widget widget-categories">
+								<div class="widget-title">
+									<h3>Categories<span></span></h3>
+								</div>								
+							</div><!-- /.widget-categories -->
+							<div class="widget widget-price">
+								<div class="widget-title">
+									<h3>Price<span></span></h3>
+								</div>								
+							</div><!-- /.widget widget-price -->
+							<div class="widget widget-brands">
+								<div class="widget-title">
+									<h3>Brands<span></span></h3>
+								</div>								
+							</div><!-- /.widget widget-brands -->
+							<div class="widget widget-color">
+								<div class="widget-title">
+									<h3>Color<span></span></h3>
+									<div style="height: 2px"></div>
+								</div>								
+							</div><!-- /.widget widget-color -->						
+							<div class="widget widget-banner">
+								<div class="banner-box">
+									<div class="inner-box">
+										<a href="#" title="">
+											<img src="/images/banner_boxes/06.png" alt="">
+										</a>
+									</div>
+								</div>
+							</div><!-- /.widget widget-banner -->
+						</div><!-- /.sidebar -->
+					</div><!-- /.col-lg-3 col-md-4 -->
+					<div class="col-lg-9 col-md-8">
+						<div class="main-shop">
+							<div class="slider owl-carousel-16">
+								<div class="slider-item style9">
+									<div class="item-text">
+										<div class="header-item">
+											<p>Shop Banner</p>
+											<h2 class="name">广告招标哦</h2>
+										</div>
+									</div>
+									<div class="item-image">
+										<img src="/images/banner_boxes/07.png" alt="">
+									</div>
+									<div class="clearfix"></div>
+								</div><!-- /.slider-item style9 -->
+								<div class="slider-item style9">
+									<div class="item-text">
+										<div class="header-item">
+											<p>Shop Banner</p>
+											<h2 class="name">冲冲冲冲</h2>
+										</div>
+									</div>
+									<div class="item-image">
+										<img src="/images/banner_boxes/07.png" alt="">
+									</div>
+									<div class="clearfix"></div>
+								</div><!-- /.slider-item style9 -->
+								
+							</div><!-- /.slider -->
+							<div class="wrap-imagebox">
+								<div class="flat-row-title">
+									<h3>搜索结果</h3>
+									<span>
+										显示以下商品
+									</span>
+									<div class="clearfix"></div>
+								</div>
+								<div class="sort-product">
+									<ul class="icons">
+										<li>
+											<img src="/images/icons/list-2.png" alt="">
+										</li>
+									</ul>								
+									<div class="clearfix"></div>
+								</div>
+							
+									<div class="sort-box">
+										<div class="product-box style3">
+											<div class="imagebox style1 v3">
+												<div class="box-image">
+													<a href="#" title="">
+														<img src="/images/product/other/s02.jpg" alt="">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">Cameras</a>
+													</div>
+													<div class="product-name">
+														<a href="#" title="">Apple iPad Air 2 32GB 9.7"<br />Tablet</a>
+													</div>
+													<div class="status">
+														Availablity: In stock
+													</div>
+													<div class="info">
+														<p>
+															The iPhone 5c replaces the iPhone 5 in the Apple stable, inheriting its internals, like the A6 processor, 4" screen...
+														</p>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-price">
+													<div class="price">
+														<span class="regular">$2,999.00</span>
+														<span class="sale">$1,999.00</span>
+													</div>
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="/images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+												
+												</div><!-- /.box-price -->
+											</div><!-- /.imagebox -->
+										</div><!-- /.product-box -->
+										<div class="product-box style3">
+											<div class="imagebox style1 v3">
+												<div class="box-image">
+													<a href="#" title="">
+														<img src="/images/product/other/01-v3.jpg" alt="">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">Cameras</a>
+													</div>
+													<div class="product-name">
+														<a href="#" title="">New X5C-1 2.4Ghz Gyro <br />RC Quadcopter Drone</a>
+													</div>
+													<div class="status">
+														Availablity: In stock
+													</div>
+													<div class="info">
+														<p>
+															The iPhone 5c replaces the iPhone 5 in the Apple stable, inheriting its internals, like the A6 processor, 4" screen...
+														</p>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-price">
+													<div class="price">
+														<span class="regular">$2,999.00</span>
+														<span class="sale">$1,999.00</span>
+													</div>
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="/images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+												
+												</div><!-- /.box-price -->
+											</div><!-- /.imagebox -->
+										</div><!-- /.product-box -->
+										<div class="product-box style3">
+											<div class="imagebox style1 v3">
+												<div class="box-image">
+													<a href="#" title="">
+														<img src="/images/product/other/02-v3.jpg" alt="">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">Cameras</a>
+													</div>
+													<div class="product-name">
+														<a href="#" title="">Apple İmac Z0SC4824<br />Retina</a>
+													</div>
+													<div class="status">
+														Availablity: In stock
+													</div>
+													<div class="info">
+														<p>
+															The iPhone 5c replaces the iPhone 5 in the Apple stable, inheriting its internals, like the A6 processor, 4" screen...
+														</p>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-price">
+													<div class="price">
+														<span class="regular">$2,999.00</span>
+														<span class="sale">$1,999.00</span>
+													</div>
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="/images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+												
+												</div><!-- /.box-price -->
+											</div><!-- /.imagebox -->
+										</div><!-- /.product-box -->
+										<div class="product-box style3">
+											<div class="imagebox style1 v3">
+												<div class="box-image">
+													<a href="#" title="">
+														<img src="/images/product/other/03-v3.jpg" alt="">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">Cameras</a>
+													</div>
+													<div class="product-name">
+														<a href="#" title="">New X5C-1 2.4Ghz Gyro <br />RC Quadcopter Drone</a>
+													</div>
+													<div class="status">
+														Availablity: In stock
+													</div>
+													<div class="info">
+														<p>
+															The iPhone 5c replaces the iPhone 5 in the Apple stable, inheriting its internals, like the A6 processor, 4" screen...
+														</p>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-price">
+													<div class="price">
+														<span class="regular">$2,999.00</span>
+														<span class="sale">$1,999.00</span>
+													</div>
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="/images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+											
+												</div><!-- /.box-price -->
+											</div><!-- /.imagebox -->
+										</div><!-- /.product-box -->
+										<div class="product-box style3">
+											<div class="imagebox style1 v3">
+												<div class="box-image">
+													<a href="#" title="">
+														<img src="/images/product/other/04-v3.jpg" alt="">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">Cameras</a>
+													</div>
+													<div class="product-name">
+														<a href="#" title="">Apple iPad Air 2 32GB 9.7"<br />Tablet</a>
+													</div>
+													<div class="status">
+														Availablity: In stock
+													</div>
+													<div class="info">
+														<p>
+															The iPhone 5c replaces the iPhone 5 in the Apple stable, inheriting its internals, like the A6 processor, 4" screen...
+														</p>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-price">
+													<div class="price">
+														<span class="regular">$2,999.00</span>
+														<span class="sale">$1,999.00</span>
+													</div>
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="/images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>													
+												</div><!-- /.box-price -->
+											</div><!-- /.imagebox -->
+										</div><!-- /.product-box -->
+										<div style="height: 9px;"></div>
+									</div>
+								</div>
+							</div><!-- /.wrap-imagebox -->
+							<div class="blog-pagination">
+								<span>
+										搜索结果
+								</span>
+								<ul class="flat-pagination style1">						
+									<li>
+										<a href="#" class="waves-effect" title="">01</a>
+									</li>
+									<li>
+										<a href="#" class="waves-effect" title="">02</a>
+									</li>
+									<li class="active">
+										<a href="#" class="waves-effect" title="">03</a>
+									</li>
+									<li>
+										<a href="#" class="waves-effect" title="">04</a>
+									</li>									
+								</ul>
+								<div class="clearfix"></div>
+						</div><!-- /.main-shop -->
+					</div><!-- /.col-lg-9 col-md-8 -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</main><!-- /#shop -->
+
+
+
+	<div th:replace="./module/footer::footer"></div>
+
+
+	</div><!-- /.boxed -->
+
+		<!-- Javascript -->
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/tether.min.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/waypoints.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.circlechart.js"></script>
+		<script type="text/javascript" src="/js/easing.js"></script>
+		<script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+		<script type="text/javascript" src="/js/owl.carousel.js"></script>
+		<script type="text/javascript" src="/js/smoothscroll.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui.js"></script>
+		<script type="text/javascript" src="/js/jquery.mCustomScrollbar.js"></script>
+	   	<script type="text/javascript" src="/js/gmap3.min.js"></script>
+	   	<script type="text/javascript" src="/js/waves.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.countdown.js"></script>
+
+		<script type="text/javascript" src="/js/main.js"></script>
+
+</body>	
+</html>
