@@ -13,6 +13,8 @@ public interface ItemCategoryMapper {
 
     ItemCategory findById(ItemCategory itemCategory);
 
+    String findNameById(Integer id);
+
     List<ItemCategory> list(ItemCategory itemCategory);
 
     List<ItemCategory> list1();

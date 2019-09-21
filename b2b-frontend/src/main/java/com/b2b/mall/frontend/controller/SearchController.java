@@ -17,10 +17,6 @@ public class SearchController {
     @Value("${PAGE_ROWS}")
     private Integer PAGE_ROWS;
 
-    @RequestMapping("/searcht.html")
-    public String searcht( Model model) throws Exception {
-        return "shop-search";
-    }
     @RequestMapping("/cartt.html")
     public String searchtt( Model model) throws Exception {
         return "shop-cart";
@@ -34,11 +30,7 @@ public class SearchController {
         return "shop-index";
     }
 
-    @RequestMapping("/sing.html")
-    public String searchttttt( Model model) throws Exception {
-        return "single-product";
-    }
-        @RequestMapping("/search.html")
+    @RequestMapping("/search.html")
     public String search(String keyword, @RequestParam(defaultValue = "1") Integer page, Model model) throws Exception {
         //调用Service查询商品信息
         SearchResult result = searchService.search(keyword, page, PAGE_ROWS);
@@ -49,6 +41,6 @@ public class SearchController {
         model.addAttribute("page", page);
         model.addAttribute("itemList", result.getItemList());
         //返回逻辑视图
-        return "search";
+        return "shop-search";
     }
 }

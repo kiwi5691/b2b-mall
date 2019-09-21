@@ -1,44 +1,142 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml"   lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
 <head>
-<meta http-equiv="pragma" content="no-cache" />
-<meta http-equiv="cache-control" content="no-cache" />
-<meta http-equiv="expires" content="0" />
-<meta name="format-detection" content="telephone=no" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta name="format-detection" content="telephone=no" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="/css/common.css?v=20160713" />
-<link rel="stylesheet" type="text/css" href="/css/all.css?v=20160713" />
-<link rel="stylesheet" type="text/css" href="/css/jquery.alerts.css" />
-<title>出错了 -宜立方商城</title>
-<!-- header start -->
-<div th:replace="./commons/header::header"></div>
-<!-- header end -->
-<div th:replace="./commons/mainmenu::mainmenu"></div>
-<body>
-	<div id="main">
-		<!----submenu------->
-		<div class="pbox">
-			<div class="error_cont">
-				<div class="error_box">
-					<img src="/images/error_img.jpg">
-						<h2>HTTP错误 404 - 文件或目录未找到 </h2>
-						<p>
-							<span id="totalSecond">2</span>秒后自动跳转到首页，如不自动跳转，请按<a
-								href="http://www.e3mall.cn/">回到首页</a>
-						</p>
-						<div class="clear"></div>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<!----mainOver------>
-			<div class="clear1"></div>
-		</div>
-	</div>
-	<!-- footer start -->
-	<div th:replace="./commons/footer::footer"></div>
-	<!-- footer end -->
+    <!-- Basic Page Needs -->
+    <meta charset="UTF-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <title>出错啦</title>
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Boostrap style -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+    <!-- Reponsive -->
+    <link rel="stylesheet" type="text/css" href="/css/responsive.css">
+
+</head>
+<body class="header_sticky">
+<div class="boxed">
+
+    <section id="header" class="header">
+
+        <div th:replace="./module/header::header"></div>
+        <div th:replace="./module/category::category"></div>
+
+    </section><!-- /#header -->
+
+    <section class="flat-breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumbs">
+                        <li class="trail-item">
+                            <a href="#" title="">主页</a>
+                            <span><img src="/images/icons/arrow-right.png" alt=""></span>
+                        </li>
+                        <li class="trail-item">
+                            <a href="#" title="">商城</a>
+                            <span><img src="/images/icons/arrow-right.png" alt=""></span>
+                        </li>
+                        <li class="trail-end">
+                            <a href="#" title="">购物车</a>
+                        </li>
+                    </ul><!-- /.breacrumbs -->
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.flat-breadcrumb -->
+
+    <section class="flat-wishlist">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="wishlist">
+                        <div class="title">
+                            <h1>找不到商品！</h1>
+                        </div>
+                        <div class="wishlist-content">
+                            <table class="table-wishlist">
+                                <thead>
+                                <tr>
+                                    <th>欢迎光临</th>
+                                    <th>操作</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="product">
+                                            <div class="name">
+                                                继续购买
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="add-cart">
+                                            <a href="javascript:history.go(-1)" >
+                                                返回上一页
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product">
+                                            <div class="name">
+                                                查看购物车
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="add-cart">
+                                            <a href='http://localhost:8088/cart/cart.html' title="">
+                                            购物车
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table><!-- /.table-wishlist -->
+                        </div><!-- /.wishlist-content -->
+                    </div><!-- /.wishlist -->
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.flat-wishlish -->
+
+
+
+    <div th:replace="./module/footer::footer"></div>
+
+
+</div><!-- /.boxed -->
+
+<!-- Javascript -->
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/tether.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/waypoints.min.js"></script>
+<script type="text/javascript" src="/js/jquery.circlechart.js"></script>
+<script type="text/javascript" src="/js/easing.js"></script>
+<script type="text/javascript" src="/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="/js/owl.carousel.js"></script>
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.js"></script>
+<script type="text/javascript" src="/js/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript" src="/js/gmap3.min.js"></script>
+<script type="text/javascript" src="/js/waves.min.js"></script>
+<script type="text/javascript" src="/js/jquery.countdown.js"></script>
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+
 </body>
 </html>

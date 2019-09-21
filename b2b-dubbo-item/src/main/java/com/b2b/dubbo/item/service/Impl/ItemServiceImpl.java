@@ -2,6 +2,7 @@ package com.b2b.dubbo.item.service.Impl;
 
 import com.b2b.dubbo.item.service.ItemService;
 import com.b2b.mall.db.entity.ContentDTO;
+import com.b2b.mall.db.mapper.ItemCategoryMapper;
 import com.b2b.mall.db.mapper.ItemDescMapper;
 import com.b2b.mall.db.mapper.ItemMapper;
 import com.b2b.mall.db.model.Item;
@@ -24,6 +25,8 @@ public class ItemServiceImpl implements ItemService {
     private ItemMapper itemMapper;
     @Autowired
     private ItemDescMapper itemDescMapper;
+    @Autowired
+    private ItemCategoryMapper itemCategoryMapper;
     @Autowired
     private JmsMessagingTemplate jmsMessagingTemplate;
     @Autowired
@@ -54,6 +57,7 @@ public class ItemServiceImpl implements ItemService {
         Item tbItem = itemMapper.selectByPrimaryKey(itemId);
         if (tbItem != null) {
             try {
+                tbItem.setCategoryName(itemCategoryMapper.findNameById(tbItem.getCid()));
                 // 把数据保存到缓存
                 redisTemplate.opsForValue().set(ITEM_INFO_KEY + ":" + itemId + ":" + ITEM_INFO_BASE_KEY, tbItem);
                 // 设置缓存的有效期

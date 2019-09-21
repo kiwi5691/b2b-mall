@@ -25,9 +25,10 @@ public class ItemController {
 		//根据商品id查询商品描述
 		Long itemIdLong = itemId.longValue();
 		ItemDesc itemDesc = itemService.getItemDescById(itemIdLong);
+		System.out.println("des is"+itemDesc.getItemDesc());
 		//把数据传递给页面
 		model.addAttribute("item", item);
 		model.addAttribute("itemDesc", itemDesc);
-		return "item";
+		return "single-product";
 	}
 }

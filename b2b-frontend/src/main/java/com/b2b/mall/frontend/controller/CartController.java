@@ -120,7 +120,7 @@ public class CartController {
         }
         //传递给页面
         request.setAttribute("cartList", cartList);
-        return "cart";
+        return "shop-cart";
     }
 
     /**

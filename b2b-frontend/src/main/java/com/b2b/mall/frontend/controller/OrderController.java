@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -38,6 +39,11 @@ public class OrderController {
         TbUser user = (TbUser) request.getAttribute("user");
         List<Item> cartList = cartService.getCartList(5L);
         request.setAttribute("cartList", cartList);
+        int paymentInt =0;
+        for (Item i:cartList) {
+            paymentInt+= (i.getNum()*i.getPrice())/100;
+        }
+        request.setAttribute("payment",String.valueOf( paymentInt));
         return "order-cart";
     }
 

@@ -27,7 +27,7 @@
 <div th:replace="./commons/header::header"></div>
 <div class="orderMain">
     <form id="orderForm" class="hide" action="/order/create.html" method="post">
-        <input type="hidden" name="payment" th:value="${#aggregates.sum(cartList.![price * num]) / 100}"/>
+        <input type="hidden" name="payment" th:value="${payment}"/>
         <input type="hidden" name="paymentType" value="2"/>
         <input type="hidden" name="postFee" value="10"/>
         <div th:each="cart,cartStat : ${cartList}">

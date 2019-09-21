@@ -12,8 +12,13 @@
         <result column="updated" property="updated" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    <select id="findById" resultMap="BaseResultMap" parameterType="com.b2b.mall.db.model.ItemCategory">
         SELECT * from tb_category where id = #{id, jdbcType=INTEGER}
+    </select>
+
+
+    <select id="findNameById" resultType="java.lang.String" parameterType="java.lang.Integer">
+        SELECT name from tb_category where id = #{id, jdbcType=INTEGER}
     </select>
 
     <select id="list" resultMap="BaseResultMap" parameterType="java.lang.String">

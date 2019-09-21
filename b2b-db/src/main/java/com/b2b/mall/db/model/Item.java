@@ -10,7 +10,8 @@ public class Item extends BaseObject implements Serializable {
     private int id;
     private String title;
     private String sellPoint;
-    private int price;
+    private int
+            price;
     private int num;
     private String barcode;
     private String image;

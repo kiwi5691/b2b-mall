@@ -64,73 +64,44 @@
 							<table>
 								<thead>
 									<tr>
-										<th>Product</th>
-										<th>Quantity</th>
-										<th>Total</th>
-										<th></th>
+										<th>商品</th>
+										<th>数量</th>
+										<th>总计</th>
+										<th>操作</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									<tr th:each="cart:${cartList}">
 										<td>
 											<div class="img-product">
 												<img src="/images/product/other/12.jpg" alt="">
 											</div>
 											<div class="name-product">
-												Apple iPad Mini <br />G2356
+												<a target="_blank" th:href="|http://localhost:8088/item/${cart.id}.html|">[[${cart.title}]]</a>
 											</div>
 											<div class="price">
-												$1,250.00
+												¥ [[${cart.price / 100}]]
 											</div>
 											<div class="clearfix"></div>
 										</td>
 										<td>
 											<div class="quanlity">
-												<span class="btn-down"></span>
-												<input type="number" name="number" value="5" min="1" max="100" placeholder="Quanlity">
-												<span class="btn-up"></span>
+												<span id="q_down" class="btn-down"></span>
+												<input id="q_num" type="number" th:value="${cart.num}" class="amount itemnum"
+													   th:attr="itemPrice=${cart.price}, itemId=${cart.id}"
+													    name="amount">
+												<span id="q_up" class="btn-up"></span>
 											</div>
 										</td>
 										<td>
 											<div class="total">
-												$6,250.00
+												¥[[${cart.price / 100 * cart.num}]]
 											</div>
 										</td>
 										<td>
-											<a href="#" title="">
+											<a id="cartDel" th:href="|/cart/delete/${cart.id}.html|">
 												<img src="/images/icons/delete.png" alt="">
 											</a>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="img-product">
-												<img src="/images/product/other/11.jpg" alt="">
-											</div>
-											<div class="name-product">
-												Beats Pill+ Portable<br />Speaker
-											</div>
-											<div class="price">
-												$1,250.00
-											</div>
-											<div class="clearfix"></div>
-										</td>
-										<td>
-											<div class="quanlity">
-												<span class="btn-down"></span>
-												<input type="number" name="number" value="5" min="1" max="100" placeholder="Quanlity">
-												<span class="btn-up"></span>
-											</div>
-										</td>
-										<td>
-											<div class="total">
-												$6,250.00
-											</div>
-										</td>
-										<td>
-											<span>
-												<img src="/images/icons/delete.png" alt="">
-											</span>
 										</td>
 									</tr>
 								</tbody>
@@ -145,7 +116,7 @@
 									<tbody>
 										<tr>
 											<td>商品总计</td>
-											<td class="subtotal">$2,589.00</td>
+											<td class="subtotal">¥ [[${#aggregates.sum(cartList.![price * num]) / 100}]]</td>
 										</tr>
 										<tr>
 											<td>运费</td>
@@ -161,14 +132,14 @@
 											</td><!-- /.btn-radio -->
 										</tr>
 										<tr>
-											<td>Total</td>
-											<td class="price-total">$1,591.00</td>
+											<td>合计</td>
+											<td class="price-total">¥ [[${#aggregates.sum(cartList.![price * num]) / 100}]]</td>
 										</tr>
 									</tbody>
 								</table>
 								<div class="btn-cart-totals">
-									<a href="#" class="update" title="">继续购物</a>
-									<a href="#" class="checkout" title="">取结算</a>
+									<a href="http://localhost:8088" class="update" title="">继续购物</a>
+									<a href="http://localhost:8088/order/order-cart.html" class="checkout" title="">去结算</a>
 								</div><!-- /.btn-cart-totals -->
 							</form><!-- /form -->
 						</div><!-- /.cart-totals -->
@@ -202,5 +173,26 @@
 
 		<script type="text/javascript" src="/js/main.js"></script>
 
+
+	<script>
+		var q_up = document.getElementById("q_up");
+		var q_down = document.getElementById("q_down");
+		var q_num = document.getElementById("q_num");
+
+		q_up.onclick = function() {
+
+			q_num.value = parseInt( q_num.value) + 1;
+		}
+		q_down.onclick = function() {
+
+			if(q_num.value <= 0) {
+				q_num.value = 0;
+			} else {
+
+				q_num.value = parseInt(q_num.value) - 1;
+			}
+
+		}
+	</script>
 </body>	
 </html>

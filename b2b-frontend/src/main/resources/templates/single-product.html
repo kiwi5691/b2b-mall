@@ -6,7 +6,7 @@
 	<!-- Basic Page Needs -->
 	<meta charset="UTF-8">
 	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-	<title>Single Product</title>
+	<title>[[${item.title}]]</title>
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -61,7 +61,7 @@
 						<div class="flexslider">
 							<ul class="slides">
 							    <li data-thumb="/images/product/flexslider/thumb/2.jpg">
-							      <img src="/images/product/flexslider/l01.jpg" alt="image slider" />
+							      <img th:src="${item.image}" alt="image slider" />
 							      <span>NEW</span>
 							    </li>							  
 							</ul><!-- /.slides -->
@@ -70,9 +70,9 @@
 					<div class="col-md-6">
 						<div class="product-detail">
 							<div class="header-detail">
-								<h4 class="name">Warch 42 mm Smart Watches</h4>
+								<h4 class="name">[[${item.title}]]</h4>
 								<div class="category">
-									Smart Watches
+                                    [[${item.categoryName}]]
 								</div>
 								<div class="reviewed">
 									<div class="review">
@@ -86,36 +86,36 @@
 									
 									</div><!-- /.review -->
 									<div class="status-product">
-										Availablity <span>货量</span>
+										货量 <span>[[${item.num}]]</span>
 									</div>
 								</div><!-- /.reviewed -->
 							</div><!-- /.header-detail -->
 							<div class="content-detail">
 								<div class="price">								
 									<div class="sale">
-										$1,589.00
+                                        [[${item.price / 100}]]
 									</div>
 								</div>
 								<div class="info-text">
-									Vivamus in tempor eros. Phasellus rhoncus in nunc sit amet mattis. Integer in ipsum vestibulum, molestie arcu ac, efficitur tellus. Phasellus id vulputate erat.
+                                    [[${item.sellPoint}]]
 								</div>
 								<div class="product-id">
-									商品id: <span class="id">FW511948218</span>
+									商品id: <span class="id">[[${item.id}]]</span>
 								</div>
 							</div><!-- /.content-detail -->
 							<div class="footer-detail">
 								<div class="quanlity-box">
 									
 									<div class="quanlity">
-										<span class="btn-down"></span>
-										<input type="number" name="number" value="" min="1" max="100" placeholder="Quanlity">
-										<span class="btn-up"></span>
+										<span id="q_down" class="btn-down"></span>
+										<input type="number" name="number" id="q_num" value="1" min="1" max="100" placeholder="数量">
+										<span id="q_up" class="btn-up"></span>
 									</div>
 								</div><!-- /.quanlity-box -->
 								<div class="box-cart style2">
 									<div class="btn-add-cart">
-										<a href="#" title=""><img src="/images/icons/add-cart.png" alt="">Add to Cart</a>
-									</div>									
+										<a  href="javascript:void(0);"  class="button-rl" id="cart_add" onclick="CART.addToCart()"><img src="/images/icons/add-cart.png" alt="">加入购物车</a>
+									</div>
 								</div><!-- /.box-cart -->							
 							</div><!-- /.footer-detail -->
 						</div><!-- /.product-detail -->
@@ -135,13 +135,14 @@
 					<div class="col-md-12">
 						<div class="different-color">
 							<div class="title">
-								Different Colors
-
-								<!-- TODO 商品itemdesc -->
+                                [[${item.title}]]
 							</div>
-							<p>
-								Sed sodales sed orci<br />molestie
-							</p>
+                            <div class="title">
+                                [[${item.sellPoint}]]
+                            </div>
+                            <p>
+                                [[${itemDesc.itemDesc}]]
+                            </p>
 						</div><!-- /.different-color -->
 					</div><!-- /.col-md-12 -->
 				
@@ -281,8 +282,57 @@
 	   	<script type="text/javascript" src="/js/gmap3.min.js"></script>
 	   	<script type="text/javascript" src="/js/waves.min.js"></script>
 		<script type="text/javascript" src="/js/jquery.countdown.js"></script>
-
+    <script type="text/javascript" src="/js/jquery.alerts.js"></script>
 		<script type="text/javascript" src="/js/main.js"></script>
 
-	</body>	
+    <script>
+        var q_up = document.getElementById("q_up");
+        var q_down = document.getElementById("q_down");
+        var q_num = document.getElementById("q_num");
+
+        q_up.onclick = function() {
+
+            q_num.value = parseInt( q_num.value) + 1;
+        }
+
+        q_down.onclick = function() {
+
+            if(q_num.value <= 0) {
+                q_num.value = 0;
+            } else {
+
+                q_num.value = parseInt(q_num.value) - 1;
+            }
+
+        }
+    </script>
+    <script type="text/javascript" >
+        var CART = {
+            param: {
+                hurl: "http://localhost:8088"
+            },
+            check: function () {
+                var flag = true;
+                var q_num = document.getElementById("q_num");
+                var num = [[${item.num}]];
+                if (q_num.value > num ) {
+                    jAlert("不得大于库存"  , "错误");
+                    flag = false;
+                }
+                return flag;
+            },
+            index: function () {
+                    var id = [[${item.id}]];
+                    var q_num = document.getElementById("q_num");
+                    location.href = CART.param.hurl+"/cart/add/"+id+".html?num="+q_num.value;
+                return false;
+            },
+            addToCart: function () {
+                if (this.check()) {
+                    this.index();
+                }
+            }
+        };
+    </script>
+</body>
 </html>

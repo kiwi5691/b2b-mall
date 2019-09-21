@@ -6,7 +6,7 @@
 	<!-- Basic Page Needs -->
 	<meta charset="UTF-8">
 	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-	<title>搜索</title>
+	<title>[[${query}]] - 商品搜索</title>
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -62,25 +62,25 @@
 						<div class="sidebar ">
 							<div class="widget widget-categories">
 								<div class="widget-title">
-									<h3>Categories<span></span></h3>
-								</div>								
+									<h3>目录<span></span></h3>
+								</div>
 							</div><!-- /.widget-categories -->
 							<div class="widget widget-price">
 								<div class="widget-title">
-									<h3>Price<span></span></h3>
-								</div>								
+									<h3>价格<span></span></h3>
+								</div>
 							</div><!-- /.widget widget-price -->
 							<div class="widget widget-brands">
 								<div class="widget-title">
-									<h3>Brands<span></span></h3>
-								</div>								
+									<h3>品牌<span></span></h3>
+								</div>
 							</div><!-- /.widget widget-brands -->
 							<div class="widget widget-color">
 								<div class="widget-title">
-									<h3>Color<span></span></h3>
+									<h3>颜色<span></span></h3>
 									<div style="height: 2px"></div>
-								</div>								
-							</div><!-- /.widget widget-color -->						
+								</div>
+							</div><!-- /.widget widget-color -->
 							<div class="widget widget-banner">
 								<div class="banner-box">
 									<div class="inner-box">
@@ -119,13 +119,13 @@
 									</div>
 									<div class="clearfix"></div>
 								</div><!-- /.slider-item style9 -->
-								
+
 							</div><!-- /.slider -->
 							<div class="wrap-imagebox">
 								<div class="flat-row-title">
-									<h3>搜索结果</h3>
+									<h3 th:text="'全部结果&nbsp;&gt;&nbsp;'+${query}"></h3>
 									<span>
-										显示以下商品
+										共 -[[${recourdCount}]] -个商品
 									</span>
 									<div class="clearfix"></div>
 								</div>
@@ -134,224 +134,71 @@
 										<li>
 											<img src="/images/icons/list-2.png" alt="">
 										</li>
-									</ul>								
+									</ul>
 									<div class="clearfix"></div>
 								</div>
-							
-									<div class="sort-box">
+
+								<div class="sort-box">
+									<ul >
+										<li th:each="item : ${itemList}">
 										<div class="product-box style3">
-											<div class="imagebox style1 v3">
-												<div class="box-image">
-													<a href="#" title="">
-														<img src="/images/product/other/s02.jpg" alt="">
+										<div class="imagebox style1 v3">
+											<div class="box-image">
+												<a href="#" title="">
+													<img th:src="${item.image}" alt="">
+												</a>
+											</div><!-- /.box-image -->
+											<div class="box-content">
+												<div class="cat-name">
+													<p th:utext="${item.category_name}"></p>
+												</div>
+												<div class="product-name">
+													<a th:href="|http://localhost:8088/item/${item.id}.html|"
+													   target="_blank" th:utext="${item.title}"></a>
+												</div>
+												<div class="info">
+													<p th:utext="${item.sell_point}">
+													</p>
+												</div>
+											</div><!-- /.box-content -->
+											<div class="box-price">
+												<div class="price">
+													<span class="sale" th:text="'$'+${item.price / 100}">$1,999.00</span>
+												</div>
+												<div class="btn-add-cart">
+													<a th:href="@{'cart/add/'+${item.id}+'.html'}">
+														<img src="/images/icons/add-cart.png" alt="">添加到购物车
 													</a>
-												</div><!-- /.box-image -->
-												<div class="box-content">
-													<div class="cat-name">
-														<a href="#" title="">Cameras</a>
-													</div>
-													<div class="product-name">
-														<a href="#" title="">Apple iPad Air 2 32GB 9.7"<br />Tablet</a>
-													</div>
-													<div class="status">
-														Availablity: In stock
-													</div>
-													<div class="info">
-														<p>
-															The iPhone 5c replaces the iPhone 5 in the Apple stable, inheriting its internals, like the A6 processor, 4" screen...
-														</p>
-													</div>
-												</div><!-- /.box-content -->
-												<div class="box-price">
-													<div class="price">
-														<span class="regular">$2,999.00</span>
-														<span class="sale">$1,999.00</span>
-													</div>
-													<div class="btn-add-cart">
-														<a href="#" title="">
-															<img src="/images/icons/add-cart.png" alt="">Add to Cart
-														</a>
-													</div>
-												
-												</div><!-- /.box-price -->
-											</div><!-- /.imagebox -->
-										</div><!-- /.product-box -->
-										<div class="product-box style3">
-											<div class="imagebox style1 v3">
-												<div class="box-image">
-													<a href="#" title="">
-														<img src="/images/product/other/01-v3.jpg" alt="">
-													</a>
-												</div><!-- /.box-image -->
-												<div class="box-content">
-													<div class="cat-name">
-														<a href="#" title="">Cameras</a>
-													</div>
-													<div class="product-name">
-														<a href="#" title="">New X5C-1 2.4Ghz Gyro <br />RC Quadcopter Drone</a>
-													</div>
-													<div class="status">
-														Availablity: In stock
-													</div>
-													<div class="info">
-														<p>
-															The iPhone 5c replaces the iPhone 5 in the Apple stable, inheriting its internals, like the A6 processor, 4" screen...
-														</p>
-													</div>
-												</div><!-- /.box-content -->
-												<div class="box-price">
-													<div class="price">
-														<span class="regular">$2,999.00</span>
-														<span class="sale">$1,999.00</span>
-													</div>
-													<div class="btn-add-cart">
-														<a href="#" title="">
-															<img src="/images/icons/add-cart.png" alt="">Add to Cart
-														</a>
-													</div>
-												
-												</div><!-- /.box-price -->
-											</div><!-- /.imagebox -->
-										</div><!-- /.product-box -->
-										<div class="product-box style3">
-											<div class="imagebox style1 v3">
-												<div class="box-image">
-													<a href="#" title="">
-														<img src="/images/product/other/02-v3.jpg" alt="">
-													</a>
-												</div><!-- /.box-image -->
-												<div class="box-content">
-													<div class="cat-name">
-														<a href="#" title="">Cameras</a>
-													</div>
-													<div class="product-name">
-														<a href="#" title="">Apple İmac Z0SC4824<br />Retina</a>
-													</div>
-													<div class="status">
-														Availablity: In stock
-													</div>
-													<div class="info">
-														<p>
-															The iPhone 5c replaces the iPhone 5 in the Apple stable, inheriting its internals, like the A6 processor, 4" screen...
-														</p>
-													</div>
-												</div><!-- /.box-content -->
-												<div class="box-price">
-													<div class="price">
-														<span class="regular">$2,999.00</span>
-														<span class="sale">$1,999.00</span>
-													</div>
-													<div class="btn-add-cart">
-														<a href="#" title="">
-															<img src="/images/icons/add-cart.png" alt="">Add to Cart
-														</a>
-													</div>
-												
-												</div><!-- /.box-price -->
-											</div><!-- /.imagebox -->
-										</div><!-- /.product-box -->
-										<div class="product-box style3">
-											<div class="imagebox style1 v3">
-												<div class="box-image">
-													<a href="#" title="">
-														<img src="/images/product/other/03-v3.jpg" alt="">
-													</a>
-												</div><!-- /.box-image -->
-												<div class="box-content">
-													<div class="cat-name">
-														<a href="#" title="">Cameras</a>
-													</div>
-													<div class="product-name">
-														<a href="#" title="">New X5C-1 2.4Ghz Gyro <br />RC Quadcopter Drone</a>
-													</div>
-													<div class="status">
-														Availablity: In stock
-													</div>
-													<div class="info">
-														<p>
-															The iPhone 5c replaces the iPhone 5 in the Apple stable, inheriting its internals, like the A6 processor, 4" screen...
-														</p>
-													</div>
-												</div><!-- /.box-content -->
-												<div class="box-price">
-													<div class="price">
-														<span class="regular">$2,999.00</span>
-														<span class="sale">$1,999.00</span>
-													</div>
-													<div class="btn-add-cart">
-														<a href="#" title="">
-															<img src="/images/icons/add-cart.png" alt="">Add to Cart
-														</a>
-													</div>
-											
-												</div><!-- /.box-price -->
-											</div><!-- /.imagebox -->
-										</div><!-- /.product-box -->
-										<div class="product-box style3">
-											<div class="imagebox style1 v3">
-												<div class="box-image">
-													<a href="#" title="">
-														<img src="/images/product/other/04-v3.jpg" alt="">
-													</a>
-												</div><!-- /.box-image -->
-												<div class="box-content">
-													<div class="cat-name">
-														<a href="#" title="">Cameras</a>
-													</div>
-													<div class="product-name">
-														<a href="#" title="">Apple iPad Air 2 32GB 9.7"<br />Tablet</a>
-													</div>
-													<div class="status">
-														Availablity: In stock
-													</div>
-													<div class="info">
-														<p>
-															The iPhone 5c replaces the iPhone 5 in the Apple stable, inheriting its internals, like the A6 processor, 4" screen...
-														</p>
-													</div>
-												</div><!-- /.box-content -->
-												<div class="box-price">
-													<div class="price">
-														<span class="regular">$2,999.00</span>
-														<span class="sale">$1,999.00</span>
-													</div>
-													<div class="btn-add-cart">
-														<a href="#" title="">
-															<img src="/images/icons/add-cart.png" alt="">Add to Cart
-														</a>
-													</div>													
-												</div><!-- /.box-price -->
-											</div><!-- /.imagebox -->
-										</div><!-- /.product-box -->
+												</div>
+
+											</div><!-- /.box-price -->
+										</div><!-- /.imagebox -->
+										</div>
+										</li>
+										</ul>
 										<div style="height: 9px;"></div>
 									</div>
 								</div>
 							</div><!-- /.wrap-imagebox -->
 							<div class="blog-pagination">
 								<span>
-										搜索结果
-								</span>
-								<ul class="flat-pagination style1">						
+										<span class="n" id="page" th:text="${page}" ></span ><span>/</span>
+									<span id="totalPage" th:text="${totalPages}"></span>
+								</span >
+								<ul class="flat-pagination style1">
 									<li>
-										<a href="#" class="waves-effect" title="">01</a>
+										<a  href="javascript:void(0);"  class="waves-effect" id="search_up" onclick="SEARCH.down()">上页</a>
 									</li>
 									<li>
-										<a href="#" class="waves-effect" title="">02</a>
+										<a  href="javascript:void(0);"  class="waves-effect" id="search_down" onclick="SEARCH.up()">下页</a>
 									</li>
-									<li class="active">
-										<a href="#" class="waves-effect" title="">03</a>
-									</li>
-									<li>
-										<a href="#" class="waves-effect" title="">04</a>
-									</li>									
 								</ul>
 								<div class="clearfix"></div>
-						</div><!-- /.main-shop -->
-					</div><!-- /.col-lg-9 col-md-8 -->
-				</div><!-- /.row -->
-			</div><!-- /.container -->
+							</div><!-- /.main-shop -->
+						</div><!-- /.col-lg-9 col-md-8 -->
+					</div><!-- /.row -->
+				</div><!-- /.container -->
 		</main><!-- /#shop -->
-
 
 
 	<div th:replace="./module/footer::footer"></div>
@@ -376,6 +223,32 @@
 		<script type="text/javascript" src="/js/jquery.countdown.js"></script>
 
 		<script type="text/javascript" src="/js/main.js"></script>
+	<script type="text/javascript" th:inline="javascript">
+		var SEARCH = {
+			param: {
+				hurl: "http://localhost:8088"
+			},
+			up:function(){
+				var page = [[${page}]];
+				var totalPage = [[${totalPages}]];
+				var keyword = [[${query}]];
+				var pageup = page + 1;
 
+				if(pageup<=totalPage){
+					location.replace( SEARCH.param.hurl+"/search.html?keyword="+keyword+"&page="+pageup);
+				}
+			},
+			down:function(){
+
+				var page = [[${page}]];
+				var keyword = [[${query}]];
+				var pagedown =page -1;
+				if(pagedown>=1){
+					location.replace( SEARCH.param.hurl+"/search.html?keyword="+keyword+"&page="+pagedown);
+				}
+
+			}
+		};
+	</script>
 </body>	
 </html>
