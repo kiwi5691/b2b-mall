@@ -38,6 +38,12 @@ public class OrderController {
     public String showOrderCart(HttpServletRequest request) {
         TbUser user = (TbUser) request.getAttribute("user");
         List<Item> cartList = cartService.getCartList(5L);
+        cartList.stream().forEach(cartList1->{
+            System.out.println(cartList1.getId());
+            System.out.println(cartList1.getPrice());
+            System.out.println(cartList1.getTitle());
+            System.out.println(cartList1.getCategoryName());
+        });
         request.setAttribute("cartList", cartList);
         int paymentInt =0;
         for (Item i:cartList) {

@@ -54,7 +54,7 @@
 		</section><!-- /.flat-breadcrumb -->
 
 		<section class="flat-shop-cart">
-			<div class="container">
+			<div class="container" id="autore">
 				<div class="row">
 					<div class="col-lg-8">
 						<div class="flat-row-title style1">
@@ -86,11 +86,11 @@
 										</td>
 										<td>
 											<div class="quanlity">
-												<span id="q_down" class="btn-down"></span>
-												<input id="q_num" type="number" th:value="${cart.num}" class="amount itemnum"
+												<span href="javascript:void(0);" class="btn-down decrement"></span>
+												<input type="text" th:value="${cart.num}" class="amount itemnum"
 													   th:attr="itemPrice=${cart.price}, itemId=${cart.id}"
-													    name="amount">
-												<span id="q_up" class="btn-up"></span>
+													   id="amountdanjian-0-229363" name="amount">
+												<span href="javascript:void(0);"  class="btn-up increment"></span>
 											</div>
 										</td>
 										<td>
@@ -115,10 +115,6 @@
 								<table>
 									<tbody>
 										<tr>
-											<td>商品总计</td>
-											<td class="subtotal">¥ [[${#aggregates.sum(cartList.![price * num]) / 100}]]</td>
-										</tr>
-										<tr>
 											<td>运费</td>
 											<td class="btn-radio">
 												<div class="radio-info">
@@ -133,7 +129,7 @@
 										</tr>
 										<tr>
 											<td>合计</td>
-											<td class="price-total">¥ [[${#aggregates.sum(cartList.![price * num]) / 100}]]</td>
+											<td id="allMoney2" class="price-total">¥ [[${#aggregates.sum(cartList.![price * num]) / 100}]]</td>
 										</tr>
 									</tbody>
 								</table>
@@ -170,29 +166,13 @@
 	   	<script type="text/javascript" src="/js/gmap3.min.js"></script>
 	   	<script type="text/javascript" src="/js/waves.min.js"></script>
 		<script type="text/javascript" src="/js/jquery.countdown.js"></script>
-
+<!--	-->
+	<script type="text/javascript" src="/js/cart.js?"></script>
+	    <script type="text/javascript" src="/js/cookie.js?"></script>
+		<script type="text/javascript" src="/js/shadow.js?"></script>
+		<script type="text/javascript" src="/js/common.js"></script>
 		<script type="text/javascript" src="/js/main.js"></script>
 
 
-	<script>
-		var q_up = document.getElementById("q_up");
-		var q_down = document.getElementById("q_down");
-		var q_num = document.getElementById("q_num");
-
-		q_up.onclick = function() {
-
-			q_num.value = parseInt( q_num.value) + 1;
-		}
-		q_down.onclick = function() {
-
-			if(q_num.value <= 0) {
-				q_num.value = 0;
-			} else {
-
-				q_num.value = parseInt(q_num.value) - 1;
-			}
-
-		}
-	</script>
 </body>	
 </html>
