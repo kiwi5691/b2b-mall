@@ -29,7 +29,7 @@
 			<div th:replace="./module/header::header"></div>
 			<div th:replace="./module/category::category"></div>
 					
-		</section><!-- /#header -->	
+		</section><!-- /#header -->
 
 		<section class="flat-breadcrumb">
 			<div class="container">
@@ -57,8 +57,19 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-7">
-						<div class="box-checkout">							
-							<form action="#" method="get" class="checkout" accept-charset="utf-8">
+						<form id="orderForm"  action="/order/create.html" method="post">
+							<input type="hidden" name="payment" th:value="${#aggregates.sum(cartList.![price * num]) / 100}"/>
+							<input type="hidden" name="paymentType" value="2"/>
+							<input type="hidden" name="postFee" value="10"/>
+							<div th:each="cart,cartStat : ${cartList}">
+								<input type="hidden" th:name="|orderItems[${cartStat.index}].itemId|" th:value="${cart.id}"/>
+								<input type="hidden" th:name="|orderItems[${cartStat.index}].num|" th:value="${cart.num}"/>
+								<input type="hidden" th:name="|orderItems[${cartStat.index}].price|" th:value="${cart.price}"/>
+								<input type="hidden" th:name="|orderItems[${cartStat.index}].totalFee|" th:value="${cart.price * cart.num}"/>
+								<input type="hidden" th:name="|orderItems[${cartStat.index}].title|" th:value="${cart.title}"/>
+								<input type="hidden" th:name="|orderItems[${cartStat.index}].picPath|" th:value="${cart.image}"/>
+							</div>
+							<div class="box-checkout">
 								<div class="billing-fields">
 									<div class="fields-title">
 										<h3>填写信息</h3>
@@ -68,18 +79,18 @@
 									<div class="fields-content">
 										<div class="field-row">
 											<p class="field-one-half">
-												<label for="first-name">收获人姓名</label>
-												<input type="text" id="first-name" name="first-name" placeholder="name" required>
-											</p>											
+												<label for="orderShipping.receiverName">收货人姓名</label>
+												<input type="text"  name="orderShipping.receiverName" placeholder="收货人姓名" required/>
+											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
-											<label for="company-name">电话</label>
-											<input type="text" id="company-name" name="company-name">
-										</div>										
+											<label >电话</label>
+											<input type="text" placeholder="收货人电话" name="orderShipping.receiverMobile" value="158008888881" required/>
+										</div>
 										<div class="field-row">
 											<label>省</label>
-											<select name="country">
+											<select name="orderShipping.receiverState">
 												<option value="">Australia</option>
 												<option value="">USA State</option>
 												<option value="">Spanish</option>
@@ -87,82 +98,94 @@
 											</select>
 										</div>
 										<div class="field-row">
-											<label for="address">城市</label>										
-											<input type="text" id="address-2" name="address" placeholder="市">
+											<label >城市</label>
+											<select name="orderShipping.receiverCity">
+												<option value="">Australia</option>
+												<option value="">USA State</option>
+												<option value="">Spanish</option>
+												<option value="">Viet Nam</option>
+											</select>
 										</div>
 										<div class="field-row">
-											<label for="town-city">区</label>
-											<input type="text" id="town-city" name="town-city">
+											<label >区</label>
+											<select name="orderShipping.receiverDistrict">
+												<option value="">Australia</option>
+												<option value="">USA State</option>
+												<option value="">Spanish</option>
+												<option value="">Viet Nam</option>
+											</select>
 										</div>
 										<div class="field-row">
-												<label for="state-country">详细地址</label>
-												<input type="text" id="state-country" name="state-country">
+											<label >详细地址</label>
+											<input type="text"  name="orderShipping.receiverAddress" value="北京市昌平区北七家镇 修正大厦" required/>
 
 											<div class="clearfix"></div>
-										</div>										
+										</div>
 									</div><!-- /.fields-content -->
-								</div><!-- /.billing-fields -->						
-							</form><!-- /.checkout -->
-						</div><!-- /.box-checkout -->
+								</div><!-- /.billing-fields -->
+							</div><!-- /.box-checkout -->
+						</form>
 					</div><!-- /.col-md-7 -->
 					<div class="col-md-5">
 						<div class="cart-totals style2">
 							<h3>您的订单</h3>
-							<form action="#" method="get" accept-charset="utf-8">
-								<table class="product">
-									<thead>
-										<tr>
-											<th>商品</th>
-											<th>价格</th>
-										</tr>
-									</thead>
-									<tbody>
+							<table class="product">
+								<thead>
+								<tr>
+									<th>商品</th>
+									<th>数量</th>
+									<th>价格</th>
+									<th>小计</th>
+								</tr>
+								</thead>
+								<tbody>
 
-										<tr th:each="cart,cartStat : ${cartList}">
-											<td>Apple iPad Mini<br />G2356</td>
-											<td>$99.00</td>
-										</tr>
-									</tbody>
-								</table><!-- /.product -->
-								<table>
-									<tbody>
-										<tr>
-											<td>合计</td>
-											<td class="subtotal">$1,999.00</td>
-										</tr>
-										<tr>
-											<td>邮费</td>
-											<td class="btn-radio">
-												<div class="radio-info">
-													<input type="radio" checked id="flat-rate" name="radio-flat-rate">
-													<label for="flat-rate">邮费： <span>$0.00</span></label>
-												</div>
-												<div class="radio-info">
-													<input type="radio" id="free-shipping" name="radio-flat-rate">
-													<label for="free-shipping">包邮</label>
-												</div>											
-											</td><!-- /.btn-radio -->
-										</tr>
-										<tr>
-											<td>合计</td>
-											<td class="price-total">$1,999.00</td>
-										</tr>
-									</tbody>
-								</table>								
-								<div class="checkbox">
-									<input type="checkbox" id="checked-order" name="checked-order" checked>
-									<label for="checked-order">我同意任何条款</label>
-								</div><!-- /.checkbox -->
-								<div class="btn-order">
-									<a href="#" class="order" title="">付款</a>
-								</div><!-- /.btn-order -->
-							</form>
+								<tr th:each="cart,cartStat : ${cartList}">
+									<td>[[${cart.title}]]</td>
+									<td>[[${cart.num}]]</td>
+									<td>¥[[${cart.price / 100 }]]</td>
+									<td>¥[[${cart.price / 100 * cart.num}]]</td>
+								</tr>
+								</tbody>
+							</table><!-- /.product -->
+							<table>
+								<tbody>
+								<tr>
+									<td>合计</td>
+									<td class="subtotal">¥[[${cart.price / 100 * cart.num}]]</td>
+								</tr>
+								<tr>
+									<td>邮费</td>
+									<td class="btn-radio">
+										<div class="radio-info">
+											<input type="radio" checked id="flat-rate" name="radio-flat-rate">
+											<label for="flat-rate">邮费： <span>$0.00</span></label>
+										</div>
+										<div class="radio-info">
+											<input type="radio" id="free-shipping" name="radio-flat-rate">
+											<label for="free-shipping">包邮</label>
+										</div>
+									</td><!-- /.btn-radio -->
+								</tr>
+								<tr>
+									<td>合计</td>
+									<td class="price-total">¥[[${cart.price / 100 * cart.num}]]</td>
+								</tr>
+								</tbody>
+							</table>
+							<div class="checkbox">
+								<input type="checkbox" id="checked-order" name="checked-order" checked>
+								<label for="checked-order">我同意任何条款</label>
+							</div><!-- /.checkbox -->
+							<div class="btn-order">
+								<button type="submit" onclick="$('#orderForm').submit()" class="order" title="">付款</button>
+							</div><!-- /.btn-order -->
+
 						</div><!-- /.cart-totals style2 -->
 					</div><!-- /.col-md-5 -->
 				</div><!-- /.row -->
 			</div><!-- /.container -->
 		</section><!-- /.flat-checkout -->
-
 
 
 		<div th:replace="./module/footer::footer"></div>

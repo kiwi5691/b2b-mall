@@ -23,7 +23,7 @@ public class IndexController {
     public String showIndex(Model model) {
         List<Content> contentList = contentService.getContentList(CONTENT_BANNER_ID);
         model.addAttribute("ad1List", contentList);
-        return "index";
+        return "shop-index";
     }
 
 }

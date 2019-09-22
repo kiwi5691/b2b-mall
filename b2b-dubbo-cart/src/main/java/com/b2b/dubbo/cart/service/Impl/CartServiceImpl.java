@@ -62,7 +62,11 @@ public class CartServiceImpl implements CartService {
         List<Item> tbItems = new ArrayList<>();
         for (Object result : results) {
             tbItems.add((Item) result);
+//            System.out.println(((Item) result).getTitle());
+//            System.out.println(((Item) result).getPrice());
+//            System.out.println(((Item) result).getNum());
         }
+
         return tbItems;
     }
 

@@ -74,10 +74,10 @@
 									<tr th:each="cart:${cartList}">
 										<td>
 											<div class="img-product">
-												<img src="/images/product/other/12.jpg" alt="">
+												<img th:src="${cart.image}" alt="">
 											</div>
 											<div class="name-product">
-												<a target="_blank" th:href="|http://localhost:8088/item/${cart.id}.html|">[[${cart.title}]]</a>
+												<a target="_blank" th:href="/item/${cart.id}.html">[[${cart.title}]]</a>
 											</div>
 											<div class="price">
 												¥ [[${cart.price / 100}]]

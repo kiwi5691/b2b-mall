@@ -37,7 +37,7 @@ public class OrderController {
     @RequestMapping("/order-cart.html")
     public String showOrderCart(HttpServletRequest request) {
         TbUser user = (TbUser) request.getAttribute("user");
-        List<Item> cartList = cartService.getCartList(5L);
+        List<Item> cartList = cartService.getCartList(user.getId());
         cartList.stream().forEach(cartList1->{
             System.out.println(cartList1.getId());
             System.out.println(cartList1.getPrice());
@@ -45,12 +45,8 @@ public class OrderController {
             System.out.println(cartList1.getCategoryName());
         });
         request.setAttribute("cartList", cartList);
-        int paymentInt =0;
-        for (Item i:cartList) {
-            paymentInt+= (i.getNum()*i.getPrice())/100;
-        }
-        request.setAttribute("payment",String.valueOf( paymentInt));
-        return "order-cart";
+        return "shop-checkout";
+//        return "order-cart";
     }
 
     @PostMapping("/create.html")
