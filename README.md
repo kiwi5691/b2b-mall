@@ -141,19 +141,19 @@ b2b-mall-sso 同。
 
 - ### 商城主页
      - 主页
-     [image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/index.png)
+     ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/index.png)
      - 单点登录（8087端口）
-     [image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/sso.png)
+     ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/sso.png)
       - 购物车
-      [image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/cart.png)
+      ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/cart.png)
       - 订单
-      [image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/morder.png)
+      ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/morder.png)
       - 输入订单
-      [image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/orderinput.png)
+      ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/orderinput.png)
       - 支付
-      [image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/ordersuccess.png)
+      ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/ordersuccess.png)
       - 搜索页
-      [image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/searchpage.png)
+      ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/searchpage.png)
       - 搜索
-      [image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/search.png)
+      ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/search.png)
      
