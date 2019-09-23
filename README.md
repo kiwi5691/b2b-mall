@@ -59,7 +59,7 @@
 - 安装 Nginx
 - 安装zookeeper（建议使用docker安装）
 - 安装IDE （IDEA）
-- 安装Solr（需要配置好中文和添加newCore）
+- 安装Solr
 
 #### 启动顺序
 b2b_db ->  b2b_common -> b2b_admin 
@@ -85,26 +85,46 @@ dubbo:
 ```
 其中dubbo的端口需要加上'',如果单纯一个dubbo都会默认20880， 但是多服务不使用''来描述端口则会不匹配。导致端口冲突
 
-#### ActiveMq，Redis，Email
+### ActiveMq，Redis，Email，Solr
+ActiveMq，Redis，Email
 application-common
 application-admin 均有activemq的配置。
 旗下的redis.properties配置redis。
 email.properties配置 stmp，需要到邮箱中申请。
 在b2b-dubbo 前缀的服务中，均有redis的配置。因为是多端口服务使用redis。
+b2b-dubbo-search 配置solr。其中
+```
+data:
+    solr:
+      host: http://localhost:8983/solr/collection1
+```
+加上solr自带的中文词库，并且需要创建collection1的core。
+需要启动b2b-dubbo-search，和frontend。运行
+
+```
+localhost:8080/index/item/import
+```
+来初始化数据库中的词库,可在admin中自行添加此执行。
 
 ### 数据库
 b2b-db  -> sql 文件夹中执行 sql语句，并且在
 application-db.properties 中配置数据库
+其中item表中的图片都不是永久性的，用了我自己的图库来存。如果失效了可自行使用
+```
+UPDATE `tb_item` SET `image`=' 您的图片地址' WHERE `title` like '酷%'
+```
+来修改。title的标题重复值很多。便于用模糊查询修改。
 
 ### 商城页面跳转
 
 因为比较匆忙。所以使用纯html+js来写前端。没有用vue，所以这下对于localhost:***/的使用便变得烦琐起来。
 b2b-frontend -> resources -> templates --> module 下的footer和category 都有 对localhsot:***的引用。
 b2b-mall-sso 同。
+其templates的html。可自行搜索localhost的关键字来修改。不多。
 
 ## 小结
 本项目是基于dubbo的分布式商城。
-毕竟是一个练手，并且要上交的项目。所以会过于繁琐。可以自行修改成非分布式。
+毕竟是一个练手分布式，并且要上交的项目。所以会过于繁琐。可以自行修改成非分布式。
 单纯的把b2b-dubbo-*** 的 service 移动到其他模块中。
 注：分布式模块中的Service注解是dubbo的。
 现在dubbo以及由apache管理。不要再用alibaba的包了。
