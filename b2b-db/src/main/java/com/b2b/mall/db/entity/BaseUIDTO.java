@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @auther kiwi
- * @Date 2019/9/16 22:16
+ * @Date 2019/9/16     22:16
  */
 public class BaseUIDTO implements Serializable {
 

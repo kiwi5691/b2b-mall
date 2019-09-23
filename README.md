@@ -9,7 +9,7 @@
 - b2b_db: 是数据库的各种操作
 - b2b_frontend: 是前台页面
 - b2b_sso: 是单点登录页面
-- b2b_dubbo_admin: 是单点登录页面
+- b2b_dubbo_admin: 是dubbo服务与发现页面
 
 
 ## 技术架构

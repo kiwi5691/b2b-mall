@@ -1,6 +1,6 @@
 version: '3'
 services:
-#  nginx:
+#  n ginx:
 #    image: nginx
 #    restart: always
 #    ports:

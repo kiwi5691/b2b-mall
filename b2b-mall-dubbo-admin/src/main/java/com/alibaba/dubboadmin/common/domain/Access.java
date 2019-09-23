@@ -20,7 +20,7 @@ public class Access extends Entity {
 
     private static final long serialVersionUID = -962351722638094446L;
 
-    private String service;      /*service name*/
+    private String service;      /*s ervice name*/
 
     private String address;      /*address of consumer*/
 

@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * 订单管理Controller
+ * 订单管理 Controller
  */
 @Controller
 @RequestMapping("/order")

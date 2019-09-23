@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author kiwi
+ */
 @Service(version = "${Dubbo_Version}")
 public class ItemCategoryServiceImpl implements ItemCategoryService {
 

@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author kiwi
+ */
 @Service(version = "${Dubbo_Version}")
 public class ContentServiceImpl implements ContentService {
 

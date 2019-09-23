@@ -12,6 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author kiwi
+ */
 @Controller
 @RequestMapping("/pic")
 public class PictureController {

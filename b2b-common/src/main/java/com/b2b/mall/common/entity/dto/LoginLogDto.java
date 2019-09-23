@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * @auther kiwi
- * @Date 2019/8/18 20:30
+ * @Date 2019/8/18     20:30
  */
 @Data
 public class LoginLogDto {
