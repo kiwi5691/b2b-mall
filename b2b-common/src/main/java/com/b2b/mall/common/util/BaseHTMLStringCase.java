@@ -138,4 +138,15 @@ public class BaseHTMLStringCase {
             return false;
         }
     }
+
+    public static String isSent(String shippingCode){
+        if(shippingCode!=null){
+            return shippingCode;
+        }
+        else {
+            return "未发货";
+        }
+    }
+
+
 }

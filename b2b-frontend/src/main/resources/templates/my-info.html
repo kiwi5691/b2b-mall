@@ -73,28 +73,29 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									<tr th:each="order : ${orderList}">
 										<td>
 											<div class="total">
-												asdsad,250.00												
+												[[${order.orderId}]]
 											</div>											
 											<span>
-												<a href="#f">查看订单详细</a>												
+												<a th:href="|http://localhost:8088/info/${order.orderId}.html|">查看订单详细</a>
 											</span>
 										</td>
 										<td>
 											<div class="price">
-												2019-1-5
+												[[${order.dateStr1}]]
 											</div>
 										</td>
 										<td>
 											<div class="total">
-												$6,250.00
+												[[${order.totalFee}]]
 											</div>
 										</td>
 										<td>
 											<div class="total">
-												214214
+												[[${order.shippingName}]]
+												<span>[[${order.shippingCode}]]</span>
 											</div>
 										</td>
 									</tr>									
@@ -110,25 +111,25 @@
 									<tbody>
 										<tr>
 											<td>账号名</td>
-											<td class="subtotal">fuck?</td>
+											<td class="subtotal">[[${mallUserDTO.username}]] </td>
 										</tr>
 										<tr>
 											<td>电话</td>
 											<td class="btn-radio">
 												<div class="radio-info">
-													<label for="flat-rate">3123123</label>
+													<label >[[${mallUserDTO.phone}]]</label>
 												</div>
 																						
 											</td><!-- /.btn-radio -->
 										</tr>
 										<tr>
 											<td>注册时间</td>
-											<td class="price-total">2019-1-5</td>
+											<td class="price-total">[[${mallUserDTO.created}]]</td>
 										</tr>
 									</tbody>
 								</table>
 								<div class="btn-cart-totals">
-									<a href='http://localhost:8088'" class="update" title="">继续购物</a>
+									<a href='http://localhost:8088' class="update" title="">继续购物</a>
 									<a href="http://localhost:8087/order/order-cart.html" class="checkout" title="">购物车</a>
 								</div><!-- /.btn-cart-totals -->
 							</form><!-- /form -->

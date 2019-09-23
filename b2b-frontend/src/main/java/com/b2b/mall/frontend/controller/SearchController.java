@@ -28,4 +28,15 @@ public class SearchController {
         model.addAttribute("itemList", result.getItemList());
         return "shop-search";
     }
+
+    @RequestMapping("/searchCategory.html")
+    public String searchCategory(String keyword, @RequestParam(defaultValue = "1") Integer page, Model model) throws Exception {
+        SearchResult result = searchService.search(keyword, page, PAGE_ROWS);
+        model.addAttribute("query", keyword);
+        model.addAttribute("totalPages", result.getTotalPages());
+        model.addAttribute("recourdCount", result.getRecourdCount());
+        model.addAttribute("page", page);
+        model.addAttribute("itemList", result.getItemList());
+        return "shop-search";
+    }
 }

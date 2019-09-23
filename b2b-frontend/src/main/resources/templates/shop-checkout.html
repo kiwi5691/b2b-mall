@@ -79,45 +79,33 @@
 									<div class="fields-content">
 										<div class="field-row">
 											<p class="field-one-half">
-												<label for="orderShipping.receiverName">收货人姓名</label>
+												<label >收货人姓名</label>
 												<input type="text"  name="orderShipping.receiverName" placeholder="收货人姓名" required/>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<label >电话</label>
-											<input type="text" placeholder="收货人电话" name="orderShipping.receiverMobile" value="158008888881" required/>
+											<input type="text" placeholder="收货人电话" name="orderShipping.receiverMobile"  required/>
 										</div>
 										<div class="field-row">
 											<label>省</label>
-											<select name="orderShipping.receiverState">
-												<option value="">Australia</option>
-												<option value="">USA State</option>
-												<option value="">Spanish</option>
-												<option value="">Viet Nam</option>
-											</select>
-										</div>
+                                            <select id="s_province" name="orderShipping.receiverState"></select>&nbsp;&nbsp;
+                                        </div>
 										<div class="field-row">
 											<label >城市</label>
-											<select name="orderShipping.receiverCity">
-												<option value="">Australia</option>
-												<option value="">USA State</option>
-												<option value="">Spanish</option>
-												<option value="">Viet Nam</option>
-											</select>
-										</div>
+                                            <select id="s_city" name="orderShipping.receiverCity" ></select>&nbsp;&nbsp;
+
+                                        </div>
 										<div class="field-row">
 											<label >区</label>
-											<select name="orderShipping.receiverDistrict">
-												<option value="">Australia</option>
-												<option value="">USA State</option>
-												<option value="">Spanish</option>
-												<option value="">Viet Nam</option>
-											</select>
+                                            <select id="s_county" name="orderShipping.receiverDistrict"></select>
+                                            <script type="text/javascript" src="/js/area.js" charset="UTF-8"></script>
+                                            <script type="text/javascript">_init_area();</script>
 										</div>
 										<div class="field-row">
 											<label >详细地址</label>
-											<input type="text"  name="orderShipping.receiverAddress" value="北京市昌平区北七家镇 修正大厦" required/>
+											<input type="text"  name="orderShipping.receiverAddress"  required/>
 
 											<div class="clearfix"></div>
 										</div>
@@ -152,7 +140,7 @@
 								<tbody>
 								<tr>
 									<td>合计</td>
-									<td class="subtotal">¥[[${cart.price / 100 * cart.num}]]</td>
+									<td class="subtotal">[[${#aggregates.sum(cartList.![price * num]) / 100}]]</td>
 								</tr>
 								<tr>
 									<td>邮费</td>
@@ -169,7 +157,7 @@
 								</tr>
 								<tr>
 									<td>合计</td>
-									<td class="price-total">¥[[${cart.price / 100 * cart.num}]]</td>
+									<td class="price-total">[[${#aggregates.sum(cartList.![price * num]) / 100}]]</td>
 								</tr>
 								</tbody>
 							</table>
@@ -210,6 +198,16 @@
 		<script type="text/javascript" src="/js/jquery.countdown.js"></script>
 
 		<script type="text/javascript" src="/js/main.js"></script>
+
+    <script type="text/javascript">
+        var Gid  = document.getElementById ;
+        var showArea = function(){
+            Gid('show').innerHTML = "<h3>" + Gid('s_province').value + " - " +
+                Gid('s_city').value + " - " +
+                Gid('s_county').value + "</h3>"
+        }
+        Gid('s_county').setAttribute('onchange','showArea()');
+    </script>
 
 </body>	
 </html>

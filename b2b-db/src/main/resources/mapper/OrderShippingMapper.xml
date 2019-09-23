@@ -46,7 +46,8 @@
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select *  from tb_order_shipping
+    select order_id, receiver_name, receiver_phone, receiver_mobile, receiver_state,
+    receiver_city, receiver_district, receiver_address, receiver_zip, created, updated  from tb_order_shipping
     where order_id = #{orderId,jdbcType=VARCHAR}
   </select>
     <select id="selectAll" resultMap="BaseResultMap">

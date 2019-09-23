@@ -11,11 +11,14 @@ import com.b2b.mall.db.model.OrderShipping;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 
+@Transactional
 @Service(version = "${Dubbo_Version}")
 public class OrderServiceImpl implements OrderService {
 
@@ -34,7 +37,8 @@ public class OrderServiceImpl implements OrderService {
 	private Integer ORDER_ID_BEGIN;
 	@Value("${ORDER_ITEM_ID_GEN_KEY}")
 	private String ORDER_ITEM_ID_GEN_KEY;
-	
+
+	@Transient
 	@Override
 	public Result createOrder(OrderInfo orderInfo) {
 		// 1、接收表单的数据
@@ -51,6 +55,11 @@ public class OrderServiceImpl implements OrderService {
 		Date date = new Date();
 		orderInfo.setCreateTime(date);
 		orderInfo.setUpdateTime(date);
+		orderInfo.setPaymentTime(date);
+		orderInfo.setEndTime(date);
+		orderInfo.setConsignTime(date);
+		orderInfo.setCloseTime(date);
+		orderInfo.setBuyerRate(5);
 		// 3、向订单表插入数据。
 		orderMapper.insert(orderInfo);
 		// 4、向订单明细表插入数据

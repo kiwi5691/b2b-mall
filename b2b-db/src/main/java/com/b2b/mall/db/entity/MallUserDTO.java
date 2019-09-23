@@ -1,9 +1,15 @@
-package com.b2b.mall.db.model;
+package com.b2b.mall.db.entity;
+
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class TbUser implements Serializable {
+/**
+ * @auther kiwi
+ * @Date 2019/9/23 13:59
+ */
+public class MallUserDTO implements Serializable {
     private Long id;
 
     private String username;
@@ -14,10 +20,19 @@ public class TbUser implements Serializable {
 
     private String email;
 
-    private Date created;
+    private String created;
 
-    private Date updated;
+    private String updated;
 
+    public MallUserDTO(Long id, String username, String password, String phone, String email, String created, String updated) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+        this.email = email;
+        this.created = created;
+        this.updated = updated;
+    }
 
     public Long getId() {
         return id;
@@ -32,7 +47,7 @@ public class TbUser implements Serializable {
     }
 
     public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+        this.username = username;
     }
 
     public String getPassword() {
@@ -40,7 +55,7 @@ public class TbUser implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public String getPhone() {
@@ -48,7 +63,7 @@ public class TbUser implements Serializable {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -56,22 +71,22 @@ public class TbUser implements Serializable {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
-    public Date getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 
-    public Date getUpdated() {
+    public String getUpdated() {
         return updated;
     }
 
-    public void setUpdated(Date updated) {
+    public void setUpdated(String updated) {
         this.updated = updated;
     }
 }

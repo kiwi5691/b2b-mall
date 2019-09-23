@@ -2,6 +2,7 @@ package com.b2b.mall.db.mapper;
 
 import com.b2b.mall.db.model.Order;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public interface OrderMapper {
     Order selectByPrimaryKey(String orderId);
 
     List<Order> list(Order order);
+
+    List<Order> getByUserId(@Param("id") Long id);
 
     List<Order> listRefund(Order order);
 

@@ -43,6 +43,7 @@ public class OrderController {
             System.out.println(cartList1.getPrice());
             System.out.println(cartList1.getTitle());
             System.out.println(cartList1.getCategoryName());
+            System.out.println(cartList1.getNum());
         });
         request.setAttribute("cartList", cartList);
         return "shop-checkout";
