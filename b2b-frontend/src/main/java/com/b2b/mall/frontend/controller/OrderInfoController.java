@@ -31,7 +31,7 @@ public class OrderInfoController {
     public String searchtt( HttpServletRequest request) throws Exception {
         TbUser user = (TbUser) request.getAttribute("user");
         System.out.println(user.getId());
-        List<Order> orderList = orderInfoService.getOrderById((long) 37);
+        List<Order> orderList = orderInfoService.getOrderById(user.getId());
 
         orderList.forEach(order -> {
             order.setDateStr1(DateUtil.getDateStr(order.getCreateTime()));
