@@ -133,47 +133,47 @@ b2b-mall-sso 同。
 
 - ### 后台
   - 登录
-  ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/login.png)
+  ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/login.png)
   - DashBoard
-  ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/bashboard.png)
+  ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/bashboard.png)
   - 商品
-  ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/shop.png)
+  ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/shop.png)
   - 订单
-  ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/order.png)
+  ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/order.png)
   - 权限
-   ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/permission.png)
+   ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/permission.png)
   - 修改权限
-   ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/updatepermission.png)
+   ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/updatepermission.png)
   - 日志
-   ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/log.png)
+   ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/log.png)
 
 - ### 相关操作
     - 启动zookeeper
-    ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/docker.png)
+    ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/docker.png)
     - 启动solr
-    ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/solr.png)
+    ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/solr.png)
      - 启动redis
-     ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/redis.png)
+     ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/redis.png)
      - 启动服务
-     ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/service.png)
+     ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/service.png)
      - 启动工程里的dubbo监控
-     ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/dubbo.png)
+     ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/dubbo.png)
 
 - ### 商城主页
      - 主页
-     ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/index.png)
+     ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/index.png)
      - 单点登录（8087端口）
-     ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/sso.png)
+     ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/sso.png)
       - 购物车
-      ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/cart.png)
+      ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/cart.png)
       - 订单
-      ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/morder.png)
+      ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/morder.png)
       - 输入订单
-      ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/orderinput.png)
+      ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/orderinput.png)
       - 支付
-      ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/ordersuccess.png)
+      ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/ordersuccess.png)
       - 搜索页
-      ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/searchpage.png)
+      ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/searchpage.png)
       - 搜索
-      ![image text](https://raw.githubusercontent.com/kiwi5691/b2b-mall/master/screenShot/search.png)
+      ![image text](https://gitee.com/kiwi1/b2b-mall/raw/master/screenShot/search.png)
      
